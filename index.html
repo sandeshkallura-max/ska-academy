@@ -9,12 +9,12 @@
 :root{--navy:#102b50;--blue:#1e5da8;--gold:#e6a126;--ink:#172538;--muted:#637083;--bg:#f5f7fa;--line:#e1e7ef;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
 a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
-header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header{background:#f5f7fa;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0;flex-wrap:wrap}
-.brand img{display:block;width:210px;max-height:72px;object-fit:contain;object-position:left center}
+.brand img{display:block;width:210px;max-height:72px;object-fit:contain;object-position:left center;background:transparent}
 nav{display:flex;gap:8px;flex-wrap:wrap}nav a{padding:9px 12px;border-radius:8px;font-weight:650;font-size:14px}nav a:hover{background:#eef3fa;color:var(--blue)}
-.hero{margin:28px auto;background:linear-gradient(120deg,#102747,#1c4b7b);color:white;border-radius:20px;padding:clamp(26px,6vw,62px);display:grid;grid-template-columns:1.4fr .8fr;gap:20px;align-items:center;overflow:hidden}
-.eyebrow{color:#f4c66e;font-weight:800;letter-spacing:1.5px;font-size:12px}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:12px 0}.hero p{color:#dbe6f3;max-width:570px}.hero-art{background:#fff;border-radius:16px;padding:10px;transform:rotate(2deg)}.hero-art img{width:100%;display:block}
+.hero{margin:28px auto;background:linear-gradient(120deg,#102747,#1c4b7b);color:white;border-radius:20px;padding:clamp(26px,6vw,62px);display:grid;grid-template-columns:1fr;gap:20px;align-items:center;overflow:hidden}
+.eyebrow{color:#f4c66e;font-weight:800;letter-spacing:1.5px;font-size:12px}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:12px 0}.hero p{color:#dbe6f3;max-width:570px}
 .btn{display:inline-block;border:0;border-radius:9px;padding:12px 17px;font-weight:750;cursor:pointer}.primary{background:var(--gold);color:#14253a}.light{background:#fff;color:var(--navy);margin-left:8px}
 .offer{background:#fff5df;border:1px solid #f0d49a;color:#65460b;border-radius:12px;padding:14px 18px;margin:18px auto;font-weight:700}
 section{padding:28px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin-bottom:18px}h2{color:var(--navy);font-size:clamp(24px,3vw,32px);margin:0} .sub{color:var(--muted);margin:5px 0 0}
@@ -23,14 +23,29 @@ section{padding:28px 0}.section-head{display:flex;justify-content:space-between;
 form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #ccd5e1;border-radius:8px;font:inherit;background:#fff}.field textarea{min-height:90px;resize:vertical}.wide{grid-column:1/-1}
 .note{font-size:12px;color:var(--muted)}footer{background:#102747;color:#dbe6f3;padding:28px 0;margin-top:30px}footer .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
 #success{display:none;background:#e7f5ed;color:#17643c;padding:12px;border-radius:9px;font-weight:700}
-@media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{max-width:280px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+/* Gentle entrance and hover animations */
+@keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes softGlow{0%,100%{box-shadow:0 8px 28px #e6a12618}50%{box-shadow:0 12px 34px #e6a12638}}
+.hero{animation:riseIn .75s ease both}
+.offer{animation:riseIn .85s ease both}
+.course,.panel{transition:transform .25s ease,box-shadow .25s ease}
+.course:hover,.panel:hover{transform:translateY(-5px);box-shadow:0 12px 28px #102b5018}
+.btn{transition:transform .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.pill{animation:softGlow 4s ease-in-out infinite}
+.choice-card{border:2px solid var(--line);cursor:pointer;text-align:left;transition:all .25s ease}
+.choice-card.selected{border-color:var(--gold);background:#fff8e9;box-shadow:0 8px 24px #e6a12620}
+.choice-card:focus{outline:3px solid #e6a12655;outline-offset:2px}
+.placeholder{border:1px dashed #c6d1df;background:#f9fbfd;border-radius:12px;padding:22px;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
 @media(max-width:480px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.brand img{width:175px}.light{margin:8px 0 0}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
 <a class="brand" href="#"><img src="assets/ska-academy-logo.png" alt="SKA Academy — Learn with Passion"></a>
-<nav><a href="#courses">Courses</a><a href="#learning">Learning modes</a><a href="#enroll">Enroll free</a></nav>
+<nav><a href="#courses">Courses</a><a href="#learning">Learning modes</a><a href="#syllabus">Academic syllabus</a><a href="#faculty">Lecturing faculty</a><a href="#enroll">Enroll</a></nav>
 </div></header>
 <main class="wrap">
 <div class="hero">
@@ -38,7 +53,7 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 <h1>Build Skills.<br>Engineer Your Future.</h1>
 <p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
 <a class="btn primary" href="#enroll">Enroll Free Now →</a><a class="btn light" href="#courses">Explore courses</a></div>
-<div class="hero-art"><img src="assets/ska-academy-logo.png" alt="SKA Academy logo"></div>
+
 </div>
 <div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
 <section id="courses">
@@ -51,8 +66,23 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 <article class="course"><div class="ico">🌬️</div><h3>Air Conditioning</h3><p>Refrigeration cycles, AC components, operating principles and troubleshooting.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
 <article class="course"><div class="ico">⚡</div><h3>Electrical Systems</h3><p>Electrical fundamentals, wiring, protection devices, motors and safety.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
 </div></section>
-<section id="learning"><div class="section-head"><div><h2>Learn Your Way</h2><p class="sub">Choose the mode that suits your schedule.</p></div></div>
-<div class="two"><div class="panel"><div class="ico">💻</div><h3>Online Classes</h3><p class="sub">Join guided classes remotely and learn from wherever you are.</p></div><div class="panel"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person classroom sessions and practical learning activities.</p></div></div></section>
+<section id="learning"><div class="section-head"><div><h2>First, Choose Your Learning Mode</h2><p class="sub">Select online or offline before proceeding to enrollment.</p></div></div>
+<div class="two">
+<button type="button" class="panel choice-card" id="online-choice" onclick="chooseMode('Online')" aria-pressed="false"><div class="ico">💻</div><h3>Online Classes</h3><p class="sub">Join guided classes remotely and learn from wherever you are.</p><b>Choose Online →</b></button>
+<button type="button" class="panel choice-card" id="offline-choice" onclick="chooseMode('Offline')" aria-pressed="false"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person classroom sessions and practical learning activities.</p><b>Choose Offline →</b></button>
+</div>
+<p id="mode-status" class="note" aria-live="polite">Please select a learning mode to continue.</p>
+<a id="continue-enroll" class="btn primary" href="#enroll" style="pointer-events:none;opacity:.5" aria-disabled="true">Continue to enrollment →</a>
+</section>
+<section id="syllabus"><div class="section-head"><div><h2>Academic Syllabus</h2><p class="sub">Course-wise syllabus and learning plans will be published here.</p></div></div>
+<div class="placeholder"><h3 style="margin-top:0;color:var(--navy)">Syllabus updates coming soon</h3><p style="margin-bottom:0">This section is reserved for academic syllabi. SKA Academy will add subject modules, topics, learning outcomes and schedules here.</p></div></section>
+<section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and professionals who will guide your learning.</p></div></div>
+<div class="grid">
+<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced engineering and technical professionals.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🎓</div><h3>Subject Lecturers</h3><p>Trainers focused on engineering fundamentals and academic concepts.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, equipment and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
+</div>
+<p class="note">Faculty names, qualifications, experience and professional details will be added after confirmation. No faculty profiles are published yet.</p></section>
 <section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
 <div class="two"><div class="panel"><h3 style="color:var(--navy);margin-top:0">Enroll in a class</h3>
 <!-- Replace the form action with your deployed Google Apps Script Web App URL. -->
@@ -62,7 +92,7 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 <div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
 <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
 <div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
-<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required><option value="">Choose mode</option><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
 <div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
 </div>
@@ -76,8 +106,21 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 <footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
+let selectedMode='';
+function chooseMode(mode){
+ selectedMode=mode;
+ document.getElementById('mode').value=mode;
+ document.getElementById('online-choice').classList.toggle('selected',mode==='Online');
+ document.getElementById('offline-choice').classList.toggle('selected',mode==='Offline');
+ document.getElementById('online-choice').setAttribute('aria-pressed',mode==='Online');
+ document.getElementById('offline-choice').setAttribute('aria-pressed',mode==='Offline');
+ document.getElementById('mode-status').textContent=mode+' classes selected. You can now continue to enrollment.';
+ const link=document.getElementById('continue-enroll');
+ link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
+}
 const form=document.getElementById('enrollment');
 form.addEventListener('submit',function(e){
+ if(!selectedMode){e.preventDefault();alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
  if(form.action.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')){
   e.preventDefault();alert('The website design is ready, but the free Google Sheets enrollment connection is not configured yet. Follow SETUP.md to connect it before accepting real registrations.');
   return;

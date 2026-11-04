@@ -49,3 +49,4 @@ The Google Sheet becomes your simple enrollment inbox. Open it to view student d
 - `index.html` — website
 - `assets/ska-academy-logo.png` — selected SKA Academy logo
 - `google-apps-script/Code.gs` — optional Google Sheets receiver
+\n\nWebsite updates: students must select Online or Offline before proceeding to enrollment. Academic Syllabus is an intentionally empty placeholder for future updates. Lecturing Faculty currently shows faculty categories only; add confirmed professional names and qualifications when available. Subtle animations are included, with reduced-motion accessibility support.\n
