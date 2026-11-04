@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SKA Academy — Learn with Passion. Free online and offline engineering classes.">
+<meta name="description" content="SKA Academy — professional engineering learning with flexible online and offline classes.">
+<meta name="theme-color" content="#0b1f3a">
 <title>SKA Academy | Learn with Passion</title>
 <style>
 :root{--navy:#102b50;--blue:#1e5da8;--gold:#e6a126;--ink:#172538;--muted:#637083;--bg:#f5f7fa;--line:#e1e7ef;--white:#fff}
@@ -40,6 +41,28 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 @media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
 @media(max-width:480px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.brand img{width:175px}.light{margin:8px 0 0}}
+
+/* SKA Academy professional visual refresh */
+:root{--navy:#0b1f3a;--blue:#174b82;--gold:#d9a441;--ink:#18283d;--muted:#68778b;--bg:#f4f6f9;--line:#e2e8f0;--white:#fff}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:#f6f8fb;color:var(--ink);letter-spacing:-.01em}
+.wrap{width:min(1180px,91%)}
+header{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #e7ebf1;box-shadow:0 5px 24px rgba(11,31,58,.035)}
+.nav{min-height:88px;padding:9px 0;gap:22px}.brand img{width:205px;max-height:68px}
+nav{gap:3px;align-items:center}nav a{font-size:13px;color:#34465d;padding:10px 12px;border-radius:7px;transition:background .2s,color .2s}nav a:hover{background:#eef3f8;color:var(--blue)}nav a:last-child{background:var(--navy);color:white;padding:11px 17px;margin-left:5px}nav a:last-child:hover{background:var(--blue);color:#fff}
+.hero{position:relative;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(55,112,164,.35),transparent 34%),linear-gradient(118deg,#091b33 0%,#102f54 58%,#174878 100%);box-shadow:0 22px 55px rgba(9,27,51,.17)}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.12);border-radius:inherit}
+.hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:#f1c978;font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(217,164,65,.15)}.eyebrow-sep{color:#8195ad}
+.hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800}.hero p{font-size:16px;line-height:1.8;color:#d2dfed;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em}.primary{background:linear-gradient(135deg,#edc36f,#d9a441);color:#15263b;box-shadow:0 8px 20px rgba(217,164,65,.18)}.light{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);margin-left:9px}.hero-proof{margin-top:26px;color:#bdcde0;font-size:12px}.hero-proof span{color:#f0c46e;margin-right:7px}
+.hero-visual{min-height:290px;position:relative;display:grid;place-items:center}.visual-orbit{position:absolute;border:1px solid rgba(218,232,248,.19);border-radius:50%;width:280px;height:280px}.orbit-two{width:220px;height:220px;border-style:dashed;transform:rotate(25deg)}.visual-core{width:174px;height:174px;border-radius:50%;background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.3);box-shadow:inset 0 0 35px rgba(255,255,255,.08),0 20px 45px rgba(0,0,0,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;color:#dbe7f4}.visual-symbol{font-size:58px;line-height:1;color:#edc36f;text-shadow:0 5px 20px rgba(217,164,65,.3)}.visual-core span{font-size:9px;letter-spacing:2.4px;margin-top:9px}.visual-core strong{font-size:20px;color:#fff}.float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:11px;background:rgba(255,255,255,.96);color:#1a2d45;box-shadow:0 12px 32px rgba(0,0,0,.17);min-width:190px}.float-top{top:24px;right:0}.float-bottom{bottom:22px;left:0}.float-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#eaf1f8;color:#174b82;font-size:21px}.gold-icon{background:#fff3d9;color:#b17b20}.float-card b,.float-card small{display:block}.float-card b{font-size:11px}.float-card small{font-size:10px;color:#718096;margin-top:2px}
+.offer{background:#fffaf0;border:1px solid #f0dfbb;color:#73521a;border-radius:10px;padding:13px 18px;margin:18px auto;font-size:13px;box-shadow:0 5px 18px rgba(139,101,35,.04)}
+section{padding:43px 0}.section-head{margin-bottom:22px}h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.8px;font-weight:800}.sub{font-size:14px;line-height:1.7}.grid{gap:18px}.course,.panel{border:1px solid #e5eaf1;border-radius:15px;box-shadow:0 6px 22px rgba(15,42,73,.045);padding:23px}.course{position:relative;overflow:hidden}.course:before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--gold);transition:height .25s}.course:hover:before{height:100%}.ico{width:47px;height:47px;border-radius:12px;background:#edf3f9;color:#174b82}.course h3,.panel h3{font-size:17px;letter-spacing:-.3px}.course p{font-size:13px;line-height:1.75;min-height:68px}.pill{font-size:10px;letter-spacing:.35px;background:#f3f6fa;color:#34516f;border:1px solid #e5ebf2;animation:none}.section-head .pill{background:#fff7e8;color:#8a641e;border-color:#f1dfb9}
+.choice-card{background:#fff;min-height:190px}.choice-card h3{margin:12px 0 4px}.choice-card.selected{border-color:var(--gold);background:#fffcf5;box-shadow:0 12px 28px rgba(217,164,65,.12)}.choice-card:hover{border-color:#b8c8da}.placeholder{background:linear-gradient(135deg,#fbfcfe,#f4f7fa);border-color:#cbd6e2;padding:27px}.field input,.field select,.field textarea{border-color:#d5dde7;border-radius:8px}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(23,75,130,.12);border-color:#4779a8}#success{border:1px solid #c5e4d1}
+footer{background:#091b33;padding:34px 0;margin-top:42px}footer .wrap{align-items:center}footer b{letter-spacing:1.5px;font-size:14px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
+@media(max-width:850px){.nav{justify-content:center}.brand img{object-position:center}nav{justify-content:center}.hero{grid-template-columns:1fr;gap:10px}.hero-visual{min-height:260px}.float-top{right:8%}.float-bottom{left:8%}}
+@media(max-width:600px){.nav{padding:10px 0}.brand img{width:180px}nav{gap:2px}nav a{font-size:11px;padding:8px 9px}nav a:last-child{padding:9px 12px}.hero{margin-top:18px;padding:28px 23px;border-radius:18px}.hero h1{font-size:40px;letter-spacing:-1.5px}.hero p{font-size:14px}.hero-visual{min-height:235px}.visual-orbit{width:220px;height:220px}.orbit-two{width:175px;height:175px}.visual-core{width:145px;height:145px}.visual-symbol{font-size:46px}.float-card{min-width:165px;padding:9px 11px}.float-top{top:8px;right:0}.float-bottom{bottom:8px;left:0}.light{margin:9px 0 0}.hero-proof{font-size:11px}.section-head{align-items:start}.course,.panel{padding:19px}}
+
 </style>
 </head>
 <body>
@@ -49,11 +72,11 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 </div></header>
 <main class="wrap">
 <div class="hero">
-<div><div class="eyebrow">SKA ACADEMY · LEARN WITH PASSION</div>
+<div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SKA ACADEMY <span class="eyebrow-sep">/</span> LEARN WITH PASSION</div>
 <h1>Build Skills.<br>Engineer Your Future.</h1>
 <p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
-<a class="btn primary" href="#enroll">Enroll Free Now →</a><a class="btn light" href="#courses">Explore courses</a></div>
-
+<a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore courses</a><div class="hero-proof"><span>✦</span> Practical knowledge. Professional guidance. Flexible learning.</div></div>
+<div class="hero-visual" aria-label="Engineering education highlights"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="visual-symbol">⚙</div><span>ENGINEERING</span><strong>Starts Here.</strong></div><div class="float-card float-top"><span class="float-icon">⌁</span><span><b>Learn with purpose</b><small>Build real-world skills</small></span></div><div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><span><b>Flexible learning</b><small>Online &amp; offline classes</small></span></div></div>
 </div>
 <div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
 <section id="courses">
@@ -92,7 +115,7 @@ form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;ga
 <div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
 <div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
 <div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
-<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
 <div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
 </div>
@@ -110,6 +133,7 @@ let selectedMode='';
 function chooseMode(mode){
  selectedMode=mode;
  document.getElementById('mode').value=mode;
+ document.getElementById('mode').disabled=false;
  document.getElementById('online-choice').classList.toggle('selected',mode==='Online');
  document.getElementById('offline-choice').classList.toggle('selected',mode==='Offline');
  document.getElementById('online-choice').setAttribute('aria-pressed',mode==='Online');
@@ -127,5 +151,9 @@ form.addEventListener('submit',function(e){
  }
  setTimeout(()=>{document.getElementById('success').style.display='block';form.reset();},900);
 });
+// Reveal sections and cards as they enter the viewport.
+const revealTargets=document.querySelectorAll('section,.offer,.course,.panel');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}})},{threshold:.12});revealTargets.forEach(el=>observer.observe(el));}else{revealTargets.forEach(el=>el.classList.add('is-visible'));}
 </script>
 </body></html>
