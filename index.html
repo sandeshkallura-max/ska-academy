@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SKA Academy — Learn with Passion. Free online and offline engineering classes.">
+<title>SKA Academy | Learn with Passion</title>
+<style>
+:root{--navy:#102b50;--blue:#1e5da8;--gold:#e6a126;--ink:#172538;--muted:#637083;--bg:#f5f7fa;--line:#e1e7ef;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0;flex-wrap:wrap}
+.brand img{display:block;width:210px;max-height:72px;object-fit:contain;object-position:left center}
+nav{display:flex;gap:8px;flex-wrap:wrap}nav a{padding:9px 12px;border-radius:8px;font-weight:650;font-size:14px}nav a:hover{background:#eef3fa;color:var(--blue)}
+.hero{margin:28px auto;background:linear-gradient(120deg,#102747,#1c4b7b);color:white;border-radius:20px;padding:clamp(26px,6vw,62px);display:grid;grid-template-columns:1.4fr .8fr;gap:20px;align-items:center;overflow:hidden}
+.eyebrow{color:#f4c66e;font-weight:800;letter-spacing:1.5px;font-size:12px}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:12px 0}.hero p{color:#dbe6f3;max-width:570px}.hero-art{background:#fff;border-radius:16px;padding:10px;transform:rotate(2deg)}.hero-art img{width:100%;display:block}
+.btn{display:inline-block;border:0;border-radius:9px;padding:12px 17px;font-weight:750;cursor:pointer}.primary{background:var(--gold);color:#14253a}.light{background:#fff;color:var(--navy);margin-left:8px}
+.offer{background:#fff5df;border:1px solid #f0d49a;color:#65460b;border-radius:12px;padding:14px 18px;margin:18px auto;font-weight:700}
+section{padding:28px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin-bottom:18px}h2{color:var(--navy);font-size:clamp(24px,3vw,32px);margin:0} .sub{color:var(--muted);margin:5px 0 0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.course{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 4px 18px #102b5008}.ico{width:48px;height:48px;border-radius:12px;background:#edf3fb;display:grid;place-items:center;font-size:25px}.course h3{margin:13px 0 5px;color:var(--navy)}.course p{font-size:14px;color:var(--muted);min-height:64px}.pill{display:inline-block;background:#e7f5ed;color:#17643c;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:800}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px}
+form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #ccd5e1;border-radius:8px;font:inherit;background:#fff}.field textarea{min-height:90px;resize:vertical}.wide{grid-column:1/-1}
+.note{font-size:12px;color:var(--muted)}footer{background:#102747;color:#dbe6f3;padding:28px 0;margin-top:30px}footer .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+#success{display:none;background:#e7f5ed;color:#17643c;padding:12px;border-radius:9px;font-weight:700}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{max-width:280px}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
+@media(max-width:480px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.brand img{width:175px}.light{margin:8px 0 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<a class="brand" href="#"><img src="assets/ska-academy-logo.png" alt="SKA Academy — Learn with Passion"></a>
+<nav><a href="#courses">Courses</a><a href="#learning">Learning modes</a><a href="#enroll">Enroll free</a></nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+<div><div class="eyebrow">SKA ACADEMY · LEARN WITH PASSION</div>
+<h1>Build Skills.<br>Engineer Your Future.</h1>
+<p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
+<a class="btn primary" href="#enroll">Enroll Free Now →</a><a class="btn light" href="#courses">Explore courses</a></div>
+<div class="hero-art"><img src="assets/ska-academy-logo.png" alt="SKA Academy logo"></div>
+</div>
+<div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
+<section id="courses">
+<div class="section-head"><div><h2>Our Courses</h2><p class="sub">Choose a subject and start building practical knowledge.</p></div><span class="pill">ALL COURSES FREE DURING LAUNCH</span></div>
+<div class="grid">
+<article class="course"><div class="ico">⚙️</div><h3>Basics of Engineering</h3><p>Engineering fundamentals, materials, measurements, mechanics and workshop practices.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🧯</div><h3>Fire Safety</h3><p>Fire prevention, fire classifications, protection systems and emergency response.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">❄️</div><h3>HVAC Systems</h3><p>Heating, ventilation, air distribution, cooling loads and HVAC equipment basics.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">📐</div><h3>Engineering Drawing</h3><p>Technical drawing standards, projections, dimensioning and isometric drawings.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🌬️</div><h3>Air Conditioning</h3><p>Refrigeration cycles, AC components, operating principles and troubleshooting.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">⚡</div><h3>Electrical Systems</h3><p>Electrical fundamentals, wiring, protection devices, motors and safety.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+</div></section>
+<section id="learning"><div class="section-head"><div><h2>Learn Your Way</h2><p class="sub">Choose the mode that suits your schedule.</p></div></div>
+<div class="two"><div class="panel"><div class="ico">💻</div><h3>Online Classes</h3><p class="sub">Join guided classes remotely and learn from wherever you are.</p></div><div class="panel"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person classroom sessions and practical learning activities.</p></div></div></section>
+<section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
+<div class="two"><div class="panel"><h3 style="color:var(--navy);margin-top:0">Enroll in a class</h3>
+<!-- Replace the form action with your deployed Google Apps Script Web App URL. -->
+<form id="enrollment" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL" method="post" target="submit-frame">
+<div class="fields">
+<div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name"></div>
+<div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
+<div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
+<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required><option value="">Choose mode</option><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
+<div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
+</div>
+<button class="btn primary" type="submit">Send free enrollment request →</button>
+<p class="note">Submitting this form sends your details to the academy's enrollment sheet once the free Google Sheets connection is configured.</p>
+<div id="success" role="status">Thank you! Your enrollment request has been submitted. The academy will contact you.</div>
+</form><iframe name="submit-frame" id="submit-frame" style="display:none"></iframe>
+</div>
+<div class="panel"><h3 style="color:var(--navy);margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>The academy reviews your selected course and batch.</li><li>SKA Academy contacts you with class details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:var(--navy)">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+</main>
+<footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const form=document.getElementById('enrollment');
+form.addEventListener('submit',function(e){
+ if(form.action.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')){
+  e.preventDefault();alert('The website design is ready, but the free Google Sheets enrollment connection is not configured yet. Follow SETUP.md to connect it before accepting real registrations.');
+  return;
+ }
+ setTimeout(()=>{document.getElementById('success').style.display='block';form.reset();},900);
+});
+</script>
+</body></html>
