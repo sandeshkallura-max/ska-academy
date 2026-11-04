@@ -108,8 +108,7 @@ footer{background:#091b33;padding:34px 0;margin-top:42px}footer .wrap{align-item
 <p class="note">Faculty names, qualifications, experience and professional details will be added after confirmation. No faculty profiles are published yet.</p></section>
 <section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
 <div class="two"><div class="panel"><h3 style="color:var(--navy);margin-top:0">Enroll in a class</h3>
-<!-- Replace the form action with your deployed Google Apps Script Web App URL. -->
-<form id="enrollment" action="YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL" method="post" target="submit-frame">
+<form id="enrollment">
 <div class="fields">
 <div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name"></div>
 <div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
@@ -120,14 +119,22 @@ footer{background:#091b33;padding:34px 0;margin-top:42px}footer .wrap{align-item
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
 </div>
 <button class="btn primary" type="submit">Send free enrollment request →</button>
-<p class="note">Submitting this form sends your details to the academy's enrollment sheet once the free Google Sheets connection is configured.</p>
+<p class="note">Your registration details will be emailed securely to SKA Academy when the EmailJS connection is configured.</p>
 <div id="success" role="status">Thank you! Your enrollment request has been submitted. The academy will contact you.</div>
-</form><iframe name="submit-frame" id="submit-frame" style="display:none"></iframe>
+</form>
 </div>
 <div class="panel"><h3 style="color:var(--navy);margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>The academy reviews your selected course and batch.</li><li>SKA Academy contacts you with class details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:var(--navy)">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
 </main>
 <footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
+// EmailJS setup: replace the three placeholders below with values from your EmailJS dashboard.
+const EMAILJS_PUBLIC_KEY = 'Qh-XlHZ5neSWK8lIo';
+const EMAILJS_SERVICE_ID = 'service_x531zbm';
+const EMAILJS_TEMPLATE_ID = 'template_6atoww5';
+if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) {
+ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
 document.getElementById('year').textContent=new Date().getFullYear();
 let selectedMode='';
 function chooseMode(mode){
@@ -143,13 +150,38 @@ function chooseMode(mode){
  link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
 }
 const form=document.getElementById('enrollment');
-form.addEventListener('submit',function(e){
- if(!selectedMode){e.preventDefault();alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
- if(form.action.includes('YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL')){
-  e.preventDefault();alert('The website design is ready, but the free Google Sheets enrollment connection is not configured yet. Follow SETUP.md to connect it before accepting real registrations.');
+const submitButton=form.querySelector('button[type="submit"]');
+const statusBox=document.getElementById('success');
+form.addEventListener('submit', async function(e){
+ e.preventDefault();
+ if(!selectedMode){alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
+ if(!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_') || EMAILJS_SERVICE_ID.startsWith('YOUR_') || EMAILJS_TEMPLATE_ID === 'REPLACE_WITH_REAL_TEMPLATE_ID'){
+  alert('Email enrollment is not connected yet. Follow EMAILJS_SETUP.md and finish your EmailJS Template ID in index.html using EMAILJS_SETUP.md.');
   return;
  }
- setTimeout(()=>{document.getElementById('success').style.display='block';form.reset();},900);
+ submitButton.disabled=true;
+ submitButton.textContent='Sending registration…';
+ statusBox.style.display='none';
+ try {
+  await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+  statusBox.textContent='Thank you! Your enrollment request has been sent to SKA Academy. The academy will contact you.';
+  statusBox.style.display='block';
+  form.reset();
+  selectedMode='';
+  document.getElementById('mode').disabled=true;
+  document.getElementById('mode').innerHTML='<option value="">Choose mode above first</option><option>Online</option><option>Offline</option>';
+  ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
+  document.getElementById('mode-status').textContent='Please select a learning mode to continue.';
+  const link=document.getElementById('continue-enroll');link.style.pointerEvents='none';link.style.opacity='.5';link.setAttribute('aria-disabled','true');
+ } catch(err) {
+  console.error('EmailJS enrollment error:',err);
+  statusBox.textContent='Sorry, your registration could not be sent. Please try again or contact SKA Academy.';
+  statusBox.style.display='block';
+  statusBox.style.background='#fff1f0';statusBox.style.color='#9b2525';
+ } finally {
+  submitButton.disabled=false;
+  submitButton.textContent='Send free enrollment request →';
+ }
 });
 // Reveal sections and cards as they enter the viewport.
 const revealTargets=document.querySelectorAll('section,.offer,.course,.panel');

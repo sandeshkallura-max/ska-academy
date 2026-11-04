@@ -1,52 +1,28 @@
 # SKA ACADEMY — Learn with Passion
 
-A responsive static website for GitHub Pages, with a free-launch message and enrollment form.
+A responsive static website for GitHub Pages, with a professional navy, white and gold design, Online/Offline-first enrollment, academic syllabus placeholder, faculty categories and subtle animations.
 
-## Publish for free with your GitHub account
+## Publish on GitHub Pages
 
-1. Sign in at https://github.com/.
-2. Create a **new public repository** named `ska-academy` (or another name).
-3. Upload all files and folders from this project. Keep `index.html` in the repository root and keep the `assets` folder.
-4. In the repository, open **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Choose branch `main` and folder `/ (root)`, then click **Save**.
-7. Wait a few minutes. GitHub will show your public website URL, usually:
-   `https://YOUR-USERNAME.github.io/ska-academy/`
+1. Sign in at https://github.com/ and open your existing `ska-academy` repository.
+2. Upload/replace the project files in the repository root. Keep `index.html` in the root and the `assets` folder beside it.
+3. Open **Settings → Pages** and confirm deployment from branch `main`, folder `/ (root)`.
+4. Wait for GitHub Pages to publish the changes.
 
-GitHub Pages hosting is free for public repositories. A custom domain is optional and normally costs money.
+## Connect student enrollment to email
 
-## Important: connect enrollment requests before launch
+Enrollment uses EmailJS and sends notifications to `s79178917@gmail.com`. Google Sheets is not used. Before accepting real registrations, complete the steps in **EMAILJS_SETUP.md**:
 
-GitHub Pages only hosts static files. It does not save student registrations or provide a secure admin dashboard by itself.
+- Connect a Gmail service in EmailJS.
+- Create the enrollment email template with the documented variables.
+- Add your EmailJS Public Key, Service ID and Template ID to `index.html`.
+- Publish and submit a test registration.
 
-This project includes `google-apps-script/Code.gs` for a free Google Sheets enrollment receiver:
+The form requires students to select Online or Offline before enrollment. A success message is shown only after EmailJS confirms the email request was sent.
 
-1. Create a Google Sheet in your Google account.
-2. In that sheet, select **Extensions → Apps Script**.
-3. Replace the editor contents with the code in `google-apps-script/Code.gs`.
-4. Save the project.
-5. Select **Deploy → New deployment → Web app**.
-6. Set **Execute as** to `Me`.
-7. Set **Who has access** to `Anyone`, then deploy and authorize it.
-8. Copy the Web app URL ending in `/exec`.
-9. Open `index.html` in the GitHub repository editor. Find:
-   `YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL`
-10. Replace that exact text with your Web app URL, commit the change, and wait for GitHub Pages to redeploy.
-11. Submit a test enrollment and confirm that a new row appears in your Google Sheet.
+## Project files
 
-The Google Sheet becomes your simple enrollment inbox. Open it to view student details and update the Status column (for example, New, Contacted, Confirmed). Keep the sheet private and do not publish it.
-
-## Before accepting real student details
-
-- Test the form yourself.
-- Add an academy contact email/phone and actual offline-class location.
-- Review how you will protect and retain student contact information.
-- Do not describe the demo as a secure admin dashboard. A separate authenticated admin portal requires additional implementation.
-- The free launch message is intentionally clear: fees are currently zero; students should be informed in advance if fees change later.
-
-## Files
-
-- `index.html` — website
-- `assets/ska-academy-logo.png` — selected SKA Academy logo
-- `google-apps-script/Code.gs` — optional Google Sheets receiver
-\n\nWebsite updates: students must select Online or Offline before proceeding to enrollment. Academic Syllabus is an intentionally empty placeholder for future updates. Lecturing Faculty currently shows faculty categories only; add confirmed professional names and qualifications when available. Subtle animations are included, with reduced-motion accessibility support.\n
+- `index.html` — website and EmailJS enrollment integration
+- `assets/ska-academy-logo.png` — SKA Academy logo
+- `EMAILJS_SETUP.md` — step-by-step EmailJS configuration
+- `SETUP.md` — GitHub Pages publishing instructions
