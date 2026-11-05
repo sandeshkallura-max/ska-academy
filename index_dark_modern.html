@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SKA Academy — professional engineering learning with flexible online and offline classes.">
+<meta name="theme-color" content="#0b1f3a">
+<title>SKA Academy | Learn with Passion</title>
+<style>
+/* SKA Academy Dark Theme — Sleek Slate & Cyber Blue */
+:root{--navy:#0f172a;--blue:#38bdf8;--gold:#f59e0b;--ink:#f8fafc;--muted:#94a3b8;--bg:#090d16;--line:#1e293b;--white:#0f172a;--card-bg:#1e293b;--card-border:#334155}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em}
+.wrap{width:min(1180px,91%)}
+header{background:rgba(15,23,42,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(0,0,0,.5)}
+.nav{min-height:60px;padding:6px 0;justify-content:flex-end}
+nav{gap:4px;align-items:center;margin-left:auto}nav a{font-size:12px;color:#cbd5e1;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s}nav a:hover{background:#334155;color:var(--blue)}nav a:last-child{background:linear-gradient(135deg,#38bdf8,#0284c7);color:#0f172a;padding:7px 14px;margin-left:4px;font-weight:700}nav a:last-child:hover{filter:brightness(1.1)}
+.hero{position:relative;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(56,189,248,.15),transparent 40%),linear-gradient(135deg,#0f172a 0%,#1e293b 100%);border:1px solid var(--card-border);box-shadow:0 22px 55px rgba(0,0,0,.6)}
+.hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--blue);font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue)}.eyebrow-sep{color:#475569}
+.hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800;color:#f8fafc}.hero p{font-size:16px;line-height:1.8;color:#94a3b8;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em}.primary{background:linear-gradient(135deg,#f59e0b,#d97706);color:#0f172a;box-shadow:0 8px 20px rgba(245,158,11,.2);font-weight:700}.light{background:rgba(255,255,255,.05);color:#f8fafc;border:1px solid rgba(255,255,255,.15);margin-left:9px}.hero-proof{margin-top:26px;color:#94a3b8;font-size:12px}.hero-proof span{color:var(--gold);margin-right:7px}
+.hero-visual{min-height:290px;position:relative;display:grid;place-items:center}.visual-orbit{position:absolute;border:1px solid rgba(56,189,248,.2);border-radius:50%;width:280px;height:280px}.orbit-two{width:220px;height:220px;border-style:dashed;transform:rotate(25deg)}.visual-core{width:174px;height:174px;border-radius:50%;background:rgba(30,41,59,.8);border:1px solid rgba(56,189,248,.3);box-shadow:0 0 30px rgba(56,189,248,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;color:#f8fafc}.visual-symbol{font-size:58px;line-height:1;color:var(--blue);text-shadow:0 0 20px rgba(56,189,248,.4)}.visual-core span{font-size:9px;letter-spacing:2.4px;margin-top:9px;color:#94a3b8}.visual-core strong{font-size:20px;color:#fff}.float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:11px;background:rgba(30,41,59,.95);border:1px solid var(--card-border);color:#f8fafc;box-shadow:0 12px 32px rgba(0,0,0,.4);min-width:190px}.float-top{top:24px;right:0}.float-bottom{bottom:22px;left:0}.float-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#0f172a;color:var(--blue);font-size:21px}.gold-icon{background:#0f172a;color:var(--gold)}.float-card b,.float-card small{display:block}.float-card b{font-size:11px}.float-card small{font-size:10px;color:#94a3b8;margin-top:2px}
+.offer{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:#fbbf24;border-radius:10px;padding:13px 18px;margin:18px auto;font-size:13px}
+section{padding:43px 0}.section-head{margin-bottom:22px}h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.8px;font-weight:800;color:#f8fafc}.sub{font-size:14px;line-height:1.7;color:#94a3b8}.grid{gap:18px}.course,.panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:15px;box-shadow:0 6px 22px rgba(0,0,0,.3);padding:23px;color:#f8fafc}.course{position:relative;overflow:hidden}.course:before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--blue);transition:height .25s}.course:hover:before{height:100%}.ico{width:47px;height:47px;border-radius:12px;background:#0f172a;color:var(--blue)}.course h3,.panel h3{font-size:17px;letter-spacing:-.3px;color:#f8fafc}.course p{font-size:13px;line-height:1.75;min-height:68px;color:#94a3b8}.pill{font-size:10px;letter-spacing:.35px;background:#0f172a;color:var(--blue);border:1px solid var(--card-border);animation:none}.section-head .pill{background:rgba(245,158,11,.15);color:#fbbf24;border-color:rgba(245,158,11,.3)}
+.choice-card{background:var(--card-bg);min-height:190px}.choice-card h3{margin:12px 0 4px}.choice-card.selected{border-color:var(--blue);background:rgba(56,189,248,.08);box-shadow:0 12px 28px rgba(56,189,248,.15)}.choice-card:hover{border-color:var(--blue)}.placeholder{background:rgba(30,41,59,.5);border:1px dashed var(--card-border);border-radius:12px;padding:27px;color:var(--muted)}.field label{color:#cbd5e1}.field input,.field select,.field textarea{background:#0f172a;border:1px solid var(--card-border);color:#f8fafc;border-radius:8px}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(56,189,248,.2);border-color:var(--blue)}#success{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+footer{background:#020617;border-top:1px solid var(--line);padding:34px 0;margin-top:42px}footer .wrap{align-items:center}footer b{letter-spacing:1.5px;font-size:14px;color:#f8fafc}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
+
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+<nav><a href="#courses">Courses</a><a href="#learning">Learning modes</a><a href="#syllabus">Academic syllabus</a><a href="#faculty">Lecturing faculty</a><a href="#enroll">Enroll</a></nav>
+</div></header>
+<main class="wrap">
+<div class="hero">
+<div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SKA ACADEMY <span class="eyebrow-sep">/</span> LEARN WITH PASSION</div>
+<h1>Build Skills.<br>Engineer Your Future.</h1>
+<p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
+<a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore courses</a><div class="hero-proof"><span>✦</span> Practical knowledge. Professional guidance. Flexible learning.</div></div>
+<div class="hero-visual" aria-label="Engineering education highlights"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="visual-symbol">⚙</div><span>ENGINEERING</span><strong>Starts Here.</strong></div><div class="float-card float-top"><span class="float-icon">⌁</span><span><b>Learn with purpose</b><small>Build real-world skills</small></span></div><div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><span><b>Flexible learning</b><small>Online &amp; offline classes</small></span></div></div>
+</div>
+<div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
+<section id="courses">
+<div class="section-head"><div><h2>Our Courses</h2><p class="sub">Choose a subject and start building practical knowledge.</p></div><span class="pill">ALL COURSES FREE DURING LAUNCH</span></div>
+<div class="grid">
+<article class="course"><div class="ico">⚙️</div><h3>Basics of Engineering</h3><p>Engineering fundamentals, materials, measurements, mechanics and workshop practices.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🧯</div><h3>Fire Safety</h3><p>Fire prevention, fire classifications, protection systems and emergency response.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">❄️</div><h3>HVAC Systems</h3><p>Heating, ventilation, air distribution, cooling loads and HVAC equipment basics.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">📐</div><h3>Engineering Drawing</h3><p>Technical drawing standards, projections, dimensioning and isometric drawings.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🌬️</div><h3>Air Conditioning</h3><p>Refrigeration cycles, AC components, operating principles and troubleshooting.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">⚡</div><h3>Electrical Systems</h3><p>Electrical fundamentals, wiring, protection devices, motors and safety.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+</div></section>
+<section id="learning"><div class="section-head"><div><h2>First, Choose Your Learning Mode</h2><p class="sub">Select online or offline before proceeding to enrollment.</p></div></div>
+<div class="two">
+<button type="button" class="panel choice-card" id="online-choice" onclick="chooseMode('Online')" aria-pressed="false"><div class="ico">💻</div><h3>Online Classes</h3><p class="sub">Join guided classes remotely and learn from wherever you are.</p><b>Choose Online →</b></button>
+<button type="button" class="panel choice-card" id="offline-choice" onclick="chooseMode('Offline')" aria-pressed="false"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person classroom sessions and practical learning activities.</p><b>Choose Offline →</b></button>
+</div>
+<p id="mode-status" class="note" aria-live="polite">Please select a learning mode to continue.</p>
+<a id="continue-enroll" class="btn primary" href="#enroll" style="pointer-events:none;opacity:.5" aria-disabled="true">Continue to enrollment →</a>
+</section>
+<section id="syllabus"><div class="section-head"><div><h2>Academic Syllabus</h2><p class="sub">Course-wise syllabus and learning plans will be published here.</p></div></div>
+<div class="placeholder"><h3 style="margin-top:0;color:var(--navy)">Syllabus updates coming soon</h3><p style="margin-bottom:0">This section is reserved for academic syllabi. SKA Academy will add subject modules, topics, learning outcomes and schedules here.</p></div></section>
+<section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and professionals who will guide your learning.</p></div></div>
+<div class="grid">
+<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced engineering and technical professionals.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🎓</div><h3>Subject Lecturers</h3><p>Trainers focused on engineering fundamentals and academic concepts.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, equipment and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
+</div>
+<p class="note">Faculty names, qualifications, experience and professional details will be added after confirmation. No faculty profiles are published yet.</p></section>
+<section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
+<div class="two"><div class="panel"><h3 style="color:var(--navy);margin-top:0">Enroll in a class</h3>
+<form id="enrollment">
+<div class="fields">
+<div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name"></div>
+<div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
+<div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
+<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
+<div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
+</div>
+<button class="btn primary" type="submit">Send free enrollment request →</button>
+<p class="note">Your registration details will be emailed securely to SKA Academy when the EmailJS connection is configured.</p>
+<div id="success" role="status">Thank you! Your enrollment request has been submitted. The academy will contact you.</div>
+</form>
+</div>
+<div class="panel"><h3 style="color:var(--navy);margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>The academy reviews your selected course and batch.</li><li>SKA Academy contacts you with class details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:var(--navy)">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+</main>
+<footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// EmailJS setup: replace the three placeholders below with values from your EmailJS dashboard.
+const EMAILJS_PUBLIC_KEY = 'Qh-XlHZ5neSWK8lIo';
+const EMAILJS_SERVICE_ID = 'service_x531zbm';
+const EMAILJS_TEMPLATE_ID = 'template_6atoww5';
+if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) {
+ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+let selectedMode='';
+function chooseMode(mode){
+ selectedMode=mode;
+ document.getElementById('mode').value=mode;
+ document.getElementById('mode').disabled=false;
+ document.getElementById('online-choice').classList.toggle('selected',mode==='Online');
+ document.getElementById('offline-choice').classList.toggle('selected',mode==='Offline');
+ document.getElementById('online-choice').setAttribute('aria-pressed',mode==='Online');
+ document.getElementById('offline-choice').setAttribute('aria-pressed',mode==='Offline');
+ document.getElementById('mode-status').textContent=mode+' classes selected. You can now continue to enrollment.';
+ const link=document.getElementById('continue-enroll');
+ link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
+}
+const form=document.getElementById('enrollment');
+const submitButton=form.querySelector('button[type="submit"]');
+const statusBox=document.getElementById('success');
+form.addEventListener('submit', async function(e){
+ e.preventDefault();
+ if(!selectedMode){alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
+ if(!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_') || EMAILJS_SERVICE_ID.startsWith('YOUR_') || EMAILJS_TEMPLATE_ID === 'REPLACE_WITH_REAL_TEMPLATE_ID'){
+  alert('Email enrollment is not connected yet. Follow EMAILJS_SETUP.md and finish your EmailJS Template ID in index.html using EMAILJS_SETUP.md.');
+  return;
+ }
+ submitButton.disabled=true;
+ submitButton.textContent='Sending registration…';
+ statusBox.style.display='none';
+ try {
+  await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+  statusBox.textContent='Thank you! Your enrollment request has been sent to SKA Academy. The academy will contact you.';
+  statusBox.style.display='block';
+  form.reset();
+  selectedMode='';
+  document.getElementById('mode').disabled=true;
+  document.getElementById('mode').innerHTML='<option value="">Choose mode above first</option><option>Online</option><option>Offline</option>';
+  ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
+  document.getElementById('mode-status').textContent='Please select a learning mode to continue.';
+  const link=document.getElementById('continue-enroll');link.style.pointerEvents='none';link.style.opacity='.5';link.setAttribute('aria-disabled','true');
+ } catch(err) {
+  console.error('EmailJS enrollment error:',err);
+  statusBox.textContent='Sorry, your registration could not be sent. Please try again or contact SKA Academy.';
+  statusBox.style.display='block';
+  statusBox.style.background='#fff1f0';statusBox.style.color='#9b2525';
+ } finally {
+  submitButton.disabled=false;
+  submitButton.textContent='Send free enrollment request →';
+ }
+});
+// Reveal sections and cards as they enter the viewport.
+const revealTargets=document.querySelectorAll('section,.offer,.course,.panel');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}})},{threshold:.12});revealTargets.forEach(el=>observer.observe(el));}else{revealTargets.forEach(el=>el.classList.add('is-visible'));}
+</script>
+</body></html>
