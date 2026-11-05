@@ -7,61 +7,29 @@
 <meta name="theme-color" content="#0b1f3a">
 <title>SKA Academy | Learn with Passion</title>
 <style>
-:root{--navy:#102b50;--blue:#1e5da8;--gold:#e6a126;--ink:#172538;--muted:#637083;--bg:#f5f7fa;--line:#e1e7ef;--white:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
-a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
-header{background:#f5f7fa;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:10px 0;flex-wrap:wrap}
-.brand img{display:block;width:210px;max-height:72px;object-fit:contain;object-position:left center;background:transparent}
-nav{display:flex;gap:8px;flex-wrap:wrap}nav a{padding:9px 12px;border-radius:8px;font-weight:650;font-size:14px}nav a:hover{background:#eef3fa;color:var(--blue)}
-.hero{margin:28px auto;background:linear-gradient(120deg,#102747,#1c4b7b);color:white;border-radius:20px;padding:clamp(26px,6vw,62px);display:grid;grid-template-columns:1fr;gap:20px;align-items:center;overflow:hidden}
-.eyebrow{color:#f4c66e;font-weight:800;letter-spacing:1.5px;font-size:12px}.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin:12px 0}.hero p{color:#dbe6f3;max-width:570px}
-.btn{display:inline-block;border:0;border-radius:9px;padding:12px 17px;font-weight:750;cursor:pointer}.primary{background:var(--gold);color:#14253a}.light{background:#fff;color:var(--navy);margin-left:8px}
-.offer{background:#fff5df;border:1px solid #f0d49a;color:#65460b;border-radius:12px;padding:14px 18px;margin:18px auto;font-weight:700}
-section{padding:28px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;flex-wrap:wrap;margin-bottom:18px}h2{color:var(--navy);font-size:clamp(24px,3vw,32px);margin:0} .sub{color:var(--muted);margin:5px 0 0}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.course{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 4px 18px #102b5008}.ico{width:48px;height:48px;border-radius:12px;background:#edf3fb;display:grid;place-items:center;font-size:25px}.course h3{margin:13px 0 5px;color:var(--navy)}.course p{font-size:14px;color:var(--muted);min-height:64px}.pill{display:inline-block;background:#e7f5ed;color:#17643c;border-radius:30px;padding:4px 10px;font-size:11px;font-weight:800}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:22px}
-form{display:grid;gap:13px}.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:11px 12px;border:1px solid #ccd5e1;border-radius:8px;font:inherit;background:#fff}.field textarea{min-height:90px;resize:vertical}.wide{grid-column:1/-1}
-.note{font-size:12px;color:var(--muted)}footer{background:#102747;color:#dbe6f3;padding:28px 0;margin-top:30px}footer .wrap{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-#success{display:none;background:#e7f5ed;color:#17643c;padding:12px;border-radius:9px;font-weight:700}
-/* Gentle entrance and hover animations */
-@keyframes riseIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-@keyframes softGlow{0%,100%{box-shadow:0 8px 28px #e6a12618}50%{box-shadow:0 12px 34px #e6a12638}}
-.hero{animation:riseIn .75s ease both}
-.offer{animation:riseIn .85s ease both}
-.course,.panel{transition:transform .25s ease,box-shadow .25s ease}
-.course:hover,.panel:hover{transform:translateY(-5px);box-shadow:0 12px 28px #102b5018}
-.btn{transition:transform .2s ease,filter .2s ease}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
-.pill{animation:softGlow 4s ease-in-out infinite}
-.choice-card{border:2px solid var(--line);cursor:pointer;text-align:left;transition:all .25s ease}
-.choice-card.selected{border-color:var(--gold);background:#fff8e9;box-shadow:0 8px 24px #e6a12620}
-.choice-card:focus{outline:3px solid #e6a12655;outline-offset:2px}
-.placeholder{border:1px dashed #c6d1df;background:#f9fbfd;border-radius:12px;padding:22px;color:var(--muted)}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-@media(max-width:760px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}}
-@media(max-width:480px){.grid{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.brand img{width:175px}.light{margin:8px 0 0}}
-
-/* SKA Academy professional visual refresh */
-:root{--navy:#0b1f3a;--blue:#174b82;--gold:#d9a441;--ink:#18283d;--muted:#68778b;--bg:#f4f6f9;--line:#e2e8f0;--white:#fff}
+/* SKA Academy Dark Theme — Midnight Obsidian & Gold */
+:root{--navy:#141416;--blue:#e2b86b;--gold:#e2b86b;--ink:#f4f4f6;--muted:#a1a1aa;--bg:#0c0c0e;--line:#27272a;--white:#18181b;--card-bg:#18181b;--card-border:#27272a}
 html{scroll-behavior:smooth;scroll-padding-top:100px}
-body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:#f6f8fb;color:var(--ink);letter-spacing:-.01em}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em}
 .wrap{width:min(1180px,91%)}
-header{background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #e7ebf1;box-shadow:0 5px 24px rgba(11,31,58,.035)}
+header{background:rgba(20,20,22,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(0,0,0,.6)}
 .nav{min-height:60px;padding:6px 0;justify-content:flex-end}
-nav{gap:4px;align-items:center;margin-left:auto}nav a{font-size:12px;color:#34465d;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s}nav a:hover{background:#eef3f8;color:var(--blue)}nav a:last-child{background:var(--navy);color:white;padding:7px 12px;margin-left:4px}nav a:last-child:hover{background:var(--blue);color:#fff}
-.hero{position:relative;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(55,112,164,.35),transparent 34%),linear-gradient(118deg,#091b33 0%,#102f54 58%,#174878 100%);box-shadow:0 22px 55px rgba(9,27,51,.17)}
-.hero:after{content:"";position:absolute;inset:0;pointer-events:none;border:1px solid rgba(255,255,255,.12);border-radius:inherit}
-.hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:#f1c978;font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px rgba(217,164,65,.15)}.eyebrow-sep{color:#8195ad}
-.hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800}.hero p{font-size:16px;line-height:1.8;color:#d2dfed;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em}.primary{background:linear-gradient(135deg,#edc36f,#d9a441);color:#15263b;box-shadow:0 8px 20px rgba(217,164,65,.18)}.light{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);margin-left:9px}.hero-proof{margin-top:26px;color:#bdcde0;font-size:12px}.hero-proof span{color:#f0c46e;margin-right:7px}
-.hero-visual{min-height:290px;position:relative;display:grid;place-items:center}.visual-orbit{position:absolute;border:1px solid rgba(218,232,248,.19);border-radius:50%;width:280px;height:280px}.orbit-two{width:220px;height:220px;border-style:dashed;transform:rotate(25deg)}.visual-core{width:174px;height:174px;border-radius:50%;background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.3);box-shadow:inset 0 0 35px rgba(255,255,255,.08),0 20px 45px rgba(0,0,0,.12);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;color:#dbe7f4}.visual-symbol{font-size:58px;line-height:1;color:#edc36f;text-shadow:0 5px 20px rgba(217,164,65,.3)}.visual-core span{font-size:9px;letter-spacing:2.4px;margin-top:9px}.visual-core strong{font-size:20px;color:#fff}.float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:11px;background:rgba(255,255,255,.96);color:#1a2d45;box-shadow:0 12px 32px rgba(0,0,0,.17);min-width:190px}.float-top{top:24px;right:0}.float-bottom{bottom:22px;left:0}.float-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#eaf1f8;color:#174b82;font-size:21px}.gold-icon{background:#fff3d9;color:#b17b20}.float-card b,.float-card small{display:block}.float-card b{font-size:11px}.float-card small{font-size:10px;color:#718096;margin-top:2px}
-.offer{background:#fffaf0;border:1px solid #f0dfbb;color:#73521a;border-radius:10px;padding:13px 18px;margin:18px auto;font-size:13px;box-shadow:0 5px 18px rgba(139,101,35,.04)}
-section{padding:43px 0}.section-head{margin-bottom:22px}h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.8px;font-weight:800}.sub{font-size:14px;line-height:1.7}.grid{gap:18px}.course,.panel{border:1px solid #e5eaf1;border-radius:15px;box-shadow:0 6px 22px rgba(15,42,73,.045);padding:23px}.course{position:relative;overflow:hidden}.course:before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--gold);transition:height .25s}.course:hover:before{height:100%}.ico{width:47px;height:47px;border-radius:12px;background:#edf3f9;color:#174b82}.course h3,.panel h3{font-size:17px;letter-spacing:-.3px}.course p{font-size:13px;line-height:1.75;min-height:68px}.pill{font-size:10px;letter-spacing:.35px;background:#f3f6fa;color:#34516f;border:1px solid #e5ebf2;animation:none}.section-head .pill{background:#fff7e8;color:#8a641e;border-color:#f1dfb9}
-.choice-card{background:#fff;min-height:190px}.choice-card h3{margin:12px 0 4px}.choice-card.selected{border-color:var(--gold);background:#fffcf5;box-shadow:0 12px 28px rgba(217,164,65,.12)}.choice-card:hover{border-color:#b8c8da}.placeholder{background:linear-gradient(135deg,#fbfcfe,#f4f7fa);border-color:#cbd6e2;padding:27px}.field input,.field select,.field textarea{border-color:#d5dde7;border-radius:8px}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(23,75,130,.12);border-color:#4779a8}#success{border:1px solid #c5e4d1}
-footer{background:#091b33;padding:34px 0;margin-top:42px}footer .wrap{align-items:center}footer b{letter-spacing:1.5px;font-size:14px}
+nav{gap:4px;align-items:center;margin-left:auto}nav a{font-size:12px;color:#d4d4d8;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s}nav a:hover{background:#27272a;color:var(--gold)}nav a:last-child{background:linear-gradient(135deg,#e2b86b,#c69a47);color:#0c0c0e;padding:7px 14px;margin-left:4px;font-weight:700}nav a:last-child:hover{filter:brightness(1.1)}
+.hero{position:relative;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(226,184,107,.12),transparent 40%),linear-gradient(135deg,#141416 0%,#18181b 100%);border:1px solid rgba(226,184,107,.2);box-shadow:0 22px 55px rgba(0,0,0,.7)}
+.hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--gold);font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}.eyebrow-sep{color:#52525b}
+.hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800;color:#f4f4f6}.hero p{font-size:16px;line-height:1.8;color:#a1a1aa;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em}.primary{background:linear-gradient(135deg,#e2b86b,#b88a38);color:#0c0c0e;box-shadow:0 8px 20px rgba(226,184,107,.2);font-weight:700}.light{background:rgba(255,255,255,.05);color:#f4f4f6;border:1px solid rgba(255,255,255,.15);margin-left:9px}.hero-proof{margin-top:26px;color:#a1a1aa;font-size:12px}.hero-proof span{color:var(--gold);margin-right:7px}
+.hero-visual{min-height:290px;position:relative;display:grid;place-items:center}.visual-orbit{position:absolute;border:1px solid rgba(226,184,107,.2);border-radius:50%;width:280px;height:280px}.orbit-two{width:220px;height:220px;border-style:dashed;transform:rotate(25deg)}.visual-core{width:174px;height:174px;border-radius:50%;background:rgba(24,24,27,.9);border:1px solid rgba(226,184,107,.3);box-shadow:0 0 30px rgba(226,184,107,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;color:#f4f4f6}.visual-symbol{font-size:58px;line-height:1;color:var(--gold);text-shadow:0 0 20px rgba(226,184,107,.4)}.visual-core span{font-size:9px;letter-spacing:2.4px;margin-top:9px;color:#a1a1aa}.visual-core strong{font-size:20px;color:#fff}.float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:11px;background:rgba(24,24,27,.95);border:1px solid var(--card-border);color:#f4f4f6;box-shadow:0 12px 32px rgba(0,0,0,.5);min-width:190px}.float-top{top:24px;right:0}.float-bottom{bottom:22px;left:0}.float-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#0c0c0e;color:var(--gold);font-size:21px}.gold-icon{background:#0c0c0e;color:var(--gold)}.float-card b,.float-card small{display:block}.float-card b{font-size:11px}.float-card small{font-size:10px;color:#a1a1aa;margin-top:2px}
+.offer{background:rgba(226,184,107,.1);border:1px solid rgba(226,184,107,.3);color:#e2b86b;border-radius:10px;padding:13px 18px;margin:18px auto;font-size:13px}
+section{padding:43px 0}.section-head{margin-bottom:22px}h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.8px;font-weight:800;color:#f4f4f6}.sub{font-size:14px;line-height:1.7;color:#a1a1aa}.grid{gap:18px}.course,.panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:15px;box-shadow:0 6px 22px rgba(0,0,0,.3);padding:23px;color:#f4f4f6}.course{position:relative;overflow:hidden}.course:before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--gold);transition:height .25s}.course:hover:before{height:100%}.ico{width:47px;height:47px;border-radius:12px;background:#0c0c0e;color:var(--gold)}.course h3,.panel h3{font-size:17px;letter-spacing:-.3px;color:#f4f4f6}.course p{font-size:13px;line-height:1.75;min-height:68px;color:#a1a1aa}.pill{font-size:10px;letter-spacing:.35px;background:#0c0c0e;color:var(--gold);border:1px solid var(--card-border);animation:none}.section-head .pill{background:rgba(226,184,107,.15);color:#e2b86b;border-color:rgba(226,184,107,.3)}
+.choice-card{background:var(--card-bg);min-height:190px}.choice-card h3{margin:12px 0 4px}.choice-card.selected{border-color:var(--gold);background:rgba(226,184,107,.08);box-shadow:0 12px 28px rgba(226,184,107,.15)}.choice-card:hover{border-color:var(--gold)}.placeholder{background:rgba(24,24,27,.5);border:1px dashed var(--card-border);border-radius:12px;padding:27px;color:var(--muted)}.field label{color:#d4d4d8}.field input,.field select,.field textarea{background:#0c0c0e;border:1px solid var(--card-border);color:#f4f4f6;border-radius:8px}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(226,184,107,.2);border-color:var(--gold)}#success{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin-top:42px}footer .wrap{align-items:center}footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
-@media(max-width:850px){.nav{justify-content:center}.brand img{object-position:center}nav{justify-content:center}.hero{grid-template-columns:1fr;gap:10px}.hero-visual{min-height:260px}.float-top{right:8%}.float-bottom{left:8%}}
-@media(max-width:600px){.nav{padding:10px 0}.brand img{width:180px}nav{gap:2px}nav a{font-size:11px;padding:8px 9px}nav a:last-child{padding:9px 12px}.hero{margin-top:18px;padding:28px 23px;border-radius:18px}.hero h1{font-size:40px;letter-spacing:-1.5px}.hero p{font-size:14px}.hero-visual{min-height:235px}.visual-orbit{width:220px;height:220px}.orbit-two{width:175px;height:175px}.visual-core{width:145px;height:145px}.visual-symbol{font-size:46px}.float-card{min-width:165px;padding:9px 11px}.float-top{top:8px;right:0}.float-bottom{bottom:8px;left:0}.light{margin:9px 0 0}.hero-proof{font-size:11px}.section-head{align-items:start}.course,.panel{padding:19px}}
+
+
+.faculty-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.faculty-avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;border:3px solid var(--blue);margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.faculty-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.faculty-role{color:var(--gold) !important;font-weight:600;font-size:13px;margin:-4px 0 10px !important;min-height:auto !important}
 
 </style>
 </head>
@@ -100,11 +68,21 @@ footer{background:#091b33;padding:34px 0;margin-top:42px}footer .wrap{align-item
 <div class="placeholder"><h3 style="margin-top:0;color:var(--navy)">Syllabus updates coming soon</h3><p style="margin-bottom:0">This section is reserved for academic syllabi. SKA Academy will add subject modules, topics, learning outcomes and schedules here.</p></div></section>
 <section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and professionals who will guide your learning.</p></div></div>
 <div class="grid">
-<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced engineering and technical professionals.</p><span class="pill">PROFILES COMING SOON</span></article>
-<article class="course"><div class="ico">🎓</div><h3>Subject Lecturers</h3><p>Trainers focused on engineering fundamentals and academic concepts.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course faculty-card">
+<div class="faculty-avatar"><img src="assets/nayeem-ahmed.jpg" alt="Nayeem Ahmed"></div>
+<div class="faculty-info">
+<h3>Nayeem Ahmed</h3>
+<p class="faculty-role">Assistant Professor — Fire Safety</p>
+<p>Specialist in fire prevention, emergency protection systems, safety regulations, and industrial hazard management.</p>
+<span class="pill">SUBJECT LECTURER</span>
+</div>
+</article>
+<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced engineering and technical professionals guiding practical aspects.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, equipment and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
+</div><h3>Subject Lecturers</h3><p>Trainers focused on engineering fundamentals and academic concepts.</p><span class="pill">PROFILES COMING SOON</span></article>
 <article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, equipment and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
 </div>
-<p class="note">Faculty names, qualifications, experience and professional details will be added after confirmation. No faculty profiles are published yet.</p></section>
+<p class="note">More faculty profiles, qualifications, and industry experts will be added as upcoming terms open.</p></section>
 <section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
 <div class="two"><div class="panel"><h3 style="color:var(--navy);margin-top:0">Enroll in a class</h3>
 <form id="enrollment">
