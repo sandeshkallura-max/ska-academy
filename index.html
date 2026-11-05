@@ -31,6 +31,25 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 .faculty-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
 .faculty-role{color:var(--gold) !important;font-weight:600;font-size:13px;margin:-4px 0 10px !important;min-height:auto !important}
 
+
+/* Responsive Mobile Dashboard Styles */
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+.hero-cta .btn { margin: 0 !important; text-align: center; }
+
+@media (max-width: 640px) {
+  .hero-cta { flex-direction: column; width: 100%; gap: 10px; }
+  .hero-cta .btn { width: 100%; box-sizing: border-box; display: block; padding: 14px 16px; font-size: 14px; }
+  .hero { padding: 24px 18px; margin: 16px auto; border-radius: 18px; }
+  .hero h1 { font-size: 32px; letter-spacing: -1px; margin: 14px 0; line-height: 1.15; }
+  .hero p { font-size: 14px; margin-bottom: 20px; }
+  .hero-visual { min-height: 240px; width: 100%; margin-top: 10px; }
+  .visual-orbit { width: 210px; height: 210px; }
+  .orbit-two { width: 160px; height: 160px; }
+  .visual-core { width: 135px; height: 135px; }
+  .visual-symbol { font-size: 40px; }
+  .float-card { position: relative; inset: auto !important; margin: 10px auto; width: 100%; max-width: 290px; justify-content: center; box-sizing: border-box; }
+}
+
 </style>
 </head>
 <body>
@@ -42,7 +61,7 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SKA ACADEMY <span class="eyebrow-sep">/</span> LEARN WITH PASSION</div>
 <h1>Build Skills.<br>Engineer Your Future.</h1>
 <p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
-<a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore courses</a><div class="hero-proof"><span>✦</span> Practical knowledge. Professional guidance. Flexible learning.</div></div>
+<div class="hero-cta"><a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore courses</a></div><div class="hero-proof"><span>✦</span> Practical knowledge. Professional guidance. Flexible learning.</div></div>
 <div class="hero-visual" aria-label="Engineering education highlights"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="visual-symbol">⚙</div><span>ENGINEERING</span><strong>Starts Here.</strong></div><div class="float-card float-top"><span class="float-icon">⌁</span><span><b>Learn with purpose</b><small>Build real-world skills</small></span></div><div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><span><b>Flexible learning</b><small>Online &amp; offline classes</small></span></div></div>
 </div>
 <div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
