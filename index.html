@@ -13,7 +13,7 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;margin:0;padding:0}
 .wrap{width:min(1180px,91%);margin:0 auto}
 
-/* Header & Responsive Navigation */
+/* Header & Navigation */
 header{background:rgba(20,20,22,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(0,0,0,.6);position:sticky;top:0;z-index:100}
 .nav-wrap{min-height:60px;padding:6px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .brand{font-weight:800;letter-spacing:1px;color:var(--gold);font-size:16px;text-decoration:none;display:flex;align-items:center;gap:6px;}
@@ -25,6 +25,7 @@ nav a:hover, nav button:hover{background:#27272a;color:var(--gold)}
 .btn-enroll-nav{background:linear-gradient(135deg,#e2b86b,#c69a47) !important;color:#0c0c0e !important;padding:7px 14px;margin-left:4px;font-weight:700}
 .btn-enroll-nav:hover{filter:brightness(1.1)}
 
+/* Public Landing View Sections */
 .hero{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(226,184,107,.12),transparent 40%),linear-gradient(135deg,#141416 0%,#18181b 100%);border:1px solid rgba(226,184,107,.2);box-shadow:0 22px 55px rgba(0,0,0,.7)}
 .hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--gold);font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}.eyebrow-sep{color:#52525b}
 .hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800;color:#f4f4f6}.hero p{font-size:16px;line-height:1.8;color:#a1a1aa;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em;text-decoration:none;display:inline-block;cursor:pointer;border:none}
@@ -58,69 +59,83 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 .modal-close:hover{color:#fff}
 .status-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(226,184,107,.15);color:var(--gold);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
 
-/* Enhanced Logged-In Syllabus Dashboard & Animations */
-.syllabus-box{
-  position:relative;
-  border:1px solid rgba(226,184,107,.4);
-  background:radial-gradient(circle at 50% -20%, rgba(226,184,107,.18), rgba(20,20,26,0.95) 70%), linear-gradient(180deg, #121216 0%, #0c0c0e 100%);
-  padding:48px 24px;
-  border-radius:20px;
-  text-align:center;
-  overflow:hidden;
-  box-shadow:0 15px 45px rgba(0,0,0,.7), inset 0 0 25px rgba(226,184,107,.08);
+/* Dedicated Fresh Member Portal Page */
+#member-portal-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
 }
-.syllabus-box::before{
-  content:"";
-  position:absolute;
-  top:-50%; left:-50%; width:200%; height:200%;
-  background:radial-gradient(circle, rgba(226,184,107,.06) 0%, transparent 60%);
-  animation:pulseGlow 6s infinite ease-in-out;
-  pointer-events:none;
+.portal-card {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  border: 1px solid rgba(226,184,107,.4);
+  background: radial-gradient(circle at 50% -20%, rgba(226,184,107,.22), rgba(20,20,26,0.95) 75%), linear-gradient(180deg, #141418 0%, #0c0c0e 100%);
+  padding: 48px 30px;
+  border-radius: 24px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.85), inset 0 0 30px rgba(226,184,107,.1);
+  animation: pageFadeIn 0.6s ease-out;
 }
-@keyframes pulseGlow{
-  0%, 100%{ transform:scale(1); opacity:0.6; }
-  50%{ transform:scale(1.15); opacity:1; }
-}
-
-/* Floating Golden Particles Effect */
-.bg-particle{
-  position:absolute;
-  width:6px; height:6px;
-  background:rgba(226,184,107,.5);
-  border-radius:50%;
-  box-shadow:0 0 10px rgba(226,184,107,.8);
-  animation:floatParticle 8s infinite linear;
-  pointer-events:none;
-}
-.p1{ top:15%; left:20%; animation-duration:7s; }
-.p2{ top:65%; left:80%; animation-duration:9s; animation-delay:1s; }
-.p3{ top:80%; left:15%; animation-duration:11s; animation-delay:2s; }
-.p4{ top:25%; left:85%; animation-duration:6s; animation-delay:0.5s; }
-
-@keyframes floatParticle{
-  0%{ transform:translateY(0) scale(1); opacity:0.3; }
-  50%{ transform:translateY(-25px) scale(1.4); opacity:0.9; }
-  100%{ transform:translateY(0) scale(1); opacity:0.3; }
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Animated Confetti / Celebratory Banner */
+.portal-card::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(226,184,107,.08) 0%, transparent 60%);
+  animation: pulseGlow 6s infinite ease-in-out;
+  pointer-events: none;
+}
+@keyframes pulseGlow {
+  0%, 100%{ transform: scale(1); opacity: 0.6; }
+  50%{ transform: scale(1.15); opacity: 1; }
+}
+
+.bg-particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: rgba(226,184,107,.5);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(226,184,107,.8);
+  animation: floatParticle 8s infinite linear;
+  pointer-events: none;
+}
+.p1{ top:15%; left:15%; animation-duration:7s; }
+.p2{ top:65%; left:85%; animation-duration:9s; animation-delay:1s; }
+.p3{ top:80%; left:20%; animation-duration:11s; animation-delay:2s; }
+.p4{ top:25%; left:80%; animation-duration:6s; animation-delay:0.5s; }
+
+@keyframes floatParticle {
+  0%{ transform: translateY(0) scale(1); opacity: 0.3; }
+  50%{ transform: translateY(-25px) scale(1.4); opacity: 0.9; }
+  100%{ transform: translateY(0) scale(1); opacity: 0.3; }
+}
+
 .journey-banner {
   background: linear-gradient(135deg, rgba(226,184,107,.25), rgba(34,197,94,.2));
   border: 1px solid rgba(226,184,107,.5);
-  border-radius: 14px;
-  padding: 16px 20px;
-  margin-bottom: 24px;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 28px;
   animation: popIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 @keyframes popIn {
-  0% { transform: scale(0.85); opacity:0; }
-  100% { transform: scale(1); opacity:1; }
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-.loader-spinner{width:40px;height:40px;border:3px solid rgba(226,184,107,.2);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+.loader-spinner { width:42px; height:42px; border:3.5px solid rgba(226,184,107,.2); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 18px }
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Responsive Mobile & Desktop Layout Adjustments */
+/* Responsive Layout */
 .hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
 
 @media (max-width: 768px) {
@@ -143,18 +158,20 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 <body>
 
 <header><div class="wrap nav-wrap">
-<a href="#enroll" class="brand">⚙️ SKA ACADEMY</a>
-<nav>
+<a href="javascript:void(0)" onclick="goToHome()" class="brand">⚙️ SKA ACADEMY</a>
+<nav id="main-nav">
   <button onclick="goToHome()" style="font-weight:700;color:var(--gold);">Home 🏠</button>
-  <a href="#courses">Courses</a>
-  <a href="#learning">Learning modes</a>
-  <a href="#syllabus">Academic syllabus</a>
-  <a href="#faculty">Lecturing faculty</a>
-  <a href="#enroll" class="btn-enroll-nav">Enroll</a>
+  <a href="#courses" class="public-nav">Courses</a>
+  <a href="#learning" class="public-nav">Learning modes</a>
+  <a href="#syllabus" class="public-nav">Academic syllabus</a>
+  <a href="#faculty" class="public-nav">Lecturing faculty</a>
+  <a href="#enroll" class="btn-enroll-nav public-nav">Enroll</a>
   <button id="nav-login-btn" onclick="openLoginModal()" class="btn-login-nav">Member Login 🔑</button>
 </nav>
 </div></header>
 
+<!-- MAIN CONTAINER FOR PUBLIC WEBSITE -->
+<div id="public-website-view">
 <main class="wrap">
 <div class="hero">
 <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SKA ACADEMY <span class="eyebrow-sep">/</span> LEARN WITH PASSION</div>
@@ -186,63 +203,20 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 <a id="continue-enroll" class="btn primary" href="#enroll" style="pointer-events:none;opacity:.5" aria-disabled="true">Continue to enrollment →</a>
 </section>
 
-<!-- SYLLABUS SECTION: LOGGED IN VS LOGGED OUT VIEW -->
-<section id="syllabus" style="min-height: calc(100vh - 120px); display: flex; flex-direction: column; justify-content: center;">
+<!-- PUBLIC GUEST SYLLABUS SECTION -->
+<section id="syllabus">
   <div class="section-head">
     <div>
       <h2>Academic Syllabus</h2>
       <p class="sub">Exclusive access area for registered academy members.</p>
     </div>
-    <span class="status-badge" id="member-status-badge">🔒 GUEST ACCESS</span>
+    <span class="status-badge">🔒 GUEST ACCESS</span>
   </div>
-
-  <!-- VIEW 1: FOR GUESTS / LOGGED OUT -->
-  <div id="syllabus-logged-out" class="placeholder">
+  <div class="placeholder">
     <h3 style="margin-top:0;color:#fff;font-size:20px;">🔒 Registered Member Access Required</h3>
     <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus is reserved for enrolled students and registered members. Please log in with your registered Email or Phone Number to access this section.</p>
     <button onclick="openLoginModal()" class="btn primary">Login as Registered Member →</button>
     <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Submit Free Registration</a></div>
-  </div>
-
-  <!-- VIEW 2: FOR LOGGED-IN MEMBERS (FULL SCREEN WITH ANIMATIONS & CELEBRATION) -->
-  <div id="syllabus-logged-in" class="syllabus-box" style="display:none;">
-    <div class="bg-particle p1"></div>
-    <div class="bg-particle p2"></div>
-    <div class="bg-particle p3"></div>
-    <div class="bg-particle p4"></div>
-
-    <div class="journey-banner">
-      <h3 style="margin:0;color:var(--gold);font-size:22px;">🎉 Congratulations! You Are In!</h3>
-      <p style="margin:6px 0 0;color:#fff;font-size:14px;">Your learning journey has officially started. Welcome to SKA Academy!</p>
-    </div>
-
-    <div class="loader-spinner"></div>
-    <span class="pill" style="margin-bottom:12px;">STUDENT PORTAL DASHBOARD</span>
-    <h3 style="margin:10px 0;color:#fff;font-size:26px;">Syllabus Content Coming Soon ⏳</h3>
-    <p style="margin:0 auto 20px;max-width:550px;color:var(--muted);line-height:1.7;">
-      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into the SKA Member Portal. The academic syllabus, module blueprints, and lesson downloads for your term are currently being updated by our faculty team.
-    </p>
-    
-    <div class="grid" style="margin-top:30px;opacity:0.8;">
-      <div class="panel" style="text-align:left;border:1px solid rgba(226,184,107,.3);">
-        <small style="color:var(--gold)">MODULE 1</small>
-        <h4>Core Engineering Fundamentals</h4>
-        <p style="font-size:12px;">[ Curriculum syllabus PDF updating soon ]</p>
-        <button onclick="scrollToCourses()" class="btn primary" style="padding:8px 14px;font-size:11px;margin-top:8px;">Go for Classes 🚀</button>
-      </div>
-      <div class="panel" style="text-align:left;border:1px solid rgba(226,184,107,.3);">
-        <small style="color:var(--gold)">MODULE 2</small>
-        <h4>Practical Technical Worksheets</h4>
-        <p style="font-size:12px;">[ Practical guides updating soon ]</p>
-        <button onclick="scrollToCourses()" class="btn primary" style="padding:8px 14px;font-size:11px;margin-top:8px;">Go for Classes 🚀</button>
-      </div>
-    </div>
-
-    <div style="display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap;">
-      <button onclick="scrollToCourses()" class="btn primary">Go to Available Classes 📚</button>
-      <button onclick="goToHome()" class="btn light">Return to Registration (Home) 🏠</button>
-      <button onclick="logoutMember()" class="btn light" style="border-color:rgba(239,68,68,.4);color:#f87171;">Log Out</button>
-    </div>
   </div>
 </section>
 
@@ -279,8 +253,52 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 <div id="success" role="status">Thank you! Your enrollment request has been submitted. The academy will contact you.</div>
 </form>
 </div>
-<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Instant access to your member portal & syllabus bar.</li><li>SKA Academy contacts you with class schedule details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Instant access to your member portal & syllabus page.</li><li>SKA Academy contacts you with class schedule details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
 </main>
+</div>
+
+<!-- DEDICATED FRESH MEMBER PORTAL PAGE (SHOWS ONLY WHEN LOGGED IN) -->
+<div id="member-portal-page" class="wrap" style="display:none;">
+  <div class="portal-card">
+    <div class="bg-particle p1"></div>
+    <div class="bg-particle p2"></div>
+    <div class="bg-particle p3"></div>
+    <div class="bg-particle p4"></div>
+
+    <div class="journey-banner">
+      <h3 style="margin:0;color:var(--gold);font-size:24px;">🎉 Congratulations! You Are In!</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Your learning journey has officially started. Welcome to SKA Academy!</p>
+    </div>
+
+    <div class="loader-spinner"></div>
+    <span class="pill" style="margin-bottom:12px;">MEMBER STUDENT PORTAL</span>
+    <h2 style="margin:12px 0 8px;color:#fff;font-size:28px;">Academic Syllabus</h2>
+    <h3 style="margin:0 0 16px;color:var(--gold);font-size:18px;font-weight:600;">Syllabus Content Coming Soon ⏳</h3>
+    <p style="margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.7;font-size:14px;">
+      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your private Student Dashboard. The academic syllabus, module blueprints, and lesson downloads for your term are currently being updated by our faculty team.
+    </p>
+    
+    <div class="grid" style="margin-top:28px;opacity:0.85;text-align:left;">
+      <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
+        <small style="color:var(--gold);font-weight:700;">MODULE 1</small>
+        <h4 style="margin:6px 0;font-size:16px;">Core Engineering Fundamentals</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Curriculum syllabus PDF updating soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Go for Classes 🚀</button>
+      </div>
+      <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
+        <small style="color:var(--gold);font-weight:700;">MODULE 2</small>
+        <h4 style="margin:6px 0;font-size:16px;">Practical Technical Worksheets</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Practical guides updating soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Go for Classes 🚀</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+      <button onclick="goToHome()" class="btn primary">Return to Main Page 🏠</button>
+      <button onclick="logoutMember()" class="btn light" style="border-color:rgba(239,68,68,.4);color:#f87171;">Log Out of Portal</button>
+    </div>
+  </div>
+</div>
 
 <footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
 
@@ -335,12 +353,11 @@ function chooseMode(mode){
  link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
 }
 
-// Navigation Helpers
+// Navigation Routing
 function goToHome() {
+  document.getElementById('public-website-view').style.display = 'block';
+  document.getElementById('member-portal-page').style.display = 'none';
   document.getElementById('enroll').scrollIntoView({ behavior: 'smooth' });
-}
-function scrollToCourses() {
-  document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
 }
 
 // Enrollment Form Submission
@@ -360,26 +377,25 @@ form.addEventListener('submit', async function(e){
  try {
   await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
   
-  // Instant login upon successful registration
+  // Instant login upon registration
   const studentName = document.getElementById('name').value;
   const studentEmail = document.getElementById('email').value;
   localStorage.setItem('ska_member_logged', 'true');
   localStorage.setItem('ska_member_name', studentName || studentEmail);
   
-  statusBox.textContent='Thank you! Your enrollment request has been submitted. You are now logged in as a registered member!';
+  statusBox.textContent='Thank you! Your enrollment request has been submitted. Opening your Member Portal...';
   statusBox.style.display='block';
   
-  updateAuthUI();
-  
-  // Automatically scroll to full-screen Syllabus section
-  setTimeout(() => {
-    document.getElementById('syllabus').scrollIntoView({ behavior: 'smooth' });
-  }, 500);
-
   form.reset();
   selectedMode='';
   document.getElementById('mode').disabled=true;
   ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
+
+  // Switch to fresh member portal page
+  setTimeout(() => {
+    updateAuthUI();
+  }, 600);
+
  } catch(err) {
   console.error('EmailJS enrollment error:',err);
   statusBox.textContent='Sorry, your registration could not be sent. Please try again or contact SKA Academy.';
@@ -391,7 +407,7 @@ form.addEventListener('submit', async function(e){
  }
 });
 
-// Member Authentication & Portal Logic
+// Member Authentication & Page Routing Logic
 function openLoginModal() {
   document.getElementById('login-modal').classList.add('active');
 }
@@ -405,15 +421,12 @@ function handleLogin(e) {
   const loginInput = document.getElementById('login-id').value.trim();
   if (!loginInput) return;
 
-  // Set logged-in state
+  // Save login session
   localStorage.setItem('ska_member_logged', 'true');
   localStorage.setItem('ska_member_name', loginInput);
   
   closeLoginModal();
   updateAuthUI();
-  
-  // Smooth scroll to full-screen syllabus section
-  document.getElementById('syllabus').scrollIntoView({ behavior: 'smooth' });
 }
 
 function logoutMember() {
@@ -424,35 +437,43 @@ function logoutMember() {
 
 function updateAuthUI() {
   const isLoggedIn = localStorage.getItem('ska_member_logged') === 'true';
-  const memberName = localStorage.getItem('ska_member_name') || 'Registered Member';
+  const memberName = localStorage.getItem('ska_member_name') || 'Registered Student';
 
   const navBtn = document.getElementById('nav-login-btn');
-  const loggedOutView = document.getElementById('syllabus-logged-out');
-  const loggedInView = document.getElementById('syllabus-logged-in');
-  const statusBadge = document.getElementById('member-status-badge');
+  const publicView = document.getElementById('public-website-view');
+  const memberPortalPage = document.getElementById('member-portal-page');
   const memberNameDisplay = document.getElementById('member-name-display');
+  const publicNavs = document.querySelectorAll('.public-nav');
 
   if (isLoggedIn) {
-    navBtn.textContent = 'Portal (Logged In) ✓';
-    navBtn.onclick = () => document.getElementById('syllabus').scrollIntoView({ behavior: 'smooth' });
-    loggedOutView.style.display = 'none';
-    loggedInView.style.display = 'block';
-    statusBadge.textContent = '🟢 MEMBER ACTIVE';
-    statusBadge.style.background = 'rgba(34,197,94,.15)';
-    statusBadge.style.color = '#4ade80';
+    // Hide public landing page content and open fresh member page
+    publicView.style.display = 'none';
+    memberPortalPage.style.display = 'flex';
+    
+    navBtn.textContent = 'Portal Page (Logged In) ✓';
+    navBtn.onclick = () => {
+      publicView.style.display = 'none';
+      memberPortalPage.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    publicNavs.forEach(el => el.style.opacity = '0.5');
+
     if(memberNameDisplay) memberNameDisplay.textContent = memberName;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
+    // Show normal landing page
+    publicView.style.display = 'block';
+    memberPortalPage.style.display = 'none';
+    
     navBtn.textContent = 'Member Login 🔑';
     navBtn.onclick = openLoginModal;
-    loggedOutView.style.display = 'block';
-    loggedInView.style.display = 'none';
-    statusBadge.textContent = '🔒 GUEST ACCESS';
-    statusBadge.style.background = 'rgba(226,184,107,.15)';
-    statusBadge.style.color = 'var(--gold)';
+    
+    publicNavs.forEach(el => el.style.opacity = '1');
   }
 }
 
-// Initial authentication check on load
+// Initial page state check
 document.addEventListener('DOMContentLoaded', updateAuthUI);
 
 // Reveal elements on scroll
