@@ -13,10 +13,23 @@ html{scroll-behavior:smooth;scroll-padding-top:80px}
 body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;margin:0;padding:0}
 .wrap{width:min(1180px,91%);margin:0 auto}
 
-/* Header & Navigation */
+/* Header & Responsive Logo Navigation */
 header{background:rgba(20,20,22,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(0,0,0,.6);position:sticky;top:0;z-index:100}
-.nav-wrap{min-height:60px;padding:6px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.brand{font-weight:800;letter-spacing:1px;color:var(--gold);font-size:16px;text-decoration:none;display:flex;align-items:center;gap:6px;}
+.nav-wrap{min-height:60px;padding:8px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.brand{font-weight:800;letter-spacing:1px;color:var(--gold);font-size:16px;text-decoration:none;display:flex;align-items:center;gap:10px;}
+
+/* Brand Logo Styling */
+.logo-img{
+  height:36px;
+  width:auto;
+  object-fit:contain;
+  border-radius:6px;
+  transition:transform 0.2s ease;
+}
+.brand:hover .logo-img{
+  transform:scale(1.05);
+}
+
 nav{gap:6px;align-items:center;display:flex;flex-wrap:wrap;}
 nav a, nav button{font-size:12px;color:#d4d4d8;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s;text-decoration:none;border:none;background:transparent;cursor:pointer;white-space:nowrap}
 nav a:hover, nav button:hover{background:#27272a;color:var(--gold)}
@@ -43,7 +56,9 @@ section{padding:43px 0}.section-head{margin-bottom:22px;display:flex;justify-con
 .field{display:flex;flex-direction:column;gap:6px}.field label{color:#d4d4d8;font-size:12px;font-weight:600}.field input,.field select,.field textarea{background:#0c0c0e;border:1px solid var(--card-border);color:#f4f4f6;border-radius:8px;padding:10px 12px;font-size:13px;width:100%;box-sizing:border-box}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(226,184,107,.2);border-color:var(--gold)}#success{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3);padding:12px;border-radius:8px;margin-top:14px;display:none;font-size:13px}
 .note{font-size:12px;color:var(--muted);margin-top:8px}
 
-footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin-top:42px}footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
+footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin-top:42px}
+footer .footer-wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
 
 .faculty-card{display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -152,13 +167,18 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
   .visual-core { width: 135px; height: 135px; }
   .visual-symbol { font-size: 40px; }
   .float-card { position: relative; inset: auto !important; margin: 10px auto; width: 100%; max-width: 290px; justify-content: center; box-sizing: border-box; }
+  .logo-img { height:30px; }
 }
 </style>
 </head>
 <body>
 
 <header><div class="wrap nav-wrap">
-<a href="javascript:void(0)" onclick="goToHome()" class="brand">⚙️ SKA ACADEMY</a>
+<a href="javascript:void(0)" onclick="goToHome()" class="brand">
+  <img src="assets/logo.png" alt="SKA Academy Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback-icon').style.display='inline';">
+  <span id="logo-fallback-icon" style="display:none;">⚙️</span>
+  <span>SKA ACADEMY</span>
+</a>
 <nav id="main-nav">
   <button onclick="goToHome()" style="font-weight:700;color:var(--gold);">Home 🏠</button>
   <a href="#courses" class="public-nav">Courses</a>
@@ -300,7 +320,19 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
   </div>
 </div>
 
-<footer><div class="wrap"><div><b>SKA ACADEMY</b><div class="note" style="color:#c8d5e5">Learn with Passion</div></div><div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div><div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div></div></footer>
+<footer>
+  <div class="wrap footer-wrap">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="assets/logo.png" alt="SKA Logo" class="logo-img" style="height:28px;" onerror="this.style.display='none';">
+      <div>
+        <b>SKA ACADEMY</b>
+        <div class="note" style="color:#c8d5e5">Learn with Passion</div>
+      </div>
+    </div>
+    <div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div>
+    <div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div>
+  </div>
+</footer>
 
 <!-- MEMBER LOGIN MODAL POPUP -->
 <div class="modal-overlay" id="login-modal">
@@ -348,12 +380,10 @@ function getRegisteredMembers() {
 
 function saveRegisteredMember(name, phone, email) {
   const members = getRegisteredMembers();
-  // Normalize data for strict matching
   const cleanPhone = phone ? phone.replace(/\D/g, '') : '';
   const cleanEmail = email ? email.trim().toLowerCase() : '';
   const cleanName = name ? name.trim().toLowerCase() : '';
 
-  // Check if already registered
   const exists = members.find(m => 
     (cleanPhone && m.phone === cleanPhone) || (cleanEmail && m.email === cleanEmail)
   );
@@ -471,13 +501,11 @@ function handleLogin(e) {
   });
 
   if (matchedMember) {
-    // Valid registered user & matching password
     localStorage.setItem('ska_member_logged', 'true');
     localStorage.setItem('ska_member_name', matchedMember.name);
     closeLoginModal();
     updateAuthUI();
   } else {
-    // Check if ID is not registered at all vs wrong password
     const idExists = members.find(m => 
       (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail)
     );
@@ -508,7 +536,6 @@ function updateAuthUI() {
   const publicNavs = document.querySelectorAll('.public-nav');
 
   if (isLoggedIn) {
-    // Hide public landing page content and open fresh member page
     publicView.style.display = 'none';
     memberPortalPage.style.display = 'flex';
     
@@ -524,7 +551,6 @@ function updateAuthUI() {
     if(memberNameDisplay) memberNameDisplay.textContent = memberName;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    // Show normal landing page
     publicView.style.display = 'block';
     memberPortalPage.style.display = 'none';
     
