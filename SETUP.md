@@ -1,6 +1,6 @@
 # SKA ACADEMY — Learn with Passion
 
-A responsive static website for GitHub Pages, with a professional navy, white and gold design, Online/Offline-first enrollment, academic syllabus placeholder, faculty categories and subtle animations.
+A responsive static website for GitHub Pages, featuring a professional navy, white and gold design, Online/Offline-first enrollment, a secure **Member Login Portal**, a gated **Academic Syllabus** (with a "Coming Soon / Under Update" state for logged-in members), faculty categories, and subtle scroll animations.
 
 ## Publish on GitHub Pages
 
@@ -20,9 +20,13 @@ Enrollment uses EmailJS and sends notifications to `s79178917@gmail.com`. Google
 
 The form requires students to select Online or Offline before enrollment. A success message is shown only after EmailJS confirms the email request was sent.
 
+## Direct Student Access (No Manual Approval Needed)
+- **Automatic Instant Login:** When a student submits the free registration form, they are automatically signed in and redirected straight to the Academic Syllabus section.
+- **Member Login Portal:** Existing registered students can log in anytime by clicking **Member Login 🔑** in the header using their email or phone number.
+- **Academic Syllabus State:** Displays the gated **"Syllabus Content Coming Soon ⏳"** dashboard view once logged in.
+
 ## Project files
 
-- `index.html` — website and EmailJS enrollment integration
-- `assets/ska-academy-logo.png` — SKA Academy logo
+- `index.html` — website, EmailJS enrollment integration, and member login portal
 - `EMAILJS_SETUP.md` — step-by-step EmailJS configuration
 - `SETUP.md` — GitHub Pages publishing instructions
