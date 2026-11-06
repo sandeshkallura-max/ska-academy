@@ -214,9 +214,9 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
   </div>
   <div class="placeholder">
     <h3 style="margin-top:0;color:#fff;font-size:20px;">🔒 Registered Member Access Required</h3>
-    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus is reserved for enrolled students and registered members. Please log in with your registered Email or Phone Number to access this section.</p>
+    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus is reserved for enrolled students and registered members. Please log in with your registered Login ID (Phone / Email) & Password (Full Name) to access this section.</p>
     <button onclick="openLoginModal()" class="btn primary">Login as Registered Member →</button>
-    <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Submit Free Registration</a></div>
+    <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Register First Below</a></div>
   </div>
 </section>
 
@@ -240,20 +240,20 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
 <div class="two"><div class="panel"><h3 style="color:#fff;margin-top:0">Enroll in a class</h3>
 <form id="enrollment">
 <div class="fields">
-<div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name"></div>
-<div class="field"><label for="phone">Phone number *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
-<div class="field"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="name">Full name (This will be your Password) *</label><input id="name" name="name" required placeholder="Your full name (Password)"></div>
+<div class="field"><label for="phone">Phone number (Login ID) *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
+<div class="field"><label for="email">Email address (Alternative Login ID)</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
 <div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
 <div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
 <div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
 </div>
 <button class="btn primary" type="submit">Send free enrollment request →</button>
-<p class="note">Your registration details will be emailed securely to SKA Academy when the EmailJS connection is configured.</p>
-<div id="success" role="status">Thank you! Your enrollment request has been submitted. The academy will contact you.</div>
+<p class="note">Your registration details will be saved for member login verification.</p>
+<div id="success" role="status">Thank you! Your enrollment request has been submitted. Opening your Member Portal...</div>
 </form>
 </div>
-<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Instant access to your member portal & syllabus page.</li><li>SKA Academy contacts you with class schedule details.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Your Phone/Email becomes your Login ID, and your Name becomes your Password.</li><li>Instant access to your private member portal & syllabus page.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
 </main>
 </div>
 
@@ -313,14 +313,16 @@ footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin
     </div>
     
     <form id="login-form" onsubmit="handleLogin(event)">
+      <div id="login-error" style="display:none;background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);padding:10px;border-radius:8px;font-size:12px;margin-bottom:12px;text-align:left;"></div>
+      
       <div class="field" style="margin-bottom:12px;">
-        <label for="login-id">Email or Registered Phone Number *</label>
-        <input type="text" id="login-id" required placeholder="e.g. s79178917@gmail.com or 9876543210">
+        <label for="login-id">Login ID (Registered Phone or Email) *</label>
+        <input type="text" id="login-id" required placeholder="Enter registered phone or email">
       </div>
       <div class="field" style="margin-bottom:18px;">
-        <label for="login-pass">Passcode / Student ID</label>
-        <input type="password" id="login-pass" placeholder="Enter password (Optional)">
-        <small style="color:var(--muted);font-size:10px;margin-top:4px;">* Registered members can enter their registered email/phone to sign in directly.</small>
+        <label for="login-pass">Password (Your Full Name during Registration) *</label>
+        <input type="password" id="login-pass" required placeholder="Enter your full name">
+        <small style="color:var(--muted);font-size:10px;margin-top:4px;">* Unregistered IDs cannot access the portal. Register first if you are a new member.</small>
       </div>
       <button type="submit" class="btn primary" style="width:100%;">Sign In to Member Portal →</button>
     </form>
@@ -337,6 +339,30 @@ if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) {
  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
 document.getElementById('year').textContent=new Date().getFullYear();
+
+// Local Storage Helper for Registered Users Database
+function getRegisteredMembers() {
+  const data = localStorage.getItem('ska_registered_members');
+  return data ? JSON.parse(data) : [];
+}
+
+function saveRegisteredMember(name, phone, email) {
+  const members = getRegisteredMembers();
+  // Normalize data for strict matching
+  const cleanPhone = phone ? phone.replace(/\D/g, '') : '';
+  const cleanEmail = email ? email.trim().toLowerCase() : '';
+  const cleanName = name ? name.trim().toLowerCase() : '';
+
+  // Check if already registered
+  const exists = members.find(m => 
+    (cleanPhone && m.phone === cleanPhone) || (cleanEmail && m.email === cleanEmail)
+  );
+
+  if (!exists) {
+    members.push({ name: name.trim(), cleanName: cleanName, phone: cleanPhone, email: cleanEmail });
+    localStorage.setItem('ska_registered_members', JSON.stringify(members));
+  }
+}
 
 // Mode Selection
 let selectedMode='';
@@ -371,17 +397,24 @@ form.addEventListener('submit', async function(e){
   alert('Email enrollment is not connected yet. Follow EMAILJS_SETUP.md and finish your EmailJS Template ID in index.html.');
   return;
  }
+
+ const studentName = document.getElementById('name').value;
+ const studentPhone = document.getElementById('phone').value;
+ const studentEmail = document.getElementById('email').value;
+
  submitButton.disabled=true;
  submitButton.textContent='Sending registration…';
  statusBox.style.display='none';
+
  try {
   await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
   
-  // Instant login upon registration
-  const studentName = document.getElementById('name').value;
-  const studentEmail = document.getElementById('email').value;
+  // Register member locally into verified member database
+  saveRegisteredMember(studentName, studentPhone, studentEmail);
+  
+  // Set current logged-in session
   localStorage.setItem('ska_member_logged', 'true');
-  localStorage.setItem('ska_member_name', studentName || studentEmail);
+  localStorage.setItem('ska_member_name', studentName);
   
   statusBox.textContent='Thank you! Your enrollment request has been submitted. Opening your Member Portal...';
   statusBox.style.display='block';
@@ -409,6 +442,7 @@ form.addEventListener('submit', async function(e){
 
 // Member Authentication & Page Routing Logic
 function openLoginModal() {
+  document.getElementById('login-error').style.display = 'none';
   document.getElementById('login-modal').classList.add('active');
 }
 
@@ -419,14 +453,42 @@ function closeLoginModal() {
 function handleLogin(e) {
   e.preventDefault();
   const loginInput = document.getElementById('login-id').value.trim();
-  if (!loginInput) return;
+  const passInput = document.getElementById('login-pass').value.trim().toLowerCase();
+  const errorBox = document.getElementById('login-error');
 
-  // Save login session
-  localStorage.setItem('ska_member_logged', 'true');
-  localStorage.setItem('ska_member_name', loginInput);
-  
-  closeLoginModal();
-  updateAuthUI();
+  errorBox.style.display = 'none';
+  if (!loginInput || !passInput) return;
+
+  const members = getRegisteredMembers();
+  const cleanInputPhone = loginInput.replace(/\D/g, '');
+  const cleanInputEmail = loginInput.toLowerCase();
+
+  // Find member matching Phone or Email AND Password (Full Name)
+  const matchedMember = members.find(m => {
+    const idMatches = (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail);
+    const passMatches = m.cleanName === passInput;
+    return idMatches && passMatches;
+  });
+
+  if (matchedMember) {
+    // Valid registered user & matching password
+    localStorage.setItem('ska_member_logged', 'true');
+    localStorage.setItem('ska_member_name', matchedMember.name);
+    closeLoginModal();
+    updateAuthUI();
+  } else {
+    // Check if ID is not registered at all vs wrong password
+    const idExists = members.find(m => 
+      (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail)
+    );
+
+    if (!idExists) {
+      errorBox.innerHTML = '⚠️ <strong>User ID Not Registered!</strong><br>This Phone/Email is not registered. Please register first using the enrollment form below.';
+    } else {
+      errorBox.innerHTML = '⚠️ <strong>Incorrect Password!</strong><br>Please enter your exact Full Name used during registration as the password.';
+    }
+    errorBox.style.display = 'block';
+  }
 }
 
 function logoutMember() {
