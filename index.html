@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SKA Academy — professional engineering learning with flexible online and offline classes.">
+<meta name="description" content="SKA Academy — professional skills and technical subjects learning with flexible online and offline classes.">
 <meta name="theme-color" content="#0b1f3a">
 <title>SKA Academy | Learn with Passion</title>
 <style>
@@ -18,17 +18,15 @@ header{background:rgba(20,20,22,.95);backdrop-filter:blur(14px);border-bottom:1p
 .nav-wrap{min-height:60px;padding:8px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .brand{font-weight:800;letter-spacing:1px;color:var(--gold);font-size:16px;text-decoration:none;display:flex;align-items:center;gap:10px;}
 
-/* Brand Logo Styling */
 .logo-img{
-  height:36px;
+  height:38px;
   width:auto;
   object-fit:contain;
   border-radius:6px;
+  filter:drop-shadow(0 2px 8px rgba(226,184,107,.25));
   transition:transform 0.2s ease;
 }
-.brand:hover .logo-img{
-  transform:scale(1.05);
-}
+.brand:hover .logo-img{ transform:scale(1.05); }
 
 nav{gap:6px;align-items:center;display:flex;flex-wrap:wrap;}
 nav a, nav button{font-size:12px;color:#d4d4d8;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s;text-decoration:none;border:none;background:transparent;cursor:pointer;white-space:nowrap}
@@ -167,7 +165,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   .visual-core { width: 135px; height: 135px; }
   .visual-symbol { font-size: 40px; }
   .float-card { position: relative; inset: auto !important; margin: 10px auto; width: 100%; max-width: 290px; justify-content: center; box-sizing: border-box; }
-  .logo-img { height:30px; }
+  .logo-img { height:32px; }
 }
 </style>
 </head>
@@ -176,12 +174,12 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 <header><div class="wrap nav-wrap">
 <a href="javascript:void(0)" onclick="goToHome()" class="brand">
   <img src="assets/logo.png" alt="SKA Academy Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback-icon').style.display='inline';">
-  <span id="logo-fallback-icon" style="display:none;">⚙️</span>
+  <span id="logo-fallback-icon" style="display:none;">✦</span>
   <span>SKA ACADEMY</span>
 </a>
 <nav id="main-nav">
   <button onclick="goToHome()" style="font-weight:700;color:var(--gold);">Home 🏠</button>
-  <a href="#courses" class="public-nav">Courses</a>
+  <a href="#courses" class="public-nav">Subjects</a>
   <a href="#learning" class="public-nav">Learning modes</a>
   <a href="#syllabus" class="public-nav">Academic syllabus</a>
   <a href="#faculty" class="public-nav">Lecturing faculty</a>
@@ -195,16 +193,16 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 <main class="wrap">
 <div class="hero">
 <div class="hero-copy"><div class="eyebrow"><span class="eyebrow-dot"></span> SKA ACADEMY <span class="eyebrow-sep">/</span> LEARN WITH PASSION</div>
-<h1>Build Skills.<br>Engineer Your Future.</h1>
-<p>Learn engineering fundamentals and practical technical subjects through flexible online and offline classes.</p>
-<div class="hero-cta"><a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore courses</a></div><div class="hero-proof"><span>✦</span> Practical knowledge. Professional guidance. Flexible learning.</div></div>
-<div class="hero-visual" aria-label="Engineering education highlights"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="visual-symbol">⚙</div><span>ENGINEERING</span><strong>Starts Here.</strong></div><div class="float-card float-top"><span class="float-icon">⌁</span><span><b>Learn with purpose</b><small>Build real-world skills</small></span></div><div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><span><b>Flexible learning</b><small>Online &amp; offline classes</small></span></div></div>
+<h1>Master Essential Skills.<br>Power Your Future.</h1>
+<p>Engage in interactive learning platforms, practical technical skills, and specialized subject training through flexible online and offline classes.</p>
+<div class="hero-cta"><a class="btn primary" href="#learning">Explore learning options <span aria-hidden="true">→</span></a><a class="btn light" href="#courses">Explore subjects</a></div><div class="hero-proof"><span>✦</span> Practical skills. Interactive platform. Flexible classes.</div></div>
+<div class="hero-visual" aria-label="Skills and technology education highlights"><div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div><div class="visual-core"><div class="visual-symbol">⚡</div><span>SKILLS & TECH</span><strong>Starts Here.</strong></div><div class="float-card float-top"><span class="float-icon">💻</span><span><b>Interactive Platform</b><small>Engaging live sessions</small></span></div><div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><span><b>Flexible learning</b><small>Online &amp; offline classes</small></span></div></div>
 </div>
 
-<div class="offer">🎉 FREE LAUNCH OFFER — Join our classes during the free launch period. No course fee at present.</div>
+<div class="offer">🎉 FREE LAUNCH OFFER — Join our skills and technology classes during the free launch period. No course fee at present.</div>
 
 <section id="courses">
-<div class="section-head"><div><h2>Our Courses</h2><p class="sub">Choose a subject and start building practical knowledge.</p></div><span class="pill">ALL COURSES FREE DURING LAUNCH</span></div>
+<div class="section-head"><div><h2>Our Subjects & Courses</h2><p class="sub">Choose a subject and start building practical knowledge on our interactive platform.</p></div><span class="pill">ALL SUBJECTS FREE DURING LAUNCH</span></div>
 <div class="grid">
 <article class="course"><div class="ico">⚙️</div><h3>Basics of Engineering</h3><p>Engineering fundamentals, materials, measurements, mechanics and workshop practices.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
 <article class="course"><div class="ico">🧯</div><h3>Fire Safety</h3><p>Fire prevention, fire classifications, protection systems and emergency response.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
@@ -216,8 +214,8 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 
 <section id="learning"><div class="section-head"><div><h2>First, Choose Your Learning Mode</h2><p class="sub">Select online or offline before proceeding to enrollment.</p></div></div>
 <div class="two">
-<button type="button" class="panel choice-card" id="online-choice" onclick="chooseMode('Online')" aria-pressed="false"><div class="ico">💻</div><h3>Online Classes</h3><p class="sub">Join guided classes remotely and learn from wherever you are.</p><b>Choose Online →</b></button>
-<button type="button" class="panel choice-card" id="offline-choice" onclick="chooseMode('Offline')" aria-pressed="false"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person classroom sessions and practical learning activities.</p><b>Choose Offline →</b></button>
+<button type="button" class="panel choice-card" id="online-choice" onclick="chooseMode('Online')" aria-pressed="false"><div class="ico">🌐</div><h3>Online Classes</h3><p class="sub">Join engaging remote classes on our interactive learning platform from anywhere.</p><b>Choose Online →</b></button>
+<button type="button" class="panel choice-card" id="offline-choice" onclick="chooseMode('Offline')" aria-pressed="false"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person interactive classroom sessions and collaborative practical workshops.</p><b>Choose Offline →</b></button>
 </div>
 <p id="mode-status" class="note" aria-live="polite">Please select a learning mode to continue.</p>
 <a id="continue-enroll" class="btn primary" href="#enroll" style="pointer-events:none;opacity:.5" aria-disabled="true">Continue to enrollment →</a>
@@ -234,36 +232,36 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   </div>
   <div class="placeholder">
     <h3 style="margin-top:0;color:#fff;font-size:20px;">🔒 Registered Member Access Required</h3>
-    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus is reserved for enrolled students and registered members. Please log in with your registered Login ID (Phone / Email) & Password (Full Name) to access this section.</p>
+    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus and interactive platform dashboard are reserved for enrolled members. Please log in with your registered Login ID (Phone / Email) & Password (Full Name) to access this section.</p>
     <button onclick="openLoginModal()" class="btn primary">Login as Registered Member →</button>
     <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Register First Below</a></div>
   </div>
 </section>
 
-<section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and professionals who will guide your learning.</p></div></div>
+<section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and industry professionals who will guide your learning.</p></div></div>
 <div class="grid">
 <article class="course faculty-card">
 <div class="faculty-avatar"><img src="assets/nayeem-ahmed.jpg" alt="Nayeem Ahmed"></div>
 <div class="faculty-info">
 <h3>Nayeem Ahmed</h3>
-<p class="faculty-role">Assistant Professor — Fire Safety</p>
-<p>Specialist in fire prevention, emergency protection systems, safety regulations, and industrial hazard management.</p>
+<p class="faculty-role">Assistant Professor — Fire Safety & Skills</p>
+<p>Specialist in fire prevention, emergency protection systems, safety regulations, interactive technical training, and skill development.</p>
 <span class="pill">SUBJECT LECTURER</span>
 </div>
 </article>
-<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced engineering and technical professionals guiding practical aspects.</p><span class="pill">PROFILES COMING SOON</span></article>
-<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, equipment and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced technical professionals guiding practical aspects and skill development.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, interactive tools, and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
 </div>
 <p class="note">More faculty profiles, qualifications, and industry experts will be added as upcoming terms open.</p></section>
 
 <section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
-<div class="two"><div class="panel"><h3 style="color:#fff;margin-top:0">Enroll in a class</h3>
+<div class="two"><div class="panel"><h3 style="color:#fff;margin-top:0">Enroll in a subject</h3>
 <form id="enrollment">
 <div class="fields">
 <div class="field"><label for="name">Full name (This will be your Password) *</label><input id="name" name="name" required placeholder="Your full name (Password)"></div>
 <div class="field"><label for="phone">Phone number (Login ID) *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
 <div class="field"><label for="email">Email address (Alternative Login ID)</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
-<div class="field"><label for="course">Select course *</label><select id="course" name="course" required><option value="">Choose a course</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
+<div class="field"><label for="course">Select subject *</label><select id="course" name="course" required><option value="">Choose a subject</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
 <div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
 <div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
@@ -273,7 +271,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 <div id="success" role="status">Thank you! Your enrollment request has been submitted. Opening your Member Portal...</div>
 </form>
 </div>
-<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Your Phone/Email becomes your Login ID, and your Name becomes your Password.</li><li>Instant access to your private member portal & syllabus page.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Your Phone/Email becomes your Login ID, and your Name becomes your Password.</li><li>Instant access to your private member portal & interactive class platform.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
 </main>
 </div>
 
@@ -291,25 +289,25 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     </div>
 
     <div class="loader-spinner"></div>
-    <span class="pill" style="margin-bottom:12px;">MEMBER STUDENT PORTAL</span>
-    <h2 style="margin:12px 0 8px;color:#fff;font-size:28px;">Academic Syllabus</h2>
-    <h3 style="margin:0 0 16px;color:var(--gold);font-size:18px;font-weight:600;">Syllabus Content Coming Soon ⏳</h3>
+    <span class="pill" style="margin-bottom:12px;">STUDENT INTERACTIVE PORTAL</span>
+    <h2 style="margin:12px 0 8px;color:#fff;font-size:28px;">Engaging Class Platform & Syllabus</h2>
+    <h3 style="margin:0 0 16px;color:var(--gold);font-size:18px;font-weight:600;">Live Class Hub & Syllabus Coming Soon ⏳</h3>
     <p style="margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.7;font-size:14px;">
-      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your private Student Dashboard. The academic syllabus, module blueprints, and lesson downloads for your term are currently being updated by our faculty team.
+      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your private Student Dashboard. Your interactive class links, subject module blueprints, and practical toolkits are currently being updated by our faculty team.
     </p>
     
     <div class="grid" style="margin-top:28px;opacity:0.85;text-align:left;">
       <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
         <small style="color:var(--gold);font-weight:700;">MODULE 1</small>
-        <h4 style="margin:6px 0;font-size:16px;">Core Engineering Fundamentals</h4>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Curriculum syllabus PDF updating soon ]</p>
-        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Go for Classes 🚀</button>
+        <h4 style="margin:6px 0;font-size:16px;">Core Practical Skills & Subject Blueprint</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Interactive session materials updating soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Explore Subjects 🚀</button>
       </div>
       <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
         <small style="color:var(--gold);font-weight:700;">MODULE 2</small>
-        <h4 style="margin:6px 0;font-size:16px;">Practical Technical Worksheets</h4>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Practical guides updating soon ]</p>
-        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Go for Classes 🚀</button>
+        <h4 style="margin:6px 0;font-size:16px;">Interactive Class Hub & Workshops</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Live class streaming links opening soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Explore Subjects 🚀</button>
       </div>
     </div>
 
@@ -329,7 +327,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
         <div class="note" style="color:#c8d5e5">Learn with Passion</div>
       </div>
     </div>
-    <div class="note" style="color:#c8d5e5">Engineering learning · Online & Offline</div>
+    <div class="note" style="color:#c8d5e5">Practical Skills & Subject Learning · Online & Offline</div>
     <div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div>
   </div>
 </footer>
@@ -341,7 +339,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     <div style="text-align:center;margin-bottom:18px;">
       <span class="pill">STUDENT PORTAL</span>
       <h3 style="color:#fff;margin:10px 0 4px;font-size:20px;">Registered Member Login</h3>
-      <p style="font-size:12px;color:var(--muted);margin:0;">Access your academic syllabus & student portal.</p>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Access your interactive classes & student portal.</p>
     </div>
     
     <form id="login-form" onsubmit="handleLogin(event)">
@@ -439,10 +437,8 @@ form.addEventListener('submit', async function(e){
  try {
   await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
   
-  // Register member locally into verified member database
   saveRegisteredMember(studentName, studentPhone, studentEmail);
   
-  // Set current logged-in session
   localStorage.setItem('ska_member_logged', 'true');
   localStorage.setItem('ska_member_name', studentName);
   
@@ -454,7 +450,6 @@ form.addEventListener('submit', async function(e){
   document.getElementById('mode').disabled=true;
   ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
 
-  // Switch to fresh member portal page
   setTimeout(() => {
     updateAuthUI();
   }, 600);
@@ -493,7 +488,6 @@ function handleLogin(e) {
   const cleanInputPhone = loginInput.replace(/\D/g, '');
   const cleanInputEmail = loginInput.toLowerCase();
 
-  // Find member matching Phone or Email AND Password (Full Name)
   const matchedMember = members.find(m => {
     const idMatches = (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail);
     const passMatches = m.cleanName === passInput;
