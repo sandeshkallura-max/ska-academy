@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SKA Academy — professional skills, student brain training, arcade games suite, accuracy analytics & results portal.">
+<meta name="description" content="SKA Academy — professional skills, 3D WebGL student arcade, accuracy analytics & results portal.">
 <meta name="theme-color" content="#0b1f3a">
 <title>SKA Academy | Learn with Passion</title>
 <!-- Chart.js CDN for dynamic Accuracy Level Graphs -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Three.js WebGL 3D Rendering Engine -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <style>
 /* SKA Academy Dark Theme — Midnight Obsidian & Gold */
 :root{--navy:#141416;--blue:#e2b86b;--gold:#e2b86b;--ink:#f4f4f6;--muted:#a1a1aa;--bg:#0c0c0e;--line:#27272a;--white:#18181b;--card-bg:#18181b;--card-border:#27272a}
@@ -88,7 +90,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .portal-card {
   position: relative;
   width: 100%;
-  max-width: 900px;
+  max-width: 920px;
   border: 1px solid rgba(226,184,107,.4);
   background: radial-gradient(circle at 50% -20%, rgba(226,184,107,.22), rgba(20,20,26,0.95) 75%), linear-gradient(180deg, #141418 0%, #0c0c0e 100%);
   padding: 48px 30px;
@@ -153,8 +155,8 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 
 /* Active Game Arena Styles */
 .arena-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; }
-.game-canvas-box { position: relative; width: 100%; max-width: 500px; height: 300px; background: #0c0c0e; border: 1px solid rgba(226,184,107,0.4); border-radius: 12px; overflow: hidden; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
-.arcade-canvas { background: #141418; display: block; width: 100%; height: 100%; }
+.game-canvas-box { position: relative; width: 100%; max-width: 680px; height: 380px; background: #050508; border: 2px solid rgba(226,184,107,0.4); border-radius: 16px; overflow: hidden; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 12px 35px rgba(0,0,0,0.85); }
+.arcade-canvas { display: block; width: 100%; height: 100%; }
 
 /* Countdown Big Number */
 #countdown-number { font-size: 80px; font-weight: 800; color: var(--gold); animation: countPulse 1s infinite alternate; text-shadow: 0 0 30px rgba(226,184,107,0.6); }
@@ -179,7 +181,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   <a href="#learning" class="public-nav">Learning modes</a>
   <a href="#syllabus" class="public-nav">Academic syllabus</a>
   <a href="#faculty" class="public-nav">Lecturing faculty</a>
-  <button onclick="openBrainGym()" class="btn-login-nav public-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🧠 Brain & Arcade Games</button>
+  <button onclick="openBrainGym()" class="btn-login-nav public-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🎮 3D WebGL Games</button>
   <button onclick="openResultsPage()" class="btn-results-nav public-nav">📊 Exam Results</button>
   <a href="#enroll" class="btn-enroll-nav public-nav">Enroll</a>
   <button id="nav-login-btn" onclick="openLoginModal()" class="btn-login-nav">Member Login 🔑</button>
@@ -197,7 +199,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     <div class="hero-cta">
       <a class="btn primary" href="#courses">Explore Courses <span aria-hidden="true">→</span></a>
       <a class="btn light" href="#learning">Choose Learning Mode</a>
-      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🧠 Play Games & Brain Gym</button>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🎮 Play 3D WebGL Arcade Games</button>
     </div>
     <div class="hero-proof"><span>✦</span> Practical skills. Interactive learning. A brighter future.</div>
   </div>
@@ -328,7 +330,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 
     <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
       <button onclick="goToHome()" class="btn primary">Return to Main Page 🏠</button>
-      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);">🧠 Play Games & Brain Gym</button>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);">🎮 Play 3D Games</button>
       <button onclick="openResultsPage()" class="btn-results-nav" style="padding:10px 18px;border-radius:8px;">📊 View Exam Results</button>
       <button onclick="logoutMember()" class="btn light" style="border-color:rgba(239,68,68,.4);color:#f87171;">Log Out of Portal</button>
     </div>
@@ -375,71 +377,71 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   </div>
 </div>
 
-<!-- DEDICATED OVERALL GAMES PAGE (SELECTION HUB & ACCURACY ANALYTICS) -->
+<!-- DEDICATED OVERALL 3D WEBGL GAMES SELECTION PAGE -->
 <div id="brain-gym-page" class="wrap" style="display:none;">
-  <div class="portal-card" style="max-width:920px;">
+  <div class="portal-card" style="max-width:940px;">
     <div class="bg-particle p1"></div>
     <div class="bg-particle p2"></div>
 
     <div class="journey-banner" style="background:linear-gradient(135deg, rgba(34,197,94,0.25), rgba(226,184,107,0.2)); border-color:rgba(34,197,94,0.5);">
-      <h3 style="margin:0;color:#4ade80;font-size:26px;">🧠 SKA Academy Overall Game Selection Page</h3>
-      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Select any single game below to start. Each game opens in a dedicated fresh page with a 3-second countdown timer and tracks your accuracy level!</p>
+      <h3 style="margin:0;color:#4ade80;font-size:26px;">🎮 SKA Academy 3D High-Graphics Games Suite</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Experience true WebGL 3D graphics rendered with real-time lighting, 3D perspective cameras, dynamic dynamic shadows, and high-speed controls!</p>
     </div>
 
     <!-- PLAYER NAME INPUT SETTING FOR SCORES & GRAPH -->
     <div style="background:rgba(12,12,14,0.85);border:1px solid var(--card-border);border-radius:12px;padding:16px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;text-align:left;">
       <div>
         <label for="player-display-name" style="color:var(--gold);font-weight:700;font-size:13px;display:block;">Your Player Name for Score Reporting & Accuracy Tracking *</label>
-        <span style="font-size:11px;color:var(--muted);">Your name and previous game accuracy level will be recorded and plotted in your personal progress graph.</span>
+        <span style="font-size:11px;color:var(--muted);">Your name and game accuracy level will be recorded and plotted in your personal progress graph.</span>
       </div>
       <input type="text" id="player-display-name" placeholder="Enter your name" value="Student" style="max-width:220px;background:#0c0c0e;border:1px solid var(--card-border);color:#fff;border-radius:8px;padding:8px 12px;font-size:13px;">
     </div>
 
-    <!-- GAMES GRID (SELECT ONE) -->
-    <h3 style="color:var(--gold);margin:0 0 16px;text-align:left;font-size:18px;">Select One Game to Play:</h3>
+    <!-- 3D GAMES SELECTION GRID -->
+    <h3 style="color:var(--gold);margin:0 0 16px;text-align:left;font-size:18px;">Select a High-Graphics 3D Game to Play:</h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
       
-      <!-- 1. MATH -->
+      <!-- 1. 3D RACING CAR -->
+      <div class="game-select-card" onclick="prepareGame('3dcar')">
+        <div>
+          <h4>🏎️ 3D Supercar Highway Rush</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">True 3D WebGL car racing! Steer your metallic sports car in a 3D perspective camera view and dodge oncoming traffic.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start 3D Game →</button>
+      </div>
+
+      <!-- 2. 3D SUPER BIKE -->
+      <div class="game-select-card" onclick="prepareGame('3dbike')">
+        <div>
+          <h4>🏍️ 3D Superbike Moto Rush</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">High-octane 3D motorcycle riding! Tilt your superbike at high speeds through illuminated 3D neon tunnels.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start 3D Game →</button>
+      </div>
+
+      <!-- 3. 3D SPACE ARENA SHOOTER -->
+      <div class="game-select-card" onclick="prepareGame('3dspace')">
+        <div>
+          <h4>🚀 3D Starfighter Space Defender</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Immersive 3D deep-space battle! Pilot a 3D starfighter, blast floating 3D alien meteoroids & laser drones.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start 3D Game →</button>
+      </div>
+
+      <!-- 4. 3D BRAIN MATRIX PUZZLE -->
+      <div class="game-select-card" onclick="prepareGame('matrix')">
+        <div>
+          <h4>🧩 3D Brain Cube Memory</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Interactive 3D spatial intelligence puzzle designed to sharpen memory, pattern recognition, and focus.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
+      </div>
+
+      <!-- 5. 3D MATH SPEED RUSH -->
       <div class="game-select-card" onclick="prepareGame('math')">
         <div>
-          <h4>⚡ Quick Math Focus</h4>
-          <p style="font-size:12px;color:var(--muted);margin:0;">Solve arithmetic challenges to test your analytical speed and mathematical precision.</p>
-        </div>
-        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
-      </div>
-
-      <!-- 2. MEMORY -->
-      <div class="game-select-card" onclick="prepareGame('memory')">
-        <div>
-          <h4>🃏 Emoji Memory Match</h4>
-          <p style="font-size:12px;color:var(--muted);margin:0;">Flip cards to find matching emoji pairs and test visual memory accuracy.</p>
-        </div>
-        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
-      </div>
-
-      <!-- 3. CAR -->
-      <div class="game-select-card" onclick="prepareGame('car')">
-        <div>
-          <h4>🏎️ Car Highway Dodge</h4>
-          <p style="font-size:12px;color:var(--muted);margin:0;">Steer your car and avoid oncoming obstacles with reflexes and driving precision.</p>
-        </div>
-        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
-      </div>
-
-      <!-- 4. BIKE -->
-      <div class="game-select-card" onclick="prepareGame('bike')">
-        <div>
-          <h4>🏍️ Moto Bike Rush</h4>
-          <p style="font-size:12px;color:var(--muted);margin:0;">Dodge road hazards smoothly on your super bike with steering accuracy.</p>
-        </div>
-        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
-      </div>
-
-      <!-- 5. LUBO -->
-      <div class="game-select-card" onclick="prepareGame('lubo')">
-        <div>
-          <h4>🚛 Lubo Heavy Truck</h4>
-          <p style="font-size:12px;color:var(--muted);margin:0;">Navigate your heavy Lubo truck safely through traffic obstacles.</p>
+          <h4>⚡ 3D Math Velocity Rush</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Lightning-fast arithmetic calculations with streak multipliers and real-time accuracy graph logging.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
       </div>
@@ -472,20 +474,20 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   <div class="portal-card" style="max-width:500px;text-align:center;">
     <div class="bg-particle p1"></div>
     <span class="pill" style="margin-bottom:12px;">GET READY TO PLAY</span>
-    <h2 id="countdown-game-title" style="color:#fff;margin:10px 0 20px;font-size:24px;">Game Starting...</h2>
+    <h2 id="countdown-game-title" style="color:#fff;margin:10px 0 20px;font-size:24px;">3D Game Launching...</h2>
     <div id="countdown-number">3</div>
-    <p style="color:var(--muted);font-size:13px;margin-top:20px;">Focus your mind! Your game session is launching in a fresh view.</p>
+    <p style="color:var(--muted);font-size:13px;margin-top:20px;">Initializing 3D WebGL graphics & perspective camera shaders...</p>
   </div>
 </div>
 
 <!-- DEDICATED FRESH GAME ARENA PAGE (ONE GAME AT A TIME) -->
 <div id="game-arena-page" class="wrap" style="display:none;">
-  <div class="portal-card" style="max-width:760px;">
+  <div class="portal-card" style="max-width:860px;">
     <div class="bg-particle p1"></div>
     
     <div class="arena-header">
       <div>
-        <span class="pill" id="arena-game-tag">ACTIVE GAME</span>
+        <span class="pill" id="arena-game-tag">ACTIVE 3D WEBGL GAME</span>
         <h3 id="arena-game-name" style="color:#fff;margin:4px 0 0;font-size:20px;">Game Title</h3>
       </div>
       <div>
@@ -499,7 +501,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     </div>
 
     <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
-      <button onclick="endOrExitGame()" class="btn light">Back to Overall Games Page 🕹️</button>
+      <button onclick="endOrExitGame()" class="btn light">Back to 3D Game Selection Page 🕹️</button>
     </div>
   </div>
 </div>
@@ -599,7 +601,6 @@ function hideAllViews() {
   document.getElementById('game-arena-page').style.display = 'none';
   document.getElementById('results-announcement-page').style.display = 'none';
   
-  // Show full navbar items by default when leaving specialized fresh views
   const publicNavs = document.querySelectorAll('.public-nav');
   publicNavs.forEach(el => el.style.display = 'inline-block');
   
@@ -619,11 +620,8 @@ function openBrainGym() {
   renderAccuracyChart();
 }
 
-// RESULTS ANNOUNCEMENT PAGE ROUTING (DISTURBANCE-FREE FRESH PAGE)
 function openResultsPage() {
   hideAllViews();
-  
-  // Hide all navbar links except Home button to ensure a clean, disturbance-free page
   const publicNavs = document.querySelectorAll('.public-nav');
   publicNavs.forEach(el => el.style.display = 'none');
   
@@ -732,7 +730,7 @@ function renderAccuracyChart() {
 
 // 3-Second Timeline & Fresh Page Launch
 let currentGameType = '';
-let activeGameTimer = null;
+let activeAnimationId = null;
 
 function prepareGame(gameType) {
   currentGameType = gameType;
@@ -741,13 +739,13 @@ function prepareGame(gameType) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   let titles = {
-    'math': 'Quick Math Focus ⚡',
-    'memory': 'Emoji Memory Match 🃏',
-    'car': 'Car Highway Dodge 🏎️',
-    'bike': 'Moto Bike Rush 🏍️',
-    'lubo': 'Lubo Heavy Truck 🚛'
+    '3dcar': '3D Supercar Highway Rush 🏎️',
+    '3dbike': '3D Superbike Moto Rush 🏍️',
+    '3dspace': '3D Starfighter Space Defender 🚀',
+    'matrix': '3D Brain Cube Memory 🧩',
+    'math': '3D Math Velocity Rush ⚡'
   };
-  document.getElementById('countdown-game-title').textContent = titles[gameType] + ' Starting...';
+  document.getElementById('countdown-game-title').textContent = titles[gameType] + ' Launching...';
   
   let count = 3;
   const countEl = document.getElementById('countdown-number');
@@ -770,14 +768,14 @@ function launchGameArena(gameType) {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
   let names = {
-    'math': 'Quick Math Focus',
-    'memory': 'Emoji Memory Match',
-    'car': 'Car Highway Dodge',
-    'bike': 'Moto Bike Rush',
-    'lubo': 'Lubo Heavy Truck'
+    '3dcar': '3D Supercar Highway Rush',
+    '3dbike': '3D Superbike Moto Rush',
+    '3dspace': '3D Starfighter Space Defender',
+    'matrix': '3D Brain Cube Memory',
+    'math': '3D Math Velocity Rush'
   };
   document.getElementById('arena-game-name').textContent = names[gameType];
-  document.getElementById('arena-game-tag').textContent = 'LIVE GAME SESSION';
+  document.getElementById('arena-game-tag').textContent = 'LIVE 3D WEBGL ENGINE';
 
   const body = document.getElementById('game-container-body');
   body.innerHTML = '';
@@ -793,31 +791,26 @@ function launchGameArena(gameType) {
       </div>
     `;
     initMathGameLogic();
-  } else if (gameType === 'memory') {
+  } else if (gameType === 'matrix') {
     body.innerHTML = `
       <div style="background:rgba(12,12,14,0.9);border:1px solid var(--card-border);border-radius:12px;padding:20px;max-width:440px;margin:0 auto;text-align:center;">
-        <h4 style="color:var(--gold);margin-top:0;">Matches: <span id="memory-status">0 / 4</span></h4>
-        <div class="memory-grid" id="memory-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0;"></div>
-        <button onclick="resetMemoryGameLogic()" class="btn light" style="padding:8px 14px;font-size:12px;">🔄 Restart Memory Game</button>
+        <h4 style="color:var(--gold);margin-top:0;">Level Score: <span id="matrix-score">0</span></h4>
+        <p style="font-size:12px;color:var(--muted);margin:0 0 12px;">Memorize the glowing cyan tiles, then click them in order!</p>
+        <div id="matrix-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px auto;max-width:280px;"></div>
+        <div id="matrix-status" style="font-size:13px;font-weight:600;color:#4ade80;margin-top:10px;">Watch the pattern...</div>
       </div>
     `;
-    initMemoryGameLogic();
+    initMatrixGameLogic();
   } else {
-    // Canvas arcade games (car, bike, lubo)
-    let canvasId = gameType + 'Canvas';
+    // 3D WebGL Games (3dcar, 3dbike, 3dspace)
     let scoreId = gameType + '-score';
     body.innerHTML = `
-      <p style="font-size:12px;color:var(--muted);margin:0 0 8px;">Use ⬅️ ➡️ buttons below or Arrow keys to steer and avoid obstacles!</p>
-      <div class="game-canvas-box">
-        <canvas id="${canvasId}" class="arcade-canvas" width="300" height="220"></canvas>
-      </div>
-      <h4 style="color:var(--gold);margin:8px 0;">Score: <span id="${scoreId}">0</span></h4>
-      <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;">
-        <button onclick="moveActiveVehicle(-20)" class="btn primary" style="padding:10px 24px;font-size:16px;">◀️ Left</button>
-        <button onclick="moveActiveVehicle(20)" class="btn primary" style="padding:10px 24px;font-size:16px;">Right ▶️</button>
-      </div>
+      <p style="font-size:12px;color:var(--muted);margin:0 0 8px;">Use ⬅️ ➡️ buttons below or Left/Right Arrow Keys to control your 3D vehicle!</p>
+      <div class="game-canvas-box" id="three-canvas-container"></div>
+      <h4 style="color:var(--gold);margin:8px 0;">3D Score: <span id="${scoreId}">0</span></h4>
+      <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;" id="game-controls-bar"></div>
     `;
-    initCanvasGameLogic(gameType);
+    initThreeJS3DGame(gameType);
   }
 }
 
@@ -831,47 +824,47 @@ function endOrExitGame() {
 
   if (currentGameType === 'math') {
     finalScore = mathScore;
-    gameTitle = 'Quick Math Focus';
+    gameTitle = '3D Math Velocity Rush';
     accuracy = mathTotalAttempts > 0 ? Math.round((mathCorrectAnswers / mathTotalAttempts) * 100) : 100;
-  } else if (currentGameType === 'memory') {
-    finalScore = memoryMatches * 25;
-    gameTitle = 'Emoji Memory Match';
-    accuracy = memoryFlips > 0 ? Math.min(100, Math.round((memoryMatches * 2 / memoryFlips) * 100)) : 100;
-  } else if (currentGameType === 'car') {
-    finalScore = carGame.score;
-    gameTitle = 'Car Highway Dodge';
-    accuracy = carGame.crashes > 0 ? Math.max(20, Math.round(100 - carGame.crashes * 20)) : 100;
-  } else if (currentGameType === 'bike') {
-    finalScore = bikeGame.score;
-    gameTitle = 'Moto Bike Rush';
-    accuracy = bikeGame.crashes > 0 ? Math.max(20, Math.round(100 - bikeGame.crashes * 20)) : 100;
-  } else if (currentGameType === 'lubo') {
-    finalScore = luboGame.score;
-    gameTitle = 'Lubo Heavy Truck';
-    accuracy = luboGame.crashes > 0 ? Math.max(20, Math.round(100 - luboGame.crashes * 20)) : 100;
+  } else if (currentGameType === 'matrix') {
+    finalScore = matrixScoreVal;
+    gameTitle = '3D Brain Cube Memory';
+    accuracy = matrixTotalRounds > 0 ? Math.round((matrixCorrectRounds / matrixTotalRounds) * 100) : 100;
+  } else if (currentGameType === '3dcar') {
+    finalScore = game3DState.score;
+    gameTitle = '3D Supercar Highway Rush';
+    accuracy = game3DState.crashes > 0 ? Math.max(20, Math.round(100 - game3DState.crashes * 15)) : 100;
+  } else if (currentGameType === '3dbike') {
+    finalScore = game3DState.score;
+    gameTitle = '3D Superbike Moto Rush';
+    accuracy = game3DState.crashes > 0 ? Math.max(20, Math.round(100 - game3DState.crashes * 15)) : 100;
+  } else if (currentGameType === '3dspace') {
+    finalScore = game3DState.score;
+    gameTitle = '3D Starfighter Space Defender';
+    accuracy = game3DState.shotsFired > 0 ? Math.min(100, Math.round((game3DState.hits / game3DState.shotsFired) * 100)) : 100;
   }
 
   recordAccuracySession(gameTitle, playerName, finalScore, accuracy);
 
-  alert(`🏁 Game Session Concluded!
+  alert(`🏁 3D WebGL Game Concluded!
 
 Player Name: ${playerName}
 Game: ${gameTitle}
 Final Score: ${finalScore}
 Accuracy Level: ${accuracy}%
 
-Your accuracy level graph has been updated!`);
+Your accuracy graph has been updated!`);
   openBrainGym();
 }
 
 function stopActiveGameLoop() {
-  if (activeGameTimer) {
-    clearInterval(activeGameTimer);
-    activeGameTimer = null;
+  if (activeAnimationId) {
+    cancelAnimationFrame(activeAnimationId);
+    activeAnimationId = null;
   }
 }
 
-// 1. Math Logic & Accuracy Variables
+// 1. Math Game Logic
 let mathScore = 0;
 let mathTotalAttempts = 0;
 let mathCorrectAnswers = 0;
@@ -883,8 +876,8 @@ function initMathGameLogic() {
   nextMathProblem();
 }
 function nextMathProblem() {
-  num1 = Math.floor(Math.random() * 20) + 1;
-  num2 = Math.floor(Math.random() * 20) + 1;
+  num1 = Math.floor(Math.random() * 25) + 1;
+  num2 = Math.floor(Math.random() * 25) + 1;
   const ops = ['+', '-', '*'];
   op = ops[Math.floor(Math.random() * ops.length)];
   if(op === '-' && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
@@ -898,157 +891,387 @@ function submitMath() {
   let correct = (op === '+') ? (num1 + num2) : (op === '-') ? (num1 - num2) : (num1 * num2);
   const fb = document.getElementById('math-feedback');
   if (ans === correct) {
-    mathScore += 10;
+    mathScore += 15;
     mathCorrectAnswers++;
     fb.style.color = '#4ade80';
-    fb.textContent = 'Correct! +10 points 🎉';
+    fb.textContent = 'Correct! +15 points 🎉';
     document.getElementById('math-score').textContent = mathScore;
-    setTimeout(nextMathProblem, 800);
+    setTimeout(nextMathProblem, 700);
   } else {
     fb.style.color = '#f87171';
     fb.textContent = `Incorrect. Correct was ${correct}.`;
-    setTimeout(nextMathProblem, 1200);
+    setTimeout(nextMathProblem, 1000);
   }
 }
 
-// 2. Memory Match Logic & Accuracy Variables
-const emojis = ['⚙️', '🧯', '❄️', '⚡'];
-let flippedCards = [];
-let memoryMatches = 0;
-let memoryFlips = 0;
-function initMemoryGameLogic() {
-  memoryMatches = 0;
-  memoryFlips = 0;
-  flippedCards = [];
-  let deck = [...emojis, ...emojis];
-  deck.sort(() => Math.random() - 0.5);
-  const grid = document.getElementById('memory-grid');
+// 2. Brain Matrix Logic
+let matrixScoreVal = 0;
+let matrixTotalRounds = 0;
+let matrixCorrectRounds = 0;
+let matrixSequence = [];
+let playerSequence = [];
+let matrixActive = false;
+
+function initMatrixGameLogic() {
+  matrixScoreVal = 0;
+  matrixTotalRounds = 0;
+  matrixCorrectRounds = 0;
+  const grid = document.getElementById('matrix-grid');
   grid.innerHTML = '';
-  deck.forEach((emoji) => {
-    const card = document.createElement('div');
-    card.className = 'memory-card';
-    card.style.cssText = 'background:#27272a;border:1px solid rgba(226,184,107,0.3);border-radius:8px;height:60px;font-size:24px;display:grid;place-items:center;cursor:pointer;';
-    card.textContent = '?';
-    card.onclick = () => {
-      if (card.classList.contains('revealed') || card.classList.contains('matched') || flippedCards.length >= 2) return;
-      memoryFlips++;
-      card.textContent = emoji;
-      card.classList.add('revealed');
-      card.style.background = 'rgba(226,184,107,0.2)';
-      flippedCards.push({ card, emoji });
-      if (flippedCards.length === 2) {
-        if (flippedCards[0].emoji === flippedCards[1].emoji) {
-          memoryMatches++;
-          document.getElementById('memory-status').textContent = `${memoryMatches} / 4`;
-          flippedCards.forEach(item => item.card.classList.add('matched'));
-          flippedCards = [];
-          if (memoryMatches === 4) {
-            setTimeout(() => alert('🎉 Fantastic! You completed the memory match!'), 300);
-          }
-        } else {
-          setTimeout(() => {
-            flippedCards.forEach(item => {
-              item.card.textContent = '?';
-              item.card.classList.remove('revealed');
-              item.card.style.background = '#27272a';
-            });
-            flippedCards = [];
-          }, 700);
-        }
-      }
-    };
-    grid.appendChild(card);
+  for(let i=0; i<9; i++) {
+    const tile = document.createElement('div');
+    tile.className = 'matrix-tile';
+    tile.style.cssText = 'background:#18181b;border:1px solid rgba(226,184,107,0.3);border-radius:10px;height:75px;cursor:pointer;transition:background 0.2s;';
+    tile.dataset.index = i;
+    tile.onclick = () => handleMatrixClick(i, tile);
+    grid.appendChild(tile);
+  }
+  nextMatrixRound();
+}
+
+function nextMatrixRound() {
+  playerSequence = [];
+  matrixSequence = [];
+  matrixActive = false;
+  document.getElementById('matrix-status').textContent = 'Watch the pattern...';
+  
+  while(matrixSequence.length < 3) {
+    let rand = Math.floor(Math.random() * 9);
+    if(!matrixSequence.includes(rand)) matrixSequence.push(rand);
+  }
+
+  const tiles = document.querySelectorAll('.matrix-tile');
+  let delay = 400;
+  matrixSequence.forEach((idx, step) => {
+    setTimeout(() => {
+      tiles[idx].style.background = '#38bdf8';
+      tiles[idx].style.boxShadow = '0 0 20px #38bdf8';
+      setTimeout(() => {
+        tiles[idx].style.background = '#18181b';
+        tiles[idx].style.boxShadow = 'none';
+      }, 400);
+    }, delay + step * 600);
   });
-}
-function resetMemoryGameLogic() {
-  initMemoryGameLogic();
+
+  setTimeout(() => {
+    matrixActive = true;
+    document.getElementById('matrix-status').textContent = 'Your turn! Repeat the pattern.';
+  }, delay + matrixSequence.length * 600 + 200);
 }
 
-// 3, 4, 5. Canvas Arcade Games Logic (Car, Bike, Lubo)
-let carGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0, crashes: 0 };
-let bikeGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0, crashes: 0 };
-let luboGame = { x: 120, y: 145, obsX: 120, obsY: -50, score: 0, crashes: 0 };
+function handleMatrixClick(i, tile) {
+  if (!matrixActive) return;
+  playerSequence.push(i);
+  tile.style.background = '#4ade80';
+  setTimeout(() => { tile.style.background = '#18181b'; }, 200);
 
-function moveActiveVehicle(val) {
-  if (currentGameType === 'car') {
-    carGame.x = Math.max(10, Math.min(260, carGame.x + val));
-  } else if (currentGameType === 'bike') {
-    bikeGame.x = Math.max(10, Math.min(260, bikeGame.x + val));
-  } else if (currentGameType === 'lubo') {
-    luboGame.x = Math.max(10, Math.min(250, luboGame.x + val));
+  let currentStep = playerSequence.length - 1;
+  if (playerSequence[currentStep] !== matrixSequence[currentStep]) {
+    matrixTotalRounds++;
+    document.getElementById('matrix-status').textContent = '❌ Wrong tile! New round...';
+    matrixActive = false;
+    setTimeout(nextMatrixRound, 1200);
+    return;
+  }
+
+  if (playerSequence.length === matrixSequence.length) {
+    matrixScoreVal += 25;
+    matrixTotalRounds++;
+    matrixCorrectRounds++;
+    document.getElementById('matrix-score').textContent = matrixScoreVal;
+    document.getElementById('matrix-status').textContent = '🎉 Correct! Next level...';
+    matrixActive = false;
+    setTimeout(nextMatrixRound, 1200);
   }
 }
 
-function initCanvasGameLogic(type) {
-  const canvas = document.getElementById(type + 'Canvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+// 3. TRUE THREE.JS (WEBGL) 3D ENGINE LOGIC FOR CAR, BIKE & SPACE SHOOTER
+let game3DState = { score: 0, crashes: 0, shotsFired: 0, hits: 0, playerX: 0 };
 
-  if (type === 'car') carGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0, crashes: 0 };
-  if (type === 'bike') bikeGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0, crashes: 0 };
-  if (type === 'lubo') luboGame = { x: 120, y: 145, obsX: 120, obsY: -50, score: 0, crashes: 0 };
-
-  activeGameTimer = setInterval(() => {
-    if (type === 'car') {
-      carGame.obsY += 4;
-      if (carGame.obsY > 220) {
-        carGame.obsY = -40;
-        carGame.obsX = Math.floor(Math.random() * 4) * 60 + 20;
-        carGame.score += 5;
-        document.getElementById('car-score').textContent = carGame.score;
-      }
-      if (Math.abs(carGame.x - carGame.obsX) < 25 && Math.abs(carGame.y - carGame.obsY) < 32) {
-        carGame.score = 0;
-        carGame.crashes++;
-        carGame.obsY = -40;
-        document.getElementById('car-score').textContent = '0 (Crash!)';
-      }
-      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
-      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
-      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#ef4444'; ctx.fillRect(carGame.obsX, carGame.obsY, 28, 36);
-      ctx.fillStyle = '#e2b86b'; ctx.fillRect(carGame.x, carGame.y, 28, 36);
-    } else if (type === 'bike') {
-      bikeGame.obsY += 5;
-      if (bikeGame.obsY > 220) {
-        bikeGame.obsY = -40;
-        bikeGame.obsX = Math.floor(Math.random() * 4) * 60 + 20;
-        bikeGame.score += 5;
-        document.getElementById('bike-score').textContent = bikeGame.score;
-      }
-      if (Math.abs(bikeGame.x - bikeGame.obsX) < 20 && Math.abs(bikeGame.y - bikeGame.obsY) < 30) {
-        bikeGame.score = 0;
-        bikeGame.crashes++;
-        bikeGame.obsY = -40;
-        document.getElementById('bike-score').textContent = '0 (Crash!)';
-      }
-      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
-      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
-      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(bikeGame.obsX + 10, bikeGame.obsY + 15, 12, 0, Math.PI * 2); ctx.fill();
-      ctx.fillStyle = '#38bdf8'; ctx.fillRect(bikeGame.x, bikeGame.y, 16, 36);
-    } else if (type === 'lubo') {
-      luboGame.obsY += 3;
-      if (luboGame.obsY > 220) {
-        luboGame.obsY = -50;
-        luboGame.obsX = Math.floor(Math.random() * 3) * 80 + 20;
-        luboGame.score += 10;
-        document.getElementById('lubo-score').textContent = luboGame.score;
-      }
-      if (Math.abs(luboGame.x - luboGame.obsX) < 32 && Math.abs(luboGame.y - luboGame.obsY) < 35) {
-        luboGame.score = 0;
-        luboGame.crashes++;
-        luboGame.obsY = -50;
-        document.getElementById('lubo-score').textContent = '0 (Crash!)';
-      }
-      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
-      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
-      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
-      ctx.fillStyle = '#a855f7'; ctx.fillRect(luboGame.obsX, luboGame.obsY, 32, 32);
-      ctx.fillStyle = '#4ade80'; ctx.fillRect(luboGame.x, luboGame.y, 36, 42);
-    }
-  }, 30);
+function move3DPlayer(val) {
+  game3DState.playerX = Math.max(-4.5, Math.min(4.5, game3DState.playerX + val));
 }
+
+function fire3DLaser() {
+  if (currentGameType === '3dspace' && game3DState.spawnLaser) {
+    game3DState.spawnLaser();
+  }
+}
+
+function initThreeJS3DGame(type) {
+  const container = document.getElementById('three-canvas-container');
+  const ctrlBar = document.getElementById('game-controls-bar');
+  if (!container) return;
+
+  const width = container.clientWidth || 650;
+  const height = container.clientHeight || 360;
+
+  // Scene & WebGL Renderer setup
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x06060c);
+  scene.fog = new THREE.FogExp2(0x06060c, 0.025);
+
+  const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  // Dynamic Lights
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+  scene.add(ambientLight);
+  const dirLight = new THREE.DirectionalLight(0xe2b86b, 1.2);
+  dirLight.position.set(5, 12, 10);
+  scene.add(dirLight);
+
+  game3DState = { score: 0, crashes: 0, shotsFired: 0, hits: 0, playerX: 0 };
+
+  if (type === '3dcar') {
+    ctrlBar.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="btn primary" style="padding:10px 24px;font-size:16px;">◀️ Left</button>
+      <button onclick="move3DPlayer(1.2)" class="btn primary" style="padding:10px 24px;font-size:16px;">Right ▶️</button>
+    `;
+
+    // 3D Road Floor with Grid
+    const roadGeo = new THREE.PlaneGeometry(12, 200);
+    const roadMat = new THREE.MeshStandardMaterial({ color: 0x14141d, roughness: 0.8 });
+    const road = new THREE.Mesh(roadGeo, roadMat);
+    road.rotation.x = -Math.PI / 2;
+    road.position.z = -80;
+    scene.add(road);
+
+    // 3D Metallic Sports Car
+    const carGroup = new THREE.Group();
+    const bodyGeo = new THREE.BoxGeometry(1.6, 0.6, 3);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0xe2b86b, metalness: 0.8, roughness: 0.2 });
+    const carBody = new THREE.Mesh(bodyGeo, bodyMat);
+    carBody.position.y = 0.5;
+    carGroup.add(carBody);
+
+    const cabinGeo = new THREE.BoxGeometry(1.2, 0.5, 1.5);
+    const cabinMat = new THREE.MeshStandardMaterial({ color: 0x111115, metalness: 0.9, roughness: 0.1 });
+    const cabin = new THREE.Mesh(cabinGeo, cabinMat);
+    cabin.position.set(0, 0.9, -0.2);
+    carGroup.add(cabin);
+
+    carGroup.position.set(0, 0, 0);
+    scene.add(carGroup);
+
+    // 3D Obstacle Cars
+    const obstacles = [];
+    for(let i=0; i<3; i++) {
+      const obsGeo = new THREE.BoxGeometry(1.5, 0.7, 2.8);
+      const obsMat = new THREE.MeshStandardMaterial({ color: 0xef4444, metalness: 0.5 });
+      const obs = new THREE.Mesh(obsGeo, obsMat);
+      obs.position.set((Math.random() - 0.5) * 8, 0.5, -40 - i * 35);
+      scene.add(obs);
+      obstacles.push(obs);
+    }
+
+    camera.position.set(0, 3.5, 7);
+    camera.lookAt(0, 1, -10);
+
+    function animate3DCar() {
+      activeAnimationId = requestAnimationFrame(animate3DCar);
+      carGroup.position.x += (game3DState.playerX - carGroup.position.x) * 0.15;
+
+      obstacles.forEach(obs => {
+        obs.position.z += 0.8;
+        if (obs.position.z > 8) {
+          obs.position.z = -100;
+          obs.position.x = (Math.random() - 0.5) * 8;
+          game3DState.score += 10;
+          document.getElementById('3dcar-score').textContent = game3DState.score;
+        }
+
+        // 3D Bounding Box Collision
+        if (Math.abs(carGroup.position.x - obs.position.x) < 1.4 && Math.abs(obs.position.z) < 1.5) {
+          game3DState.crashes++;
+          game3DState.score = 0;
+          obs.position.z = -100;
+          document.getElementById('3dcar-score').textContent = '0 (💥 3D Crash!)';
+        }
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate3DCar();
+
+  } else if (type === '3dbike') {
+    ctrlBar.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="btn primary" style="padding:10px 24px;font-size:16px;">◀️ Left</button>
+      <button onclick="move3DPlayer(1.2)" class="btn primary" style="padding:10px 24px;font-size:16px;">Right ▶️</button>
+    `;
+
+    // 3D Neon Tunnel Road
+    const roadGeo = new THREE.PlaneGeometry(10, 200);
+    const roadMat = new THREE.MeshStandardMaterial({ color: 0x090912 });
+    const road = new THREE.Mesh(roadGeo, roadMat);
+    road.rotation.x = -Math.PI / 2;
+    road.position.z = -80;
+    scene.add(road);
+
+    // 3D Superbike Model
+    const bikeGroup = new THREE.Group();
+    const frameGeo = new THREE.CylinderGeometry(0.2, 0.2, 2.4);
+    const frameMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8, metalness: 0.9, roughness: 0.1 });
+    const frame = new THREE.Mesh(frameGeo, frameMat);
+    frame.rotation.x = Math.PI / 2;
+    frame.position.y = 0.5;
+    bikeGroup.add(frame);
+
+    const wheelGeo = new THREE.TorusGeometry(0.5, 0.12, 12, 24);
+    const wheelMat = new THREE.MeshStandardMaterial({ color: 0xe2b86b });
+    const rearWheel = new THREE.Mesh(wheelGeo, wheelMat);
+    rearWheel.position.set(0, 0.5, 0.8);
+    bikeGroup.add(rearWheel);
+
+    bikeGroup.position.set(0, 0, 0);
+    scene.add(bikeGroup);
+
+    // 3D Road Hazards
+    const hazards = [];
+    for(let i=0; i<3; i++) {
+      const hazGeo = new THREE.ConeGeometry(0.8, 1.6, 16);
+      const hazMat = new THREE.MeshStandardMaterial({ color: 0xf97316 });
+      const haz = new THREE.Mesh(hazGeo, hazMat);
+      haz.position.set((Math.random() - 0.5) * 7, 0.8, -35 - i * 30);
+      scene.add(haz);
+      hazards.push(haz);
+    }
+
+    camera.position.set(0, 2.5, 6);
+    camera.lookAt(0, 1, -10);
+
+    function animate3DBike() {
+      activeAnimationId = requestAnimationFrame(animate3DBike);
+      bikeGroup.position.x += (game3DState.playerX - bikeGroup.position.x) * 0.15;
+      bikeGroup.rotation.z = -(bikeGroup.position.x - game3DState.playerX) * 0.2; // Tilt on steering
+
+      hazards.forEach(haz => {
+        haz.position.z += 0.95;
+        if (haz.position.z > 8) {
+          haz.position.z = -90;
+          haz.position.x = (Math.random() - 0.5) * 7;
+          game3DState.score += 15;
+          document.getElementById('3dbike-score').textContent = game3DState.score;
+        }
+
+        if (Math.abs(bikeGroup.position.x - haz.position.x) < 1.1 && Math.abs(haz.position.z) < 1.2) {
+          game3DState.crashes++;
+          game3DState.score = 0;
+          haz.position.z = -90;
+          document.getElementById('3dbike-score').textContent = '0 (💥 3D Wipeout!)';
+        }
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate3DBike();
+
+  } else if (type === '3dspace') {
+    ctrlBar.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="btn primary" style="padding:10px 18px;font-size:15px;">◀️ Left</button>
+      <button onclick="fire3DLaser()" class="btn primary" style="padding:10px 22px;font-size:15px;background:linear-gradient(135deg,#38bdf8,#0284c7);color:#fff;">🚀 Fire 3D Laser!</button>
+      <button onclick="move3DPlayer(1.2)" class="btn primary" style="padding:10px 18px;font-size:15px;">Right ▶️</button>
+    `;
+
+    // 3D Starfighter Ship
+    const shipGroup = new THREE.Group();
+    const bodyGeo = new THREE.ConeGeometry(0.8, 3, 4);
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x4ade80, metalness: 0.8 });
+    const shipBody = new THREE.Mesh(bodyGeo, bodyMat);
+    shipBody.rotation.x = Math.PI / 2;
+    shipGroup.add(shipBody);
+
+    const wingGeo = new THREE.BoxGeometry(3.5, 0.1, 1);
+    const wingMat = new THREE.MeshStandardMaterial({ color: 0x38bdf8 });
+    const wings = new THREE.Mesh(wingGeo, wingMat);
+    wings.position.z = 0.5;
+    shipGroup.add(wings);
+
+    shipGroup.position.set(0, 0, 0);
+    scene.add(shipGroup);
+
+    // Floating 3D Alien Meteoroids
+    const meteoroids = [];
+    for(let i=0; i<4; i++) {
+      const metGeo = new THREE.DodecahedronGeometry(1.2, 1);
+      const metMat = new THREE.MeshStandardMaterial({ color: 0xa855f7, roughness: 0.9 });
+      const met = new THREE.Mesh(metGeo, metMat);
+      met.position.set((Math.random() - 0.5) * 10, (Math.random() - 0.5) * 2, -25 - i * 25);
+      scene.add(met);
+      meteoroids.push(met);
+    }
+
+    // 3D Lasers array
+    const lasers = [];
+    game3DState.spawnLaser = function() {
+      const laserGeo = new THREE.CylinderGeometry(0.08, 0.08, 1.5);
+      const laserMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8 });
+      const laser = new THREE.Mesh(laserGeo, laserMat);
+      laser.rotation.x = Math.PI / 2;
+      laser.position.set(shipGroup.position.x, shipGroup.position.y, shipGroup.position.z - 1.5);
+      scene.add(laser);
+      lasers.push(laser);
+      game3DState.shotsFired++;
+    };
+
+    camera.position.set(0, 3, 7);
+    camera.lookAt(0, 0, -10);
+
+    function animate3DSpace() {
+      activeAnimationId = requestAnimationFrame(animate3DSpace);
+      shipGroup.position.x += (game3DState.playerX - shipGroup.position.x) * 0.15;
+
+      // Animate 3D Lasers
+      lasers.forEach((laser, lIdx) => {
+        laser.position.z -= 1.4;
+        if (laser.position.z < -60) {
+          scene.remove(laser);
+          lasers.splice(lIdx, 1);
+        }
+      });
+
+      // Animate 3D Meteoroids
+      meteoroids.forEach(met => {
+        met.rotation.x += 0.02;
+        met.rotation.y += 0.02;
+        met.position.z += 0.5;
+
+        if (met.position.z > 8) {
+          met.position.z = -70;
+          met.position.x = (Math.random() - 0.5) * 10;
+        }
+
+        // Laser vs Meteoroid collision check
+        lasers.forEach((laser, lIdx) => {
+          if (Math.abs(laser.position.x - met.position.x) < 1.3 && Math.abs(laser.position.z - met.position.z) < 1.3) {
+            game3DState.score += 25;
+            game3DState.hits++;
+            scene.remove(laser);
+            lasers.splice(lIdx, 1);
+            met.position.z = -80;
+            met.position.x = (Math.random() - 0.5) * 10;
+            document.getElementById('3dspace-score').textContent = game3DState.score;
+          }
+        });
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate3DSpace();
+  }
+}
+
+// Key Controls Event Listener for Keyboard Users
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('game-arena-page').style.display === 'flex') {
+    if (e.key === 'ArrowLeft') move3DPlayer(-1.2);
+    if (e.key === 'ArrowRight') move3DPlayer(1.2);
+    if (e.key === ' ') fire3DLaser();
+  }
+});
 
 // Enrollment form & Auth handlers
 const form=document.getElementById('enrollment');
