@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="SKA Academy — professional skills and technical subjects learning with student brain training and arcade vehicle games.">
+<meta name="description" content="SKA Academy — professional skills and student brain training & arcade vehicle games suite.">
 <meta name="theme-color" content="#0b1f3a">
 <title>SKA Academy | Learn with Passion</title>
 <style>
@@ -73,7 +73,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .status-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(226,184,107,.15);color:var(--gold);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
 
 /* Dedicated Fresh Member Portal Page & Brain Gym Page */
-#member-portal-page, #brain-gym-page {
+#member-portal-page, #brain-gym-page, #game-arena-page, #countdown-page {
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
@@ -126,12 +126,6 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .p3{ top:80%; left:20%; animation-duration:11s; animation-delay:2s; }
 .p4{ top:25%; left:80%; animation-duration:6s; animation-delay:0.5s; }
 
-@keyframes floatParticle {
-  0%{ transform: translateY(0) scale(1); opacity: 0.3; }
-  50%{ transform: translateY(-25px) scale(1.4); opacity: 0.9; }
-  100%{ transform: translateY(0) scale(1); opacity: 0.3; }
-}
-
 .journey-banner {
   background: linear-gradient(135deg, rgba(226,184,107,.25), rgba(34,197,94,.2));
   border: 1px solid rgba(226,184,107,.5);
@@ -148,17 +142,19 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .loader-spinner { width:42px; height:42px; border:3.5px solid rgba(226,184,107,.2); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 18px }
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Mini Game Styles */
-.game-box { background: rgba(12,12,14,0.85); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 16px; text-align: left; }
-.game-box h4 { color: var(--gold); margin-top: 0; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
-.memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 12px; }
-.memory-card { background: #27272a; border: 1px solid rgba(226,184,107,0.3); border-radius: 8px; height: 56px; font-size: 22px; display: grid; place-items: center; cursor: pointer; user-select: none; transition: background 0.2s; }
-.memory-card:hover { background: #3f3f46; }
-.memory-card.revealed { background: rgba(226,184,107,0.2); border-color: var(--gold); }
+/* Game Selection Cards */
+.game-select-card { background: rgba(24,24,27,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 22px; text-align: left; cursor: pointer; transition: all 0.2s ease; display:flex; flex-direction:column; justify-content:space-between; }
+.game-select-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(226,184,107,0.15); }
+.game-select-card h4 { color: var(--gold); margin: 0 0 8px; font-size: 18px; display:flex; align-items:center; gap:8px; }
 
-/* Canvas Arcade Games */
-.arcade-container { position: relative; width: 100%; height: 200px; background: #0c0c0e; border: 1px solid rgba(226,184,107,0.3); border-radius: 10px; overflow: hidden; margin-top: 10px; display: flex; align-items: center; justify-content: center; }
+/* Active Game Arena Styles */
+.arena-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid var(--card-border); padding-bottom: 12px; }
+.game-canvas-box { position: relative; width: 100%; max-width: 500px; height: 300px; background: #0c0c0e; border: 1px solid rgba(226,184,107,0.4); border-radius: 12px; overflow: hidden; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
 .arcade-canvas { background: #141418; display: block; width: 100%; height: 100%; }
+
+/* Countdown Big Number */
+#countdown-number { font-size: 80px; font-weight: 800; color: var(--gold); animation: countPulse 1s infinite alternate; text-shadow: 0 0 30px rgba(226,184,107,0.6); }
+@keyframes countPulse { from{ transform: scale(1); } to{ transform: scale(1.1); } }
 </style>
 </head>
 <body>
@@ -175,7 +171,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   <a href="#learning" class="public-nav">Learning modes</a>
   <a href="#syllabus" class="public-nav">Academic syllabus</a>
   <a href="#faculty" class="public-nav">Lecturing faculty</a>
-  <button onclick="openBrainGym()" class="btn-login-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🧠 Brain Gym & Games</button>
+  <button onclick="openBrainGym()" class="btn-login-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🧠 Brain & Arcade Games</button>
   <a href="#enroll" class="btn-enroll-nav public-nav">Enroll</a>
   <button id="nav-login-btn" onclick="openLoginModal()" class="btn-login-nav">Member Login 🔑</button>
 </nav>
@@ -192,7 +188,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     <div class="hero-cta">
       <a class="btn primary" href="#courses">Explore Courses <span aria-hidden="true">→</span></a>
       <a class="btn light" href="#learning">Choose Learning Mode</a>
-      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🧠 Play Brain Gym & Arcade Games</button>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🧠 Play Games & Brain Gym</button>
     </div>
     <div class="hero-proof"><span>✦</span> Practical skills. Interactive learning. A brighter future.</div>
   </div>
@@ -323,97 +319,122 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 
     <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
       <button onclick="goToHome()" class="btn primary">Return to Main Page 🏠</button>
-      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);">🧠 Play Brain Gym & Arcade</button>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);">🧠 Play Games & Brain Gym</button>
       <button onclick="logoutMember()" class="btn light" style="border-color:rgba(239,68,68,.4);color:#f87171;">Log Out of Portal</button>
     </div>
   </div>
 </div>
 
-<!-- DEDICATED BRAIN GYM & ARCADE GAMES PAGE -->
+<!-- DEDICATED OVERALL GAMES PAGE (SELECTION HUB) -->
 <div id="brain-gym-page" class="wrap" style="display:none;">
   <div class="portal-card" style="max-width:920px;">
     <div class="bg-particle p1"></div>
     <div class="bg-particle p2"></div>
 
     <div class="journey-banner" style="background:linear-gradient(135deg, rgba(34,197,94,0.25), rgba(226,184,107,0.2)); border-color:rgba(34,197,94,0.5);">
-      <h3 style="margin:0;color:#4ade80;font-size:26px;">🧠 SKA Academy Brain Gym & Arcade</h3>
-      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Sharpen your cognitive skills with brain puzzles and unwind with fun arcade vehicle games!</p>
+      <h3 style="margin:0;color:#4ade80;font-size:26px;">🧠 SKA Academy Overall Game Selection Page</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Select any single game below to start. Each game opens in a dedicated fresh page with a 3-second countdown timer!</p>
     </div>
 
-    <!-- BRAIN GAMES SECTION -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;">
-      <!-- GAME 1: MATH SPEED CHALLENGE -->
-      <div class="game-box" style="margin-top:0;">
-        <h4>⚡ Quick Math <span id="math-score" class="pill" style="color:#4ade80;background:rgba(34,197,94,0.15)">Score: 0</span></h4>
-        <p style="font-size:12px;color:var(--muted);margin:4px 0 10px;">Solve quick arithmetic to warm up your analytical brain.</p>
-        <div id="math-game-area">
-          <div id="math-question" style="font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;">5 + 3 = ?</div>
-          <div style="display:flex;gap:8px;">
-            <input type="number" id="math-answer" placeholder="Answer" style="max-width:130px;background:#0c0c0e;border:1px solid var(--card-border);color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;">
-            <button onclick="checkMathAnswer()" class="btn primary" style="padding:6px 12px;font-size:11px;">Submit</button>
-          </div>
-          <div id="math-feedback" style="margin-top:6px;font-size:12px;font-weight:600;"></div>
-        </div>
+    <!-- PLAYER NAME INPUT SETTING FOR SCORES -->
+    <div style="background:rgba(12,12,14,0.85);border:1px solid var(--card-border);border-radius:12px;padding:16px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;text-align:left;">
+      <div>
+        <label for="player-display-name" style="color:var(--gold);font-weight:700;font-size:13px;display:block;">Your Player Name for Score Reporting *</label>
+        <span style="font-size:11px;color:var(--muted);">Your name will be included when reporting your score at the end of any game.</span>
       </div>
-
-      <!-- GAME 2: MEMORY MATCH -->
-      <div class="game-box" style="margin-top:0;">
-        <h4>🃏 Memory Match <span id="memory-status" class="pill" style="color:var(--gold);background:rgba(226,184,107,0.15)">Matches: 0/4</span></h4>
-        <p style="font-size:12px;color:var(--muted);margin:4px 0 10px;">Flip cards to find matching emoji pairs.</p>
-        <div class="memory-grid" id="memory-grid" style="grid-template-columns:repeat(4,1fr);gap:6px;">
-          <!-- Generated by JS -->
-        </div>
-        <button onclick="resetMemoryGame()" class="btn light" style="margin-top:8px;padding:4px 10px;font-size:10px;">🔄 Restart</button>
-      </div>
+      <input type="text" id="player-display-name" placeholder="Enter your name" value="Student" style="max-width:220px;background:#0c0c0e;border:1px solid var(--card-border);color:#fff;border-radius:8px;padding:8px 12px;font-size:13px;">
     </div>
 
-    <!-- ARCADE VEHICLE GAMES SECTION (CAR, BIKE, LUBO) -->
-    <h3 style="color:var(--gold);margin:28px 0 10px;text-align:left;font-size:20px;border-bottom:1px solid var(--card-border);padding-bottom:8px;">🕹️ Arcade Vehicle Games (Car, Bike & Lubo)</h3>
-    <p style="color:var(--muted);font-size:13px;text-align:left;margin-bottom:16px;">Take a quick break and steer through obstacles with these classic arcade mini-games!</p>
-
+    <!-- GAMES GRID (SELECT ONE) -->
+    <h3 style="color:var(--gold);margin:0 0 16px;text-align:left;font-size:18px;">Select One Game to Play:</h3>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;">
-      <!-- CAR DODGE GAME -->
-      <div class="game-box" style="margin-top:0;text-align:center;">
-        <h4 style="justify-content:center;">🏎️ Car Highway Dodge <span id="car-score" class="pill" style="color:var(--gold)">Score: 0</span></h4>
-        <p style="font-size:11px;color:var(--muted);margin:2px 0 8px;">Use ⬅️ ➡️ buttons or Arrow keys to steer and avoid incoming obstacles!</p>
-        <div class="arcade-container" style="height:180px;">
-          <canvas id="carCanvas" class="arcade-canvas" width="260" height="180"></canvas>
+      
+      <!-- 1. MATH -->
+      <div class="game-select-card" onclick="prepareGame('math')">
+        <div>
+          <h4>⚡ Quick Math Focus</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Solve arithmetic challenges to test your analytical speed.</p>
         </div>
-        <div style="display:flex;justify-content:center;gap:12px;margin-top:8px;">
-          <button onclick="moveCar(-15)" class="btn primary" style="padding:6px 14px;font-size:14px;">◀️ Left</button>
-          <button onclick="moveCar(15)" class="btn primary" style="padding:6px 14px;font-size:14px;">Right ▶️</button>
-        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
       </div>
 
-      <!-- BIKE RUSH GAME -->
-      <div class="game-box" style="margin-top:0;text-align:center;">
-        <h4 style="justify-content:center;">🏍️ Moto Bike Rush <span id="bike-score" class="pill" style="color:var(--gold)">Score: 0</span></h4>
-        <p style="font-size:11px;color:var(--muted);margin:2px 0 8px;">Tap Left/Right to dodge road hazards on your super bike!</p>
-        <div class="arcade-container" style="height:180px;">
-          <canvas id="bikeCanvas" class="arcade-canvas" width="260" height="180"></canvas>
+      <!-- 2. MEMORY -->
+      <div class="game-select-card" onclick="prepareGame('memory')">
+        <div>
+          <h4>🃏 Emoji Memory Match</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Flip cards to find matching emoji pairs and test memory.</p>
         </div>
-        <div style="display:flex;justify-content:center;gap:12px;margin-top:8px;">
-          <button onclick="moveBike(-15)" class="btn primary" style="padding:6px 14px;font-size:14px;">◀️ Left</button>
-          <button onclick="moveBike(15)" class="btn primary" style="padding:6px 14px;font-size:14px;">Right ▶️</button>
-        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
       </div>
 
-      <!-- LUBO / HEAVY TRUCK GAME -->
-      <div class="game-box" style="margin-top:0;text-align:center;">
-        <h4 style="justify-content:center;">🚛 Lubo Heavy Truck <span id="lubo-score" class="pill" style="color:var(--gold)">Score: 0</span></h4>
-        <p style="font-size:11px;color:var(--muted);margin:2px 0 8px;">Steer your heavy Lubo truck safely through traffic cones!</p>
-        <div class="arcade-container" style="height:180px;">
-          <canvas id="luboCanvas" class="arcade-canvas" width="260" height="180"></canvas>
+      <!-- 3. CAR -->
+      <div class="game-select-card" onclick="prepareGame('car')">
+        <div>
+          <h4>🏎️ Car Highway Dodge</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Steer your car and avoid oncoming obstacles on the highway.</p>
         </div>
-        <div style="display:flex;justify-content:center;gap:12px;margin-top:8px;">
-          <button onclick="moveLubo(-15)" class="btn primary" style="padding:6px 14px;font-size:14px;">◀️ Left</button>
-          <button onclick="moveLubo(15)" class="btn primary" style="padding:6px 14px;font-size:14px;">Right ▶️</button>
-        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
       </div>
+
+      <!-- 4. BIKE -->
+      <div class="game-select-card" onclick="prepareGame('bike')">
+        <div>
+          <h4>🏍️ Moto Bike Rush</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Dodge road hazards smoothly on your super bike.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
+      </div>
+
+      <!-- 5. LUBO -->
+      <div class="game-select-card" onclick="prepareGame('lubo')">
+        <div>
+          <h4>🚛 Lubo Heavy Truck</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Navigate your heavy Lubo truck safely through traffic.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Select & Start Game →</button>
+      </div>
+
     </div>
 
     <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
-      <button onclick="goToHome()" class="btn primary">Return to Main Page 🏠</button>
+      <button onclick="goToHome()" class="btn light">Return to Main Page 🏠</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEDICATED COUNTDOWN FRESH PAGE (3 SECONDS) -->
+<div id="countdown-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:500px;text-align:center;">
+    <div class="bg-particle p1"></div>
+    <span class="pill" style="margin-bottom:12px;">GET READY TO PLAY</span>
+    <h2 id="countdown-game-title" style="color:#fff;margin:10px 0 20px;font-size:24px;">Game Starting...</h2>
+    <div id="countdown-number">3</div>
+    <p style="color:var(--muted);font-size:13px;margin-top:20px;">Focus your mind! Your game session is launching in a fresh view.</p>
+  </div>
+</div>
+
+<!-- DEDICATED FRESH GAME ARENA PAGE (ONE GAME AT A TIME) -->
+<div id="game-arena-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:760px;">
+    <div class="bg-particle p1"></div>
+    
+    <div class="arena-header">
+      <div>
+        <span class="pill" id="arena-game-tag">ACTIVE GAME</span>
+        <h3 id="arena-game-name" style="color:#fff;margin:4px 0 0;font-size:20px;">Game Title</h3>
+      </div>
+      <div>
+        <button onclick="endOrExitGame()" class="btn" style="background:rgba(239,68,68,0.2);color:#f87171;border:1px solid rgba(239,68,68,0.4);font-weight:700;padding:8px 16px;">🛑 End / Exit Game</button>
+      </div>
+    </div>
+
+    <!-- DYNAMIC GAME CONTAINER -->
+    <div id="game-container-body" style="text-align:center;">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+      <button onclick="endOrExitGame()" class="btn light">Back to Overall Games Page 🕹️</button>
     </div>
   </div>
 </div>
@@ -505,223 +526,324 @@ function chooseMode(mode){
 }
 
 // Navigation Routing
-function goToHome() {
-  document.getElementById('public-website-view').style.display = 'block';
-  document.getElementById('member-portal-page').style.display = 'none';
-  document.getElementById('brain-gym-page').style.display = 'none';
-  stopArcadeLoops();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-let arcadeIntervals = [];
-function openBrainGym() {
+function hideAllViews() {
   document.getElementById('public-website-view').style.display = 'none';
   document.getElementById('member-portal-page').style.display = 'none';
+  document.getElementById('brain-gym-page').style.display = 'none';
+  document.getElementById('countdown-page').style.display = 'none';
+  document.getElementById('game-arena-page').style.display = 'none';
+  stopActiveGameLoop();
+}
+
+function goToHome() {
+  hideAllViews();
+  document.getElementById('public-website-view').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openBrainGym() {
+  hideAllViews();
   document.getElementById('brain-gym-page').style.display = 'flex';
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  initMathGame();
-  resetMemoryGame();
-  startArcadeGames();
 }
 
-function stopArcadeLoops() {
-  arcadeIntervals.forEach(clearInterval);
-  arcadeIntervals = [];
+// 3-Second Timeline & Fresh Page Launch
+let currentGameType = '';
+let activeGameTimer = null;
+
+function prepareGame(gameType) {
+  currentGameType = gameType;
+  hideAllViews();
+  document.getElementById('countdown-page').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  let titles = {
+    'math': 'Quick Math Focus ⚡',
+    'memory': 'Emoji Memory Match 🃏',
+    'car': 'Car Highway Dodge 🏎️',
+    'bike': 'Moto Bike Rush 🏍️',
+    'lubo': 'Lubo Heavy Truck 🚛'
+  };
+  document.getElementById('countdown-game-title').textContent = titles[gameType] + ' Starting...';
+  
+  let count = 3;
+  const countEl = document.getElementById('countdown-number');
+  countEl.textContent = count;
+
+  const timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+      countEl.textContent = count;
+    } else {
+      clearInterval(timer);
+      launchGameArena(gameType);
+    }
+  }, 1000);
 }
 
-// Math Game Logic
-let mathScore = 0;
-let currentNum1 = 0, currentNum2 = 0, currentOp = '+';
-function initMathGame() {
-  currentNum1 = Math.floor(Math.random() * 20) + 1;
-  currentNum2 = Math.floor(Math.random() * 20) + 1;
-  const ops = ['+', '-', '*'];
-  currentOp = ops[Math.floor(Math.random() * ops.length)];
-  if(currentOp === '-' && currentNum1 < currentNum2) {
-    let temp = currentNum1; currentNum1 = currentNum2; currentNum2 = temp;
+function launchGameArena(gameType) {
+  hideAllViews();
+  document.getElementById('game-arena-page').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  let names = {
+    'math': 'Quick Math Focus',
+    'memory': 'Emoji Memory Match',
+    'car': 'Car Highway Dodge',
+    'bike': 'Moto Bike Rush',
+    'lubo': 'Lubo Heavy Truck'
+  };
+  document.getElementById('arena-game-name').textContent = names[gameType];
+  document.getElementById('arena-game-tag').textContent = 'LIVE GAME SESSION';
+
+  const body = document.getElementById('game-container-body');
+  body.innerHTML = '';
+
+  if (gameType === 'math') {
+    body.innerHTML = `
+      <div style="background:rgba(12,12,14,0.9);border:1px solid var(--card-border);border-radius:12px;padding:24px;max-width:440px;margin:0 auto;text-align:center;">
+        <h4 style="color:var(--gold);margin-top:0;">Score: <span id="math-score">0</span></h4>
+        <div id="math-question" style="font-size:24px;font-weight:700;color:#fff;margin:16px 0;">5 + 3 = ?</div>
+        <input type="number" id="math-answer" placeholder="Your Answer" style="background:#0c0c0e;border:1px solid var(--card-border);color:#fff;border-radius:8px;padding:10px 14px;font-size:16px;width:180px;text-align:center;margin-bottom:12px;"><br>
+        <button onclick="submitMath()" class="btn primary" style="padding:10px 20px;">Submit Answer</button>
+        <div id="math-feedback" style="margin-top:12px;font-size:14px;font-weight:600;"></div>
+      </div>
+    `;
+    initMathGameLogic();
+  } else if (gameType === 'memory') {
+    body.innerHTML = `
+      <div style="background:rgba(12,12,14,0.9);border:1px solid var(--card-border);border-radius:12px;padding:20px;max-width:440px;margin:0 auto;text-align:center;">
+        <h4 style="color:var(--gold);margin-top:0;">Matches: <span id="memory-status">0 / 4</span></h4>
+        <div class="memory-grid" id="memory-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0;"></div>
+        <button onclick="resetMemoryGameLogic()" class="btn light" style="padding:8px 14px;font-size:12px;">🔄 Restart Memory Game</button>
+      </div>
+    `;
+    initMemoryGameLogic();
+  } else {
+    // Canvas arcade games (car, bike, lubo)
+    let canvasId = gameType + 'Canvas';
+    let scoreId = gameType + '-score';
+    body.innerHTML = `
+      <p style="font-size:12px;color:var(--muted);margin:0 0 8px;">Use ⬅️ ➡️ buttons below or Arrow keys to steer and avoid obstacles!</p>
+      <div class="game-canvas-box">
+        <canvas id="${canvasId}" class="arcade-canvas" width="300" height="220"></canvas>
+      </div>
+      <h4 style="color:var(--gold);margin:8px 0;">Score: <span id="${scoreId}">0</span></h4>
+      <div style="display:flex;justify-content:center;gap:16px;margin-top:12px;">
+        <button onclick="moveActiveVehicle(-20)" class="btn primary" style="padding:10px 24px;font-size:16px;">◀️ Left</button>
+        <button onclick="moveActiveVehicle(20)" class="btn primary" style="padding:10px 24px;font-size:16px;">Right ▶️</button>
+      </div>
+    `;
+    initCanvasGameLogic(gameType);
   }
-  document.getElementById('math-question').textContent = `${currentNum1} ${currentOp} ${currentNum2} = ?`;
-  document.getElementById('math-answer').value = '';
-  document.getElementById('math-feedback').textContent = '';
 }
 
-function checkMathAnswer() {
-  const ans = parseInt(document.getElementById('math-answer').value);
-  let correct = 0;
-  if(currentOp === '+') correct = currentNum1 + currentNum2;
-  if(currentOp === '-') correct = currentNum1 - currentNum2;
-  if(currentOp === '*') correct = currentNum1 * currentNum2;
+function endOrExitGame() {
+  stopActiveGameLoop();
+  
+  // Get player name and final score
+  const playerName = document.getElementById('player-display-name').value.trim() || 'Student';
+  let finalScore = 0;
+  let gameTitle = '';
 
+  if (currentGameType === 'math') {
+    finalScore = mathScore;
+    gameTitle = 'Quick Math Focus';
+  } else if (currentGameType === 'memory') {
+    finalScore = memoryMatches * 25;
+    gameTitle = 'Emoji Memory Match';
+  } else if (currentGameType === 'car') {
+    finalScore = carGame.score;
+    gameTitle = 'Car Highway Dodge';
+  } else if (currentGameType === 'bike') {
+    finalScore = bikeGame.score;
+    gameTitle = 'Moto Bike Rush';
+  } else if (currentGameType === 'lubo') {
+    finalScore = luboGame.score;
+    gameTitle = 'Lubo Heavy Truck';
+  }
+
+  alert(`🏁 Game Ended!
+
+Player Name: ${playerName}
+Game: ${gameTitle}
+Final Score: ${finalScore}
+
+Returning to Overall Game Selection Page.`);
+  openBrainGym();
+}
+
+function stopActiveGameLoop() {
+  if (activeGameTimer) {
+    clearInterval(activeGameTimer);
+    activeGameTimer = null;
+  }
+}
+
+// 1. Math Logic
+let mathScore = 0;
+let num1 = 0, num2 = 0, op = '+';
+function initMathGameLogic() {
+  mathScore = 0;
+  nextMathProblem();
+}
+function nextMathProblem() {
+  num1 = Math.floor(Math.random() * 20) + 1;
+  num2 = Math.floor(Math.random() * 20) + 1;
+  const ops = ['+', '-', '*'];
+  op = ops[Math.floor(Math.random() * ops.length)];
+  if(op === '-' && num1 < num2) { let t = num1; num1 = num2; num2 = t; }
+  document.getElementById('math-question').textContent = `${num1} ${op} ${num2} = ?`;
+  document.getElementById('math-answer').value = '';
+}
+function submitMath() {
+  const ans = parseInt(document.getElementById('math-answer').value);
+  let correct = (op === '+') ? (num1 + num2) : (op === '-') ? (num1 - num2) : (num1 * num2);
   const fb = document.getElementById('math-feedback');
-  if(ans === correct) {
+  if (ans === correct) {
     mathScore += 10;
     fb.style.color = '#4ade80';
-    fb.textContent = 'Correct! Great job! 🎉';
-    document.getElementById('math-score').textContent = `Score: ${mathScore}`;
-    setTimeout(initMathGame, 1000);
+    fb.textContent = 'Correct! +10 points 🎉';
+    document.getElementById('math-score').textContent = mathScore;
+    setTimeout(nextMathProblem, 800);
   } else {
     fb.style.color = '#f87171';
     fb.textContent = `Incorrect. Correct was ${correct}.`;
-    setTimeout(initMathGame, 1500);
+    setTimeout(nextMathProblem, 1200);
   }
 }
 
-// Memory Match Game Logic
+// 2. Memory Match Logic
 const emojis = ['⚙️', '🧯', '❄️', '⚡'];
 let flippedCards = [];
-let matchedPairs = 0;
-
-function resetMemoryGame() {
-  matchedPairs = 0;
+let memoryMatches = 0;
+function initMemoryGameLogic() {
+  memoryMatches = 0;
   flippedCards = [];
-  document.getElementById('memory-status').textContent = `Matches: 0/4`;
   let deck = [...emojis, ...emojis];
   deck.sort(() => Math.random() - 0.5);
   const grid = document.getElementById('memory-grid');
   grid.innerHTML = '';
-  deck.forEach((emoji, index) => {
+  deck.forEach((emoji) => {
     const card = document.createElement('div');
     card.className = 'memory-card';
-    card.dataset.emoji = emoji;
+    card.style.cssText = 'background:#27272a;border:1px solid rgba(226,184,107,0.3);border-radius:8px;height:60px;font-size:24px;display:grid;place-items:center;cursor:pointer;';
     card.textContent = '?';
-    card.onclick = () => flipCard(card, emoji);
+    card.onclick = () => {
+      if (card.classList.contains('revealed') || card.classList.contains('matched') || flippedCards.length >= 2) return;
+      card.textContent = emoji;
+      card.classList.add('revealed');
+      card.style.background = 'rgba(226,184,107,0.2)';
+      flippedCards.push({ card, emoji });
+      if (flippedCards.length === 2) {
+        if (flippedCards[0].emoji === flippedCards[1].emoji) {
+          memoryMatches++;
+          document.getElementById('memory-status').textContent = `${memoryMatches} / 4`;
+          flippedCards.forEach(item => item.card.classList.add('matched'));
+          flippedCards = [];
+          if (memoryMatches === 4) {
+            setTimeout(() => alert('🎉 Fantastic! You completed the memory match!'), 300);
+          }
+        } else {
+          setTimeout(() => {
+            flippedCards.forEach(item => {
+              item.card.textContent = '?';
+              item.card.classList.remove('revealed');
+              item.card.style.background = '#27272a';
+            });
+            flippedCards = [];
+          }, 700);
+        }
+      }
+    };
     grid.appendChild(card);
   });
 }
+function resetMemoryGameLogic() {
+  initMemoryGameLogic();
+}
 
-function flipCard(card, emoji) {
-  if (card.classList.contains('revealed') || card.classList.contains('matched') || flippedCards.length >= 2) return;
-  card.textContent = emoji;
-  card.classList.add('revealed');
-  flippedCards.push({ card, emoji });
-  if (flippedCards.length === 2) {
-    if (flippedCards[0].emoji === flippedCards[1].emoji) {
-      matchedPairs++;
-      document.getElementById('memory-status').textContent = `Matches: ${matchedPairs}/4`;
-      flippedCards.forEach(item => item.card.classList.add('matched'));
-      flippedCards = [];
-    } else {
-      setTimeout(() => {
-        flippedCards.forEach(item => {
-          item.card.textContent = '?';
-          item.card.classList.remove('revealed');
-        });
-        flippedCards = [];
-      }, 700);
-    }
+// 3, 4, 5. Canvas Arcade Games Logic (Car, Bike, Lubo)
+let carGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0 };
+let bikeGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0 };
+let luboGame = { x: 120, y: 145, obsX: 120, obsY: -50, score: 0 };
+
+function moveActiveVehicle(val) {
+  if (currentGameType === 'car') {
+    carGame.x = Math.max(10, Math.min(260, carGame.x + val));
+  } else if (currentGameType === 'bike') {
+    bikeGame.x = Math.max(10, Math.min(260, bikeGame.x + val));
+  } else if (currentGameType === 'lubo') {
+    luboGame.x = Math.max(10, Math.min(250, luboGame.x + val));
   }
 }
 
-// ==================== ARCADE VEHICLE GAMES (Car, Bike, Lubo) ====================
-let carGame = { x: 110, y: 130, obsX: 110, obsY: -40, score: 0 };
-let bikeGame = { x: 110, y: 130, obsX: 110, obsY: -40, score: 0 };
-let luboGame = { x: 100, y: 125, obsX: 100, obsY: -50, score: 0 };
+function initCanvasGameLogic(type) {
+  const canvas = document.getElementById(type + 'Canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
 
-function moveCar(val) {
-  carGame.x = Math.max(10, Math.min(220, carGame.x + val));
-}
-function moveBike(val) {
-  bikeGame.x = Math.max(10, Math.min(220, bikeGame.x + val));
-}
-function moveLubo(val) {
-  luboGame.x = Math.max(10, Math.min(210, luboGame.x + val));
-}
+  if (type === 'car') carGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0 };
+  if (type === 'bike') bikeGame = { x: 130, y: 150, obsX: 130, obsY: -40, score: 0 };
+  if (type === 'lubo') luboGame = { x: 120, y: 145, obsX: 120, obsY: -50, score: 0 };
 
-function startArcadeGames() {
-  stopArcadeLoops();
-  
-  // Car Loop
-  const carEl = document.getElementById('carCanvas');
-  if(!carEl) return;
-  const carCtx = carEl.getContext('2d');
-  const carTimer = setInterval(() => {
-    carGame.obsY += 4;
-    if (carGame.obsY > 180) {
-      carGame.obsY = -40;
-      carGame.obsX = Math.floor(Math.random() * 4) * 55 + 15;
-      carGame.score += 5;
-      const scoreEl = document.getElementById('car-score');
-      if(scoreEl) scoreEl.textContent = `Score: ${carGame.score}`;
+  activeGameTimer = setInterval(() => {
+    if (type === 'car') {
+      carGame.obsY += 4;
+      if (carGame.obsY > 220) {
+        carGame.obsY = -40;
+        carGame.obsX = Math.floor(Math.random() * 4) * 60 + 20;
+        carGame.score += 5;
+        document.getElementById('car-score').textContent = carGame.score;
+      }
+      if (Math.abs(carGame.x - carGame.obsX) < 25 && Math.abs(carGame.y - carGame.obsY) < 32) {
+        carGame.score = 0;
+        carGame.obsY = -40;
+        document.getElementById('car-score').textContent = '0 (Crash!)';
+      }
+      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
+      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
+      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#ef4444'; ctx.fillRect(carGame.obsX, carGame.obsY, 28, 36);
+      ctx.fillStyle = '#e2b86b'; ctx.fillRect(carGame.x, carGame.y, 28, 36);
+    } else if (type === 'bike') {
+      bikeGame.obsY += 5;
+      if (bikeGame.obsY > 220) {
+        bikeGame.obsY = -40;
+        bikeGame.obsX = Math.floor(Math.random() * 4) * 60 + 20;
+        bikeGame.score += 5;
+        document.getElementById('bike-score').textContent = bikeGame.score;
+      }
+      if (Math.abs(bikeGame.x - bikeGame.obsX) < 20 && Math.abs(bikeGame.y - bikeGame.obsY) < 30) {
+        bikeGame.score = 0;
+        bikeGame.obsY = -40;
+        document.getElementById('bike-score').textContent = '0 (Crash!)';
+      }
+      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
+      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
+      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#f97316'; ctx.beginPath(); ctx.arc(bikeGame.obsX + 10, bikeGame.obsY + 15, 12, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#38bdf8'; ctx.fillRect(bikeGame.x, bikeGame.y, 16, 36);
+    } else if (type === 'lubo') {
+      luboGame.obsY += 3;
+      if (luboGame.obsY > 220) {
+        luboGame.obsY = -50;
+        luboGame.obsX = Math.floor(Math.random() * 3) * 80 + 20;
+        luboGame.score += 10;
+        document.getElementById('lubo-score').textContent = luboGame.score;
+      }
+      if (Math.abs(luboGame.x - luboGame.obsX) < 32 && Math.abs(luboGame.y - luboGame.obsY) < 35) {
+        luboGame.score = 0;
+        luboGame.obsY = -50;
+        document.getElementById('lubo-score').textContent = '0 (Crash!)';
+      }
+      ctx.fillStyle = '#141418'; ctx.fillRect(0, 0, 300, 220);
+      ctx.strokeStyle = '#27272a'; ctx.setLineDash([10, 10]);
+      ctx.beginPath(); ctx.moveTo(150, 0); ctx.lineTo(150, 220); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = '#a855f7'; ctx.fillRect(luboGame.obsX, luboGame.obsY, 32, 32);
+      ctx.fillStyle = '#4ade80'; ctx.fillRect(luboGame.x, luboGame.y, 36, 42);
     }
-    if (Math.abs(carGame.x - carGame.obsX) < 25 && Math.abs(carGame.y - carGame.obsY) < 30) {
-      carGame.score = 0;
-      carGame.obsY = -40;
-      const scoreEl = document.getElementById('car-score');
-      if(scoreEl) scoreEl.textContent = `Score: 0 (Crash!)`;
-    }
-    carCtx.fillStyle = '#141418';
-    carCtx.fillRect(0, 0, 260, 180);
-    carCtx.strokeStyle = '#27272a';
-    carCtx.setLineDash([10, 10]);
-    carCtx.beginPath(); carCtx.moveTo(130, 0); carCtx.lineTo(130, 180); carCtx.stroke(); carCtx.setLineDash([]);
-    carCtx.fillStyle = '#ef4444';
-    carCtx.fillRect(carGame.obsX, carGame.obsY, 28, 36);
-    carCtx.fillStyle = '#e2b86b';
-    carCtx.fillRect(carGame.x, carGame.y, 28, 36);
   }, 30);
-  arcadeIntervals.push(carTimer);
-
-  // Bike Loop
-  const bikeEl = document.getElementById('bikeCanvas');
-  if(!bikeEl) return;
-  const bikeCtx = bikeEl.getContext('2d');
-  const bikeTimer = setInterval(() => {
-    bikeGame.obsY += 5;
-    if (bikeGame.obsY > 180) {
-      bikeGame.obsY = -40;
-      bikeGame.obsX = Math.floor(Math.random() * 4) * 55 + 15;
-      bikeGame.score += 5;
-      const scoreEl = document.getElementById('bike-score');
-      if(scoreEl) scoreEl.textContent = `Score: ${bikeGame.score}`;
-    }
-    if (Math.abs(bikeGame.x - bikeGame.obsX) < 20 && Math.abs(bikeGame.y - bikeGame.obsY) < 30) {
-      bikeGame.score = 0;
-      bikeGame.obsY = -40;
-      const scoreEl = document.getElementById('bike-score');
-      if(scoreEl) scoreEl.textContent = `Score: 0 (Crash!)`;
-    }
-    bikeCtx.fillStyle = '#141418';
-    bikeCtx.fillRect(0, 0, 260, 180);
-    bikeCtx.strokeStyle = '#27272a';
-    bikeCtx.setLineDash([10, 10]);
-    bikeCtx.beginPath(); bikeCtx.moveTo(130, 0); bikeCtx.lineTo(130, 180); bikeCtx.stroke(); bikeCtx.setLineDash([]);
-    bikeCtx.fillStyle = '#f97316';
-    bikeCtx.beginPath(); bikeCtx.arc(bikeGame.obsX + 10, bikeGame.obsY + 15, 12, 0, Math.PI * 2); bikeCtx.fill();
-    bikeCtx.fillStyle = '#38bdf8';
-    bikeCtx.fillRect(bikeGame.x, bikeGame.y, 16, 36);
-  }, 30);
-  arcadeIntervals.push(bikeTimer);
-
-  // Lubo (Heavy Truck) Loop
-  const luboEl = document.getElementById('luboCanvas');
-  if(!luboEl) return;
-  const luboCtx = luboEl.getContext('2d');
-  const luboTimer = setInterval(() => {
-    luboGame.obsY += 3;
-    if (luboGame.obsY > 180) {
-      luboGame.obsY = -50;
-      luboGame.obsX = Math.floor(Math.random() * 3) * 70 + 20;
-      luboGame.score += 10;
-      const scoreEl = document.getElementById('lubo-score');
-      if(scoreEl) scoreEl.textContent = `Score: ${luboGame.score}`;
-    }
-    if (Math.abs(luboGame.x - luboGame.obsX) < 32 && Math.abs(luboGame.y - luboGame.obsY) < 35) {
-      luboGame.score = 0;
-      luboGame.obsY = -50;
-      const scoreEl = document.getElementById('lubo-score');
-      if(scoreEl) scoreEl.textContent = `Score: 0 (Crash!)`;
-    }
-    luboCtx.fillStyle = '#141418';
-    luboCtx.fillRect(0, 0, 260, 180);
-    luboCtx.strokeStyle = '#27272a';
-    luboCtx.setLineDash([10, 10]);
-    luboCtx.beginPath(); luboCtx.moveTo(130, 0); luboCtx.lineTo(130, 180); luboCtx.stroke(); luboCtx.setLineDash([]);
-    luboCtx.fillStyle = '#a855f7';
-    luboCtx.fillRect(luboGame.obsX, luboGame.obsY, 32, 32);
-    luboCtx.fillStyle = '#4ade80';
-    luboCtx.fillRect(luboGame.x, luboGame.y, 36, 42);
-  }, 30);
-  arcadeIntervals.push(luboTimer);
 }
 
 // Enrollment form & Auth handlers
@@ -734,7 +856,7 @@ form.addEventListener('submit', async function(e){
  if(!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_')){
   alert('Email enrollment is not connected yet.');
   return;
- }
+}
 
  const studentName = document.getElementById('name').value;
  const studentPhone = document.getElementById('phone').value;
@@ -841,8 +963,7 @@ function updateAuthUI() {
     
     navBtn.textContent = 'Portal Page (Logged In) ✓';
     navBtn.onclick = () => {
-      publicView.style.display = 'none';
-      brainGymPage.style.display = 'none';
+      hideAllViews();
       memberPortalPage.style.display = 'flex';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
@@ -851,11 +972,7 @@ function updateAuthUI() {
     if(memberNameDisplay) memberNameDisplay.textContent = memberName;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    publicView.style.display = 'block';
-    memberPortalPage.style.display = 'none';
-    brainGymPage.style.display = 'none';
-    stopArcadeLoops();
-    
+    goToHome();
     navBtn.textContent = 'Member Login 🔑';
     navBtn.onclick = openLoginModal;
     publicNavs.forEach(el => el.style.opacity = '1');
