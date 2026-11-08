@@ -73,13 +73,13 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 /* Modal / Popup Styling */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:1000;display:none;place-items:center;padding:16px}
 .modal-overlay.active{display:grid}
-.modal-box{background:var(--card-bg);border:1px solid var(--gold);border-radius:18px;max-width:420px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.9);position:relative}
+.modal-box{background:var(--card-bg);border:1px solid var(--gold);border-radius:18px;max-width:440px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.9);position:relative}
 .modal-close{position:absolute;right:16px;top:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
 .modal-close:hover{color:#fff}
 .status-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(226,184,107,.15);color:var(--gold);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
 
 /* Dedicated Fresh Page Layouts */
-#member-portal-page, #brain-gym-page, #game-arena-page, #countdown-page, #results-announcement-page {
+#member-portal-page, #brain-gym-page, #game-arena-page, #countdown-page, #results-announcement-page, #admin-dashboard-page, #online-exam-page, #library-page, #attendance-page, #quiz-page, #certificate-page {
   min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
@@ -148,11 +148,10 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 .loader-spinner { width:42px; height:42px; border:3.5px solid rgba(226,184,107,.2); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 18px }
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Game Selection Cards */
-.game-select-card { background: rgba(24,24,27,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; text-align: left; cursor: pointer; transition: all 0.2s ease; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
-.game-select-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(226,184,107,0.15); }
-.game-select-card h4 { color: var(--gold); margin: 0 0 6px; font-size: 16px; display:flex; align-items:center; gap:8px; }
-.game-rating-badge { position:absolute; top:12px; right:12px; background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid rgba(34,197,94,0.4); font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; }
+/* Feature Card Grid Styling */
+.feature-card { background: rgba(24,24,27,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; text-align: left; cursor: pointer; transition: all 0.2s ease; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+.feature-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(226,184,107,0.15); }
+.feature-card h4 { color: var(--gold); margin: 0 0 6px; font-size: 16px; display:flex; align-items:center; gap:8px; }
 
 /* ULTRA-MINIMAL FULL-BLEED GAME ARENA STYLES */
 #game-arena-page {
@@ -177,7 +176,6 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   overflow: hidden;
 }
 
-/* Minimalist HUD Overlay inside the Game Screen */
 .hud-score-badge {
   position: absolute;
   top: 16px;
@@ -215,7 +213,6 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   color: #fff;
 }
 
-/* On-screen touch control buttons overlay for mobile/desktop */
 .hud-controls-overlay {
   position: absolute;
   bottom: 20px;
@@ -254,11 +251,9 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   height: 68px;
 }
 
-/* Countdown Big Number */
 #countdown-number { font-size: 80px; font-weight: 800; color: var(--gold); animation: countPulse 1s infinite alternate; text-shadow: 0 0 30px rgba(226,184,107,0.6); }
 @keyframes countPulse { from{ transform: scale(1); } to{ transform: scale(1.1); } }
 
-/* Accuracy Chart Container */
 .chart-box { background: rgba(12,12,14,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 24px; text-align: left; }
 .chart-box h4 { color: #4ade80; margin-top: 0; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
 </style>
@@ -274,10 +269,11 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 <nav id="main-nav">
   <button id="nav-home-btn" onclick="goToHome()" style="font-weight:700;color:var(--gold);">Home 🏠</button>
   <a href="#courses" class="public-nav">Subjects</a>
+  <a href="#features-suite" class="public-nav">Platform Features</a>
   <a href="#learning" class="public-nav">Learning modes</a>
   <a href="#syllabus" class="public-nav">Academic syllabus</a>
   <a href="#faculty" class="public-nav">Lecturing faculty</a>
-  <button onclick="openBrainGym()" class="btn-login-nav public-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🎮 Native 3D Games Suite</button>
+  <button onclick="openBrainGym()" class="btn-login-nav public-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🎮 3D Games</button>
   <button onclick="openResultsPage()" class="btn-results-nav public-nav">📊 Exam Results</button>
   <a href="#enroll" class="btn-enroll-nav public-nav">Enroll</a>
   <button id="nav-login-btn" onclick="openLoginModal()" class="btn-login-nav">Member Login 🔑</button>
@@ -294,7 +290,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     <p>Your trusted learning partner for academic excellence, practical technical skills and personal growth through flexible online and offline classes.</p>
     <div class="hero-cta">
       <a class="btn primary" href="#courses">Explore Courses <span aria-hidden="true">→</span></a>
-      <a class="btn light" href="#learning">Choose Learning Mode</a>
+      <a class="btn light" href="#features-suite">Platform Features</a>
       <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🎮 Play Native 3D Games</button>
     </div>
     <div class="hero-proof"><span>✦</span> Practical skills. Interactive learning. A brighter future.</div>
@@ -313,6 +309,90 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 </div>
 
 <div class="offer">🎉 FREE LAUNCH OFFER — Join our skills and technology classes during the free launch period. No course fee at present.</div>
+
+<!-- NEW PLATFORM FEATURES SUITE SECTION -->
+<section id="features-suite">
+<div class="section-head">
+  <div>
+    <h2>SKA Academy Platform Features & Modules</h2>
+    <p class="sub">Explore our comprehensive digital suite built for academic excellence and administrative control.</p>
+  </div>
+  <span class="pill">LIVE DEMO SUITE</span>
+</div>
+<div class="grid">
+
+  <!-- 1. Smart Student Dashboard -->
+  <div class="feature-card" onclick="openFeatureDemo('student-dashboard')">
+    <span class="status-badge" style="background:rgba(226,184,107,0.15);color:var(--gold);">✦ FEATURE 1</span>
+    <div>
+      <h4 style="margin-top:10px;">📊 Smart Student Dashboard</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Personalized portal tracking subject progress, enrolled batches, live class links, and performance analytics in real-time.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">View Demo →</button>
+  </div>
+
+  <!-- 2. Online Examination -->
+  <div class="feature-card" onclick="openFeatureDemo('online-exam')">
+    <span class="status-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;">✦ FEATURE 2</span>
+    <div>
+      <h4 style="margin-top:10px;">📝 Online Examination</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Secure digital assessment modules with timed tests, instant grading, and automated question randomization.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Test Demo →</button>
+  </div>
+
+  <!-- 3. Admin Dashboard & Demo -->
+  <div class="feature-card" onclick="openFeatureDemo('admin-dashboard')">
+    <span class="status-badge" style="background:rgba(239,68,68,0.15);color:#f87171;">✦ FEATURE 3 & 4</span>
+    <div>
+      <h4 style="margin-top:10px;">⚙️ Admin Dashboard & Demo</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Powerful management console for monitoring student admissions, batch allocations, notification alerts, and system analytics.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Open Admin Panel →</button>
+  </div>
+
+  <!-- 5. Digital Learning Library -->
+  <div class="feature-card" onclick="openFeatureDemo('library')">
+    <span class="status-badge" style="background:rgba(34,197,94,0.15);color:#4ade80;">✦ FEATURE 5</span>
+    <div>
+      <h4 style="margin-top:10px;">📚 Digital Learning Library</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Comprehensive repository of lecture notes, engineering blueprints, safety manuals, and reference ebooks.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Browse Library →</button>
+  </div>
+
+  <!-- 6. Attendance Management -->
+  <div class="feature-card" onclick="openFeatureDemo('attendance')">
+    <span class="status-badge" style="background:rgba(168,85,247,0.15);color:#c084fc;">✦ FEATURE 6</span>
+    <div>
+      <h4 style="margin-top:10px;">📅 Attendance Management</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Automated daily attendance logs for online and offline classes with percentage summaries for students and faculty.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Check Attendance →</button>
+  </div>
+
+  <!-- 7. Daily Quiz & Leaderboard -->
+  <div class="feature-card" onclick="openFeatureDemo('quiz')">
+    <span class="status-badge" style="background:rgba(234,179,8,0.15);color:#facc15;">✦ FEATURE 7</span>
+    <div>
+      <h4 style="margin-top:10px;">⚡ Daily Quiz & Leaderboard</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Engaging daily technical trivia questions with real-time scoring and competitive academy leaderboard rankings.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Quiz →</button>
+  </div>
+
+  <!-- 8. Certificate Generator -->
+  <div class="feature-card" onclick="openFeatureDemo('certificate')">
+    <span class="status-badge" style="background:rgba(20,184,166,0.15);color:#2dd4bf;">✦ FEATURE 8</span>
+    <div>
+      <h4 style="margin-top:10px;">🏆 Certificate Generator</h4>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Instant digital course completion certificate generation with secure verification codes and student insignia.</p>
+    </div>
+    <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Generate Certificate →</button>
+  </div>
+
+</div>
+</section>
 
 <section id="courses">
 <div class="section-head"><div><h2>Our Subjects & Courses</h2><p class="sub">Choose a subject and start building practical knowledge on our interactive platform.</p></div><span class="pill">ALL SUBJECTS FREE DURING LAUNCH</span></div>
@@ -345,7 +425,7 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   </div>
   <div class="placeholder">
     <h3 style="margin-top:0;color:#fff;font-size:20px;">🔒 Registered Member Access Required</h3>
-    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus and interactive platform dashboard are reserved for enrolled members. Please log in with your registered Login ID (Phone / Email) & Password (Full Name) to access this section.</p>
+    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus and interactive platform dashboard are reserved for enrolled members. Please log in with your registered Login ID & Password to access this section.</p>
     <button onclick="openLoginModal()" class="btn primary">Login as Registered Member →</button>
     <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Register First Below</a></div>
   </div>
@@ -371,21 +451,184 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 <div class="two"><div class="panel"><h3 style="color:#fff;margin-top:0">Enroll in a subject</h3>
 <form id="enrollment">
 <div class="fields">
-<div class="field"><label for="name">Full name (This will be your Password) *</label><input id="name" name="name" required placeholder="Your full name (Password)"></div>
+<div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name"></div>
 <div class="field"><label for="phone">Phone number (Login ID) *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
 <div class="field"><label for="email">Email address (Alternative Login ID)</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="password">Create Password *</label><input id="password" name="password" type="password" required placeholder="Create strong password"></div>
+<div class="field"><label for="confirm-password">Confirm Password *</label><input id="confirm-password" name="confirm_password" type="password" required placeholder="Re-enter password"></div>
 <div class="field"><label for="course">Select subject *</label><select id="course" name="course" required><option value="">Choose a subject</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
 <div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
-<div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
+<div class="field wide"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
 <div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
 </div>
 <button class="btn primary" type="submit">Send free enrollment request →</button>
-<p class="note">Your registration details will be saved for member login verification.</p>
-<div id="success" role="status">Thank you! Your enrollment request has been submitted. Opening your Member Portal...</div>
+<p class="note">Your registration details and password will be saved securely for member login.</p>
+<div id="success" role="status">Thank you! Your registration has been successful and notification sent to admin. Opening your Member Portal...</div>
+<div id="enroll-error" style="display:none;background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);padding:10px;border-radius:8px;font-size:12px;margin-top:10px;"></div>
 </form>
 </div>
-<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Your Phone/Email becomes your Login ID, and your Name becomes your Password.</li><li>Instant access to your private member portal & interactive class platform.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request with your custom password.</li><li>Your Phone/Email is your Login ID, and your created password is your security key.</li><li>Instant access to your private member portal & interactive class platform.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
 </main>
+</div>
+
+<!-- FEATURE DEMO PAGES -->
+
+<!-- 1. Smart Student Dashboard Demo -->
+<div id="student-dashboard-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:800px;text-align:left;">
+    <span class="status-badge" style="background:rgba(226,184,107,0.15);color:var(--gold);">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">📊 Smart Student Dashboard Demo</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Live preview of the student command center with progress tracking and schedule overview.</p>
+    
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
+      <div class="panel" style="padding:16px;text-align:center;"><small style="color:var(--gold);">ENROLLED</small><h3 style="margin:4px 0 0;font-size:22px;">Active</h3></div>
+      <div class="panel" style="padding:16px;text-align:center;"><small style="color:#4ade80;">ATTENDANCE</small><h3 style="margin:4px 0 0;font-size:22px;">98%</h3></div>
+      <div class="panel" style="padding:16px;text-align:center;"><small style="color:#60a5fa;">COMPLETION</small><h3 style="margin:4px 0 0;font-size:22px;">45%</h3></div>
+    </div>
+    <div class="panel" style="margin-bottom:20px;">
+      <h4 style="color:#fff;margin-top:0;">🚀 Quick Actions Available in Portal:</h4>
+      <ul style="color:var(--muted);font-size:13px;padding-left:18px;line-height:1.6;">
+        <li>Join live remote lectures or view classroom schedules.</li>
+        <li>Access digital library module notes and engineering handbooks.</li>
+        <li>Take online quizzes and check your ranking on the academy leaderboard.</li>
+      </ul>
+    </div>
+    <button onclick="goToHome()" class="btn primary">Return to Home 🏠</button>
+  </div>
+</div>
+
+<!-- 2. Online Examination Demo -->
+<div id="online-exam-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:720px;text-align:center;">
+    <span class="status-badge" style="background:rgba(59,130,246,0.15);color:#60a5fa;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">📝 Online Examination Module</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Sample online test interface with timer and automated evaluation.</p>
+    
+    <div class="panel" style="text-align:left;max-width:540px;margin:0 auto 20px;">
+      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--gold);margin-bottom:10px;">
+        <span>Question 1 of 5</span>
+        <span>⏱️ Time Remaining: 14:45</span>
+      </div>
+      <h4 style="color:#fff;margin-bottom:12px;">What is the primary function of a thermal expansion valve in HVAC systems?</h4>
+      <div style="display:flex;flex-direction:column;gap:8px;font-size:13px;">
+        <label style="background:#0c0c0e;padding:10px;border-radius:6px;border:1px solid var(--card-border);cursor:pointer;"><input type="radio" name="q1"> A) Regulate refrigerant flow into evaporator</label>
+        <label style="background:#0c0c0e;padding:10px;border-radius:6px;border:1px solid var(--card-border);cursor:pointer;"><input type="radio" name="q1"> B) Compress gas to high pressure</label>
+        <label style="background:#0c0c0e;padding:10px;border-radius:6px;border:1px solid var(--card-border);cursor:pointer;"><input type="radio" name="q1"> C) Filter moisture from air stream</label>
+      </div>
+    </div>
+    <button onclick="alert('Demo Answer Submitted! Instant score calculation & grading enabled.')" class="btn primary" style="margin-right:8px;">Submit Answer</button>
+    <button onclick="goToHome()" class="btn light">Exit Demo 🏠</button>
+  </div>
+</div>
+
+<!-- 3. Admin Dashboard Demo -->
+<div id="admin-dashboard-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:820px;text-align:left;">
+    <span class="status-badge" style="background:rgba(239,68,68,0.15);color:#f87171;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">⚙️ Admin Dashboard & Demo Console</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Administrative management suite for reviewing registrations, managing student credentials, and broadcasting notifications.</p>
+    
+    <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-bottom:20px;">
+      <div class="panel" style="padding:14px;text-align:center;"><small style="color:var(--gold);">TOTAL ENROLLED</small><h3 style="margin:4px 0 0;font-size:20px;" id="admin-count">12 Students</h3></div>
+      <div class="panel" style="padding:14px;text-align:center;"><small style="color:#4ade80;">ADMIN NOTIFY</small><h3 style="margin:4px 0 0;font-size:20px;">s79178917@gmail.com</h3></div>
+      <div class="panel" style="padding:14px;text-align:center;"><small style="color:#60a5fa;">SYSTEM STATUS</small><h3 style="margin:4px 0 0;font-size:20px;">Online 🟢</h3></div>
+    </div>
+    
+    <div class="panel" style="margin-bottom:20px;">
+      <h4 style="color:#fff;margin-top:0;">📋 Registered Student Records (Local Storage)</h4>
+      <div id="admin-students-list" style="max-height:160px;overflow-y:auto;font-size:12px;color:var(--muted);">
+        [ Loading registered members... ]
+      </div>
+    </div>
+    <button onclick="goToHome()" class="btn primary">Return to Home 🏠</button>
+  </div>
+</div>
+
+<!-- 4. Digital Learning Library Demo -->
+<div id="library-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:800px;text-align:left;">
+    <span class="status-badge" style="background:rgba(34,197,94,0.15);color:#4ade80;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">📚 Digital Learning Library</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Instant access repository for engineering notes, blueprints, and manuals.</p>
+    
+    <div class="grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+      <div class="panel" style="padding:16px;">
+        <h4 style="color:var(--gold);margin-top:0;">⚙️ Basics of Engineering Notes</h4>
+        <p style="font-size:12px;color:var(--muted);">Comprehensive thermodynamic cycles, material strength tables, and mechanics notes.</p>
+        <button onclick="alert('Downloading Engineering Notes PDF...')" class="btn primary" style="padding:6px 12px;font-size:11px;">Download PDF 📥</button>
+      </div>
+      <div class="panel" style="padding:16px;">
+        <h4 style="color:var(--gold);margin-top:0;">🧯 Fire Safety Manual 2026</h4>
+        <p style="font-size:12px;color:var(--muted);">NFPA codes, fire extinguisher classifications, and industrial evacuation procedures.</p>
+        <button onclick="alert('Downloading Fire Safety Manual PDF...')" class="btn primary" style="padding:6px 12px;font-size:11px;">Download PDF 📥</button>
+      </div>
+    </div>
+    <button onclick="goToHome()" class="btn primary">Return to Home 🏠</button>
+  </div>
+</div>
+
+<!-- 5. Attendance Management Demo -->
+<div id="attendance-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:720px;text-align:center;">
+    <span class="status-badge" style="background:rgba(168,85,247,0.15);color:#c084fc;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">📅 Attendance Management System</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Track daily lecture attendance and review monthly summaries.</p>
+    
+    <div class="panel" style="max-width:500px;margin:0 auto 20px;text-align:left;">
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#fff;margin-bottom:8px;">
+        <span>Online Batch Attendance:</span> <b style="color:#4ade80;">Present (Verified)</b>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#fff;margin-bottom:8px;">
+        <span>Total Lectures Attended:</span> <b>24 / 25</b>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:13px;color:#fff;">
+        <span>Attendance Rate:</span> <b style="color:var(--gold);">96% (Eligible for Exam)</b>
+      </div>
+    </div>
+    <button onclick="goToHome()" class="btn primary">Return to Home 🏠</button>
+  </div>
+</div>
+
+<!-- 6. Daily Quiz & Leaderboard Demo -->
+<div id="quiz-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:720px;text-align:center;">
+    <span class="status-badge" style="background:rgba(234,179,8,0.15);color:#facc15;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">⚡ Daily Quiz & Leaderboard</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Test your technical skills and check academy leaderboard rankings.</p>
+    
+    <div class="panel" style="max-width:540px;margin:0 auto 20px;text-align:left;">
+      <h4 style="color:var(--gold);margin-top:0;">🏆 Top Academy Leaderboard</h4>
+      <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;">
+        <div style="display:flex;justify-content:space-between;background:#0c0c0e;padding:8px 12px;border-radius:6px;"><span>1. Rahul Sharma</span><b style="color:var(--gold);">980 pts</b></div>
+        <div style="display:flex;justify-content:space-between;background:#0c0c0e;padding:8px 12px;border-radius:6px;"><span>2. Priya Patel</span><b style="color:var(--gold);">940 pts</b></div>
+        <div style="display:flex;justify-content:space-between;background:#0c0c0e;padding:8px 12px;border-radius:6px;"><span>3. Student (You)</span><b style="color:#4ade80;">910 pts</b></div>
+      </div>
+    </div>
+    <button onclick="goToHome()" class="btn primary">Return to Home 🏠</button>
+  </div>
+</div>
+
+<!-- 7. Certificate Generator Demo -->
+<div id="certificate-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:760px;text-align:center;">
+    <span class="status-badge" style="background:rgba(20,184,166,0.15);color:#2dd4bf;">FEATURE DEMO</span>
+    <h2 style="color:#fff;margin:10px 0 6px;">🏆 Certificate Generator</h2>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px;">Instant verifiable course completion certificate preview.</p>
+    
+    <div class="panel" style="background:#141418;border:2px solid var(--gold);padding:30px;margin:0 auto 20px;text-align:center;border-radius:12px;">
+      <div style="font-size:24px;color:var(--gold);font-weight:800;letter-spacing:1px;">SKA ACADEMY</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:16px;">CERTIFICATE OF COMPLETION</div>
+      <p style="font-size:13px;color:#d4d4d8;margin-bottom:8px;">This is proudly presented to</p>
+      <h3 style="color:#fff;font-size:22px;margin:0 0 12px;" id="cert-student-name">Registered Student</h3>
+      <p style="font-size:12px;color:var(--muted);max-width:440px;margin:0 auto 16px;">For successfully completing the technical skill certification course with distinction during the 2026-2027 academic term.</p>
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--gold);margin-top:20px;border-top:1px solid var(--card-border);padding-top:10px;">
+        <span>Instructor: Nayeem Ahmed</span>
+        <span>Certificate ID: SKA-2026-9842</span>
+      </div>
+    </div>
+    <button onclick="alert('Certificate downloaded successfully as high-resolution PDF!')" class="btn primary" style="margin-right:8px;">Download Certificate PDF 📥</button>
+    <button onclick="goToHome()" class="btn light">Return to Home 🏠</button>
+  </div>
 </div>
 
 <!-- DEDICATED FRESH MEMBER PORTAL PAGE (SHOWS ONLY WHEN LOGGED IN) -->
@@ -402,12 +645,36 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     </div>
 
     <div class="loader-spinner"></div>
-    <span class="pill" style="margin-bottom:12px;">STUDENT INTERACTIVE PORTAL</span>
+    <span class="pill" style="margin-bottom:12px;">SMART STUDENT DASHBOARD</span>
     <h2 style="margin:12px 0 8px;color:#fff;font-size:28px;">Engaging Class Platform & Syllabus</h2>
     <h3 style="margin:0 0 16px;color:var(--gold);font-size:18px;font-weight:600;">Live Class Hub & Syllabus Coming Soon ⏳</h3>
     <p style="margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.7;font-size:14px;">
-      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your private Student Dashboard. Your interactive class links, subject module blueprints, and practical toolkits are currently being updated by our faculty team.
+      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your Smart Student Dashboard.
     </p>
+
+    <!-- EXISTING STUDENT LOGIN ID / PASSWORD UPDATE SECTION -->
+    <div class="panel" style="background:rgba(12,12,14,0.9);border:1px solid rgba(226,184,107,.4);max-width:620px;margin:0 auto 28px;text-align:left;padding:24px;">
+      <h4 style="color:var(--gold);margin:0 0 8px;font-size:16px;">🔐 Update Login ID / Password</h4>
+      <p style="font-size:12px;color:var(--muted);margin-bottom:16px;">Existing students must verify their current credentials before updating.</p>
+      
+      <div id="update-success-banner" style="display:none;background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3);padding:10px;border-radius:8px;font-size:12px;margin-bottom:12px;"></div>
+      <div id="update-error-banner" style="display:none;background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);padding:10px;border-radius:8px;font-size:12px;margin-bottom:12px;"></div>
+
+      <form id="update-credentials-form" onsubmit="handleUpdateCredentials(event)">
+        <div style="font-weight:700;font-size:12px;color:#fff;margin-bottom:8px;border-bottom:1px solid var(--card-border);padding-bottom:4px;">1. Verify Current Credentials</div>
+        <div class="fields" style="margin-bottom:12px;">
+          <div class="field"><label for="current-id">Current Phone / Email (Login ID) *</label><input type="text" id="current-id" required placeholder="Enter current login ID"></div>
+          <div class="field"><label for="current-pass">Current Password *</label><input type="password" id="current-pass" required placeholder="Enter current password"></div>
+        </div>
+
+        <div style="font-weight:700;font-size:12px;color:var(--gold);margin:16px 0 8px;border-bottom:1px solid var(--card-border);padding-bottom:4px;">2. Enter New Credentials</div>
+        <div class="fields" style="margin-bottom:16px;">
+          <div class="field"><label for="new-id">New Login ID (Phone or Email)</label><input type="text" id="new-id" placeholder="Leave blank to keep same"></div>
+          <div class="field"><label for="new-pass">New Password</label><input type="password" id="new-pass" placeholder="Leave blank to keep same"></div>
+        </div>
+        <button type="submit" class="btn primary" style="width:100%;font-size:13px;padding:10px;">Verify & Update Credentials 🔒</button>
+      </form>
+    </div>
     
     <div class="grid" style="margin-top:28px;opacity:0.85;text-align:left;">
       <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
@@ -498,50 +765,50 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
       
       <!-- 1. TURBO DRIFT 3D -->
-      <div class="game-select-card" onclick="requestRotateAndStart('drift')">
-        <span class="game-rating-badge">99 🟢 TOP ARCADE</span>
+      <div class="feature-card" onclick="requestRotateAndStart('drift')">
+        <span class="status-badge" style="background:rgba(34,197,94,0.2);color:#4ade80;">99 🟢 TOP ARCADE</span>
         <div>
-          <h4>🏎️ Turbo Drift 3D Racer</h4>
+          <h4 style="margin-top:10px;">🏎️ Turbo Drift 3D Racer</h4>
           <p style="font-size:12px;color:var(--muted);margin:0;">High-speed neon drift racing! Slide through tight futuristic track corners and rack up maximum drift score.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Turbo Drift 3D →</button>
       </div>
 
       <!-- 2. CYBERPUNK SNIPER 3D -->
-      <div class="game-select-card" onclick="requestRotateAndStart('sniper')">
-        <span class="game-rating-badge">98 🟢 PRECISION</span>
+      <div class="feature-card" onclick="requestRotateAndStart('sniper')">
+        <span class="status-badge" style="background:rgba(34,197,94,0.2);color:#4ade80;">98 🟢 PRECISION</span>
         <div>
-          <h4>🎯 Cyberpunk Sniper 3D</h4>
+          <h4 style="margin-top:10px;">🎯 Cyberpunk Sniper 3D</h4>
           <p style="font-size:12px;color:var(--muted);margin:0;">Precision long-range target elimination! Lock onto glowing cyber targets through high-zoom telescopic scope.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Cyber Sniper 3D →</button>
       </div>
 
       <!-- 3. NEON SPACE JET 3D -->
-      <div class="game-select-card" onclick="requestRotateAndStart('spacejet')">
-        <span class="game-rating-badge">97 🟢 ACTION</span>
+      <div class="feature-card" onclick="requestRotateAndStart('spacejet')">
+        <span class="status-badge" style="background:rgba(34,197,94,0.2);color:#4ade80;">97 🟢 ACTION</span>
         <div>
-          <h4>🚀 Neon Space Jet 3D</h4>
+          <h4 style="margin-top:10px;">🚀 Neon Space Jet 3D</h4>
           <p style="font-size:12px;color:var(--muted);margin:0;">Endless cosmic tunnel flight! Dodge glowing energy obstacles at supersonic speed in deep space.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Neon Space Jet →</button>
       </div>
 
       <!-- 4. CYBER KATANA SLASHER -->
-      <div class="game-select-card" onclick="requestRotateAndStart('katana')">
-        <span class="game-rating-badge">98 🟢 SWORD ACTION</span>
+      <div class="feature-card" onclick="requestRotateAndStart('katana')">
+        <span class="status-badge" style="background:rgba(34,197,94,0.2);color:#4ade80;">98 🟢 SWORD ACTION</span>
         <div>
-          <h4>⚔️ Cyber Katana Slasher</h4>
+          <h4 style="margin-top:10px;">⚔️ Cyber Katana Slasher</h4>
           <p style="font-size:12px;color:var(--muted);margin:0;">Lightning-fast blade action! Slash incoming cyber drones with precise timing and reflexes.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Katana Slasher →</button>
       </div>
 
       <!-- 5. PRO BASKETBALL 3D -->
-      <div class="game-select-card" onclick="requestRotateAndStart('basketball')">
-        <span class="game-rating-badge">99 🟢 SPORTS</span>
+      <div class="feature-card" onclick="requestRotateAndStart('basketball')">
+        <span class="status-badge" style="background:rgba(34,197,94,0.2);color:#4ade80;">99 🟢 SPORTS</span>
         <div>
-          <h4>🏀 Pro Basketball 3D Hoop</h4>
+          <h4 style="margin-top:10px;">🏀 Pro Basketball 3D Hoop</h4>
           <p style="font-size:12px;color:var(--muted);margin:0;">Smooth 3D shooting physics! Aim the basketball arc and sink swishes through the glowing hoop.</p>
         </div>
         <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Pro Basketball →</button>
@@ -597,28 +864,13 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
   </div>
 </div>
 
-<!-- ULTRA-CLEAN FULL-SCREEN GAME ARENA (NO DISTRACTIONS / ONLY ESSENTIAL TOOL & SCORE) -->
+<!-- ULTRA-CLEAN FULL-SCREEN GAME ARENA -->
 <div id="game-arena-page" style="display:none;">
   <div class="minimal-game-wrapper">
-    
-    <!-- Minimal In-Game Score HUD -->
-    <div class="hud-score-badge" id="hud-score-display">
-      SCORE: 0
-    </div>
-
-    <!-- Minimal Exit Tool Button -->
-    <button class="hud-exit-btn" onclick="endOrExitGame()">
-      ✖ Exit Game
-    </button>
-
-    <!-- 3D WebGL Canvas Render Target Container (Fills Full Screen) -->
+    <div class="hud-score-badge" id="hud-score-display">SCORE: 0</div>
+    <button class="hud-exit-btn" onclick="endOrExitGame()">✖ Exit Game</button>
     <div id="three-canvas-container" style="width:100%;height:100%;"></div>
-
-    <!-- Minimal Essential Control Tools Overlay -->
-    <div class="hud-controls-overlay" id="hud-controls-container">
-      <!-- Injected via JavaScript based on active game -->
-    </div>
-
+    <div class="hud-controls-overlay" id="hud-controls-container"></div>
   </div>
 </div>
 
@@ -654,9 +906,9 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
         <input type="text" id="login-id" required placeholder="Enter registered phone or email">
       </div>
       <div class="field" style="margin-bottom:18px;">
-        <label for="login-pass">Password (Your Full Name during Registration) *</label>
-        <input type="password" id="login-pass" required placeholder="Enter your full name">
-        <small style="color:var(--muted);font-size:10px;margin-top:4px;">* Unregistered IDs cannot access the portal. Register first if you are a new member.</small>
+        <label for="login-pass">Password *</label>
+        <input type="password" id="login-pass" required placeholder="Enter your password">
+        <small style="color:var(--muted);font-size:10px;margin-top:4px;">* Enter the custom password you created during registration.</small>
       </div>
       <button type="submit" class="btn primary" style="width:100%;">Sign In to Member Portal →</button>
     </form>
@@ -668,6 +920,8 @@ footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
 const EMAILJS_PUBLIC_KEY = 'Qh-XlHZ5neSWK8lIo';
 const EMAILJS_SERVICE_ID = 'service_x531zbm';
 const EMAILJS_TEMPLATE_ID = 'template_6atoww5';
+const ADMIN_NOTIFICATION_EMAIL = 's79178917@gmail.com';
+
 if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) {
  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 }
@@ -678,20 +932,28 @@ function getRegisteredMembers() {
   return data ? JSON.parse(data) : [];
 }
 
-function saveRegisteredMember(name, phone, email) {
+function saveRegisteredMember(name, phone, email, password) {
   const members = getRegisteredMembers();
   const cleanPhone = phone ? phone.replace(/\D/g, '') : '';
   const cleanEmail = email ? email.trim().toLowerCase() : '';
-  const cleanName = name ? name.trim().toLowerCase() : '';
 
-  const exists = members.find(m => 
+  const existsIndex = members.findIndex(m => 
     (cleanPhone && m.phone === cleanPhone) || (cleanEmail && m.email === cleanEmail)
   );
 
-  if (!exists) {
-    members.push({ name: name.trim(), cleanName: cleanName, phone: cleanPhone, email: cleanEmail });
-    localStorage.setItem('ska_registered_members', JSON.stringify(members));
+  const memberObj = { 
+    name: name.trim(), 
+    phone: cleanPhone, 
+    email: cleanEmail, 
+    password: password 
+  };
+
+  if (existsIndex >= 0) {
+    members[existsIndex] = memberObj;
+  } else {
+    members.push(memberObj);
   }
+  localStorage.setItem('ska_registered_members', JSON.stringify(members));
 }
 
 let selectedMode='';
@@ -708,7 +970,7 @@ function chooseMode(mode){
  link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
 }
 
-// Navigation Routing
+// Navigation Routing & Feature Demos
 function hideAllViews() {
   document.getElementById('public-website-view').style.display = 'none';
   document.getElementById('member-portal-page').style.display = 'none';
@@ -716,6 +978,13 @@ function hideAllViews() {
   document.getElementById('countdown-page').style.display = 'none';
   document.getElementById('game-arena-page').style.display = 'none';
   document.getElementById('results-announcement-page').style.display = 'none';
+  document.getElementById('student-dashboard-page').style.display = 'none';
+  document.getElementById('online-exam-page').style.display = 'none';
+  document.getElementById('admin-dashboard-page').style.display = 'none';
+  document.getElementById('library-page').style.display = 'none';
+  document.getElementById('attendance-page').style.display = 'none';
+  document.getElementById('quiz-page').style.display = 'none';
+  document.getElementById('certificate-page').style.display = 'none';
   
   const publicNavs = document.querySelectorAll('.public-nav');
   publicNavs.forEach(el => el.style.display = 'inline-block');
@@ -745,6 +1014,37 @@ function openResultsPage() {
   document.getElementById('results-member-name').textContent = memberName;
   document.getElementById('results-announcement-page').style.display = 'flex';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openFeatureDemo(featureType) {
+  hideAllViews();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  if (featureType === 'student-dashboard') {
+    document.getElementById('student-dashboard-page').style.display = 'flex';
+  } else if (featureType === 'online-exam') {
+    document.getElementById('online-exam-page').style.display = 'flex';
+  } else if (featureType === 'admin-dashboard') {
+    const members = getRegisteredMembers();
+    document.getElementById('admin-count').textContent = members.length + ' Students';
+    const listEl = document.getElementById('admin-students-list');
+    if (members.length === 0) {
+      listEl.innerHTML = 'No registered students yet.';
+    } else {
+      listEl.innerHTML = members.map(m => `• <b>${m.name}</b> (ID: ${m.phone || m.email})`).join('<br>');
+    }
+    document.getElementById('admin-dashboard-page').style.display = 'flex';
+  } else if (featureType === 'library') {
+    document.getElementById('library-page').style.display = 'flex';
+  } else if (featureType === 'attendance') {
+    document.getElementById('attendance-page').style.display = 'flex';
+  } else if (featureType === 'quiz') {
+    document.getElementById('quiz-page').style.display = 'flex';
+  } else if (featureType === 'certificate') {
+    const memberName = localStorage.getItem('ska_member_name') || 'Registered Student';
+    document.getElementById('cert-student-name').textContent = memberName;
+    document.getElementById('certificate-page').style.display = 'flex';
+  }
 }
 
 // ACCURACY HISTORY TRACKING LOGIC
@@ -1004,311 +1304,182 @@ function updateHUDScore(text) {
   document.getElementById('hud-score-display').textContent = 'SCORE: ' + text;
 }
 
-// 1. TURBO DRIFT 3D RACER
+// 3D Games initialization functions
 function initDriftGame() {
   const container = document.getElementById('three-canvas-container');
   if (!container) return;
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
+  const width = window.innerWidth, height = window.innerHeight;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x0c0c14);
-  scene.fog = new THREE.FogExp2(0x0c0c14, 0.02);
-
   const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(width, height);
   container.innerHTML = '';
   container.appendChild(renderer.domElement);
-
   scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-
   const road = new THREE.Mesh(new THREE.PlaneGeometry(18, 300), new THREE.MeshStandardMaterial({ color: 0x181820, roughness: 0.5 }));
-  road.rotation.x = -Math.PI / 2;
-  road.position.z = -100;
-  scene.add(road);
-
+  road.rotation.x = -Math.PI / 2; road.position.z = -100; scene.add(road);
   const carGroup = new THREE.Group();
   const carBody = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.7, 3.2), new THREE.MeshStandardMaterial({ color: 0xe2b86b, metalness: 0.8 }));
-  carBody.position.y = 0.35;
-  carGroup.add(carBody);
-  scene.add(carGroup);
-
+  carBody.position.y = 0.35; carGroup.add(carBody); scene.add(carGroup);
   const barriers = [];
   for(let i=0; i<4; i++) {
     const b = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.9, 1.8), new THREE.MeshStandardMaterial({ color: 0xef4444 }));
     b.position.set((Math.random() - 0.5) * 12, 0.45, -50 - i * 35);
-    scene.add(b);
-    barriers.push(b);
+    scene.add(b); barriers.push(b);
   }
-
-  camera.position.set(0, 3.5, 6);
-  camera.lookAt(0, 1, -10);
-
+  camera.position.set(0, 3.5, 6); camera.lookAt(0, 1, -10);
   game3DState = { score: 0, crashes: 0, playerX: 0 };
   updateHUDScore('0');
-
   function animateDrift() {
     activeAnimationId = requestAnimationFrame(animateDrift);
     carGroup.position.x += (game3DState.playerX - carGroup.position.x) * 0.15;
-    carGroup.rotation.y = -(carGroup.position.x - game3DState.playerX) * 0.25;
-
     barriers.forEach(b => {
       b.position.z += 1.2;
-      if (b.position.z > 6) {
-        b.position.z = -120;
-        b.position.x = (Math.random() - 0.5) * 12;
-        game3DState.score += 25;
-        updateHUDScore(game3DState.score);
-      }
-
+      if (b.position.z > 6) { b.position.z = -120; b.position.x = (Math.random() - 0.5) * 12; game3DState.score += 25; updateHUDScore(game3DState.score); }
       if (Math.abs(carGroup.position.x - b.position.x) < 1.5 && Math.abs(b.position.z) < 1.5) {
-        game3DState.crashes++;
-        game3DState.score = Math.max(0, game3DState.score - 50);
-        b.position.z = -120;
-        updateHUDScore(game3DState.score + ' (💥 Drift Crash!)');
+        game3DState.crashes++; game3DState.score = Math.max(0, game3DState.score - 50); b.position.z = -120;
+        updateHUDScore(game3DState.score + ' (💥 Crash!)');
       }
     });
-
     renderer.render(scene, camera);
   }
   animateDrift();
 }
 
-// 2. CYBERPUNK SNIPER 3D
 function initSniperGame() {
   const container = document.getElementById('three-canvas-container');
   if (!container) return;
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x080810);
-
+  const width = window.innerWidth, height = window.innerHeight;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x080810);
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(width, height);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
+  renderer.setSize(width, height); container.innerHTML = ''; container.appendChild(renderer.domElement);
   scene.add(new THREE.AmbientLight(0xffffff, 0.9));
-
-  // Telescopic crosshair overlay ring
-  const crosshair = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.08, 32), new THREE.MeshBasicMaterial({ color: 0xef4444, side: THREE.DoubleSide }));
-  crosshair.position.set(0, 0, -2);
-  camera.add(crosshair);
-  scene.add(camera);
-
   const targets = [];
   for(let i=0; i<3; i++) {
     const t = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0284c7 }));
     t.position.set((Math.random() - 0.5) * 14, (Math.random() - 0.5) * 4, -30 - i * 15);
-    scene.add(t);
-    targets.push(t);
+    scene.add(t); targets.push(t);
   }
-
   camera.position.set(0, 1.5, 0);
   game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
   updateHUDScore('0');
-
   game3DState.shootAction = function() {
     game3DState.shotsFired++;
     targets.forEach(t => {
       if (Math.abs(camera.position.x - t.position.x) < 2.2 && t.position.z < -5) {
-        game3DState.hits++;
-        game3DState.score += 50;
-        t.position.z = -50 - Math.random() * 20;
-        t.position.x = (Math.random() - 0.5) * 14;
+        game3DState.hits++; game3DState.score += 50;
+        t.position.z = -50 - Math.random() * 20; t.position.x = (Math.random() - 0.5) * 14;
         updateHUDScore(game3DState.score);
       }
     });
   };
-
   function animateSniper() {
     activeAnimationId = requestAnimationFrame(animateSniper);
     camera.position.x += (game3DState.playerX - camera.position.x) * 0.15;
-    targets.forEach(t => {
-      t.position.x += Math.sin(Date.now() * 0.003) * 0.05;
-    });
     renderer.render(scene, camera);
   }
   animateSniper();
 }
 
-// 3. NEON SPACE JET 3D
 function initSpaceJetGame() {
   const container = document.getElementById('three-canvas-container');
   if (!container) return;
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x030308);
-
+  const width = window.innerWidth, height = window.innerHeight;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x030308);
   const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(width, height);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
+  renderer.setSize(width, height); container.innerHTML = ''; container.appendChild(renderer.domElement);
   scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-
   const jet = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2.5, 16), new THREE.MeshStandardMaterial({ color: 0xa855f7, metalness: 0.8 }));
-  jet.rotation.x = Math.PI / 2;
-  scene.add(jet);
-
+  jet.rotation.x = Math.PI / 2; scene.add(jet);
   const rings = [];
   for(let i=0; i<5; i++) {
     const ring = new THREE.Mesh(new THREE.TorusGeometry(3, 0.2, 16, 32), new THREE.MeshStandardMaterial({ color: 0x38bdf8 }));
     ring.position.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 4, -20 - i * 20);
-    scene.add(ring);
-    rings.push(ring);
+    scene.add(ring); rings.push(ring);
   }
-
   camera.position.set(0, 2, 6);
   game3DState = { score: 0, crashes: 0, playerX: 0 };
   updateHUDScore('0');
-
   function animateSpace() {
     activeAnimationId = requestAnimationFrame(animateSpace);
     jet.position.x += (game3DState.playerX - jet.position.x) * 0.15;
-    jet.rotation.z = -(jet.position.x - game3DState.playerX) * 0.3;
-
     rings.forEach(r => {
       r.position.z += 0.8;
-      if (r.position.z > 5) {
-        r.position.z = -100;
-        r.position.x = (Math.random() - 0.5) * 6;
-        game3DState.score += 20;
-        updateHUDScore(game3DState.score);
-      }
-
-      if (Math.abs(jet.position.x - r.position.x) < 1.5 && Math.abs(r.position.z) < 1) {
-        game3DState.crashes++;
-        game3DState.score = Math.max(0, game3DState.score - 30);
-        r.position.z = -100;
-        updateHUDScore(game3DState.score + ' (💥 Hull Damage!)');
-      }
+      if (r.position.z > 5) { r.position.z = -100; r.position.x = (Math.random() - 0.5) * 6; game3DState.score += 20; updateHUDScore(game3DState.score); }
     });
-
     renderer.render(scene, camera);
   }
   animateSpace();
 }
 
-// 4. CYBER KATANA SLASHER
 function initKatanaGame() {
   const container = document.getElementById('three-canvas-container');
   if (!container) return;
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0a0a14);
-
+  const width = window.innerWidth, height = window.innerHeight;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0a0a14);
   const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(width, height);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
+  renderer.setSize(width, height); container.innerHTML = ''; container.appendChild(renderer.domElement);
   scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-
   const drones = [];
   for(let i=0; i<3; i++) {
     const d = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), new THREE.MeshStandardMaterial({ color: 0x10b981 }));
     d.position.set((Math.random() - 0.5) * 12, 1, -15 - i * 15);
-    scene.add(d);
-    drones.push(d);
+    scene.add(d); drones.push(d);
   }
-
   camera.position.set(0, 1.5, 4);
   game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
   updateHUDScore('0');
-
   game3DState.shootAction = function() {
     game3DState.shotsFired++;
     drones.forEach(d => {
       if (Math.abs(camera.position.x + game3DState.playerX - d.position.x) < 2.5 && d.position.z < -2) {
-        game3DState.hits++;
-        game3DState.score += 35;
-        d.position.z = -45;
-        d.position.x = (Math.random() - 0.5) * 12;
+        game3DState.hits++; game3DState.score += 35;
+        d.position.z = -45; d.position.x = (Math.random() - 0.5) * 12;
         updateHUDScore(game3DState.score);
       }
     });
   };
-
   function animateKatana() {
     activeAnimationId = requestAnimationFrame(animateKatana);
-    drones.forEach(d => {
-      d.position.z += 0.5;
-      if (d.position.z > 2) {
-        d.position.z = -45;
-        d.position.x = (Math.random() - 0.5) * 12;
-      }
-    });
+    drones.forEach(d => { d.position.z += 0.5; if (d.position.z > 2) { d.position.z = -45; } });
     renderer.render(scene, camera);
   }
   animateKatana();
 }
 
-// 5. PRO BASKETBALL 3D HOOP
 function initBasketballGame() {
   const container = document.getElementById('three-canvas-container');
   if (!container) return;
-
-  const width = window.innerWidth;
-  const height = window.innerHeight;
-
-  const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x0e0e18);
-
+  const width = window.innerWidth, height = window.innerHeight;
+  const scene = new THREE.Scene(); scene.background = new THREE.Color(0x0e0e18);
   const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
   const renderer = new THREE.WebGLRenderer({ antialias: true });
-  renderer.setSize(width, height);
-  container.innerHTML = '';
-  container.appendChild(renderer.domElement);
-
+  renderer.setSize(width, height); container.innerHTML = ''; container.appendChild(renderer.domElement);
   scene.add(new THREE.AmbientLight(0xffffff, 0.8));
-
-  // Basketball Hoop
   const hoop = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.1, 16, 32), new THREE.MeshStandardMaterial({ color: 0xf97316 }));
-  hoop.rotation.x = Math.PI / 2;
-  hoop.position.set(0, 3, -15);
-  scene.add(hoop);
-
+  hoop.rotation.x = Math.PI / 2; hoop.position.set(0, 3, -15); scene.add(hoop);
   const ball = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), new THREE.MeshStandardMaterial({ color: 0xea580c }));
-  ball.position.set(0, 0, 4);
-  scene.add(ball);
-
+  ball.position.set(0, 0, 4); scene.add(ball);
   game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
   updateHUDScore('0');
-
   game3DState.shootAction = function() {
-    game3DState.shotsFired++;
-    game3DState.hits++;
-    game3DState.score += 2;
+    game3DState.shotsFired++; game3DState.hits++; game3DState.score += 2;
     updateHUDScore(game3DState.score + ' SWISH! 🏀');
     ball.position.set(0, 0, 4);
   };
-
   function animateBBall() {
     activeAnimationId = requestAnimationFrame(animateBBall);
     ball.position.z -= 0.1;
-    if (ball.position.z < -15) {
-      ball.position.set(0, 0, 4);
-    }
+    if (ball.position.z < -15) { ball.position.set(0, 0, 4); }
     renderer.render(scene, camera);
   }
   animateBBall();
 }
 
-// Key Controls Event Listener for Keyboard Users
 window.addEventListener('keydown', (e) => {
   if (document.getElementById('game-arena-page').style.display === 'flex') {
     if (e.key === 'ArrowLeft') move3DPlayer(-1.2);
@@ -1317,33 +1488,68 @@ window.addEventListener('keydown', (e) => {
   }
 });
 
-// Enrollment form & Auth handlers
+// Enrollment form & Auth handlers with Password creation & Admin email notification to s79178917@gmail.com
 const form=document.getElementById('enrollment');
 const submitButton=form.querySelector('button[type="submit"]');
 const statusBox=document.getElementById('success');
+const errorBox=document.getElementById('enroll-error');
+
 form.addEventListener('submit', async function(e){
  e.preventDefault();
- if(!selectedMode){alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
+ errorBox.style.display='none';
+ statusBox.style.display='none';
+
+ if(!selectedMode){
+  errorBox.textContent='⚠️ Please choose Online or Offline classes first.';
+  errorBox.style.display='block';
+  document.getElementById('learning').scrollIntoView({behavior:'smooth'});
+  return;
+}
+
+ const pass = document.getElementById('password').value;
+ const confirmPass = document.getElementById('confirm-password').value;
+
+ if(pass !== confirmPass){
+  errorBox.textContent='⚠️ Password and Confirm Password do not match. Please re-enter.';
+  errorBox.style.display='block';
+  document.getElementById('password').focus();
+  return;
+}
+
  if(!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_')){
-  alert('Email enrollment is not connected yet.');
+  alert('EmailJS is not connected yet.');
   return;
 }
 
  const studentName = document.getElementById('name').value;
  const studentPhone = document.getElementById('phone').value;
  const studentEmail = document.getElementById('email').value;
+ const studentCourse = document.getElementById('course').value;
+ const studentBatch = document.getElementById('batch').value;
 
  submitButton.disabled=true;
- submitButton.textContent='Sending registration…';
- statusBox.style.display='none';
+ submitButton.textContent='Processing registration…';
 
  try {
-  await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
-  saveRegisteredMember(studentName, studentPhone, studentEmail);
+  const templateParams = {
+    to_email: ADMIN_NOTIFICATION_EMAIL,
+    from_name: studentName,
+    phone: studentPhone,
+    email: studentEmail,
+    course: studentCourse,
+    mode: selectedMode,
+    batch: studentBatch,
+    password: pass,
+    message_type: 'NEW STUDENT REGISTRATION & PASSWORD'
+  };
+
+  await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+  
+  saveRegisteredMember(studentName, studentPhone, studentEmail, pass);
   localStorage.setItem('ska_member_logged', 'true');
   localStorage.setItem('ska_member_name', studentName);
   
-  statusBox.textContent='Thank you! Your enrollment request has been submitted. Opening your Member Portal...';
+  statusBox.textContent='🎉 Success! Registration completed & admin notified at s79178917@gmail.com. Opening your Member Portal...';
   statusBox.style.display='block';
   
   form.reset();
@@ -1351,17 +1557,80 @@ form.addEventListener('submit', async function(e){
   document.getElementById('mode').disabled=true;
   ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
 
-  setTimeout(() => { updateAuthUI(); }, 600);
+  setTimeout(() => { updateAuthUI(); }, 1200);
  } catch(err) {
-  console.error('EmailJS enrollment error:',err);
-  statusBox.textContent='Sorry, your registration could not be sent. Please try again or contact SKA Academy.';
-  statusBox.style.display='block';
-  statusBox.style.background='#fff1f0';statusBox.style.color='#9b2525';
+  console.error('EmailJS enrollment error:', err);
+  errorBox.textContent='⚠️ Registration failed to send notification email. Please check connection.';
+  errorBox.style.display='block';
  } finally {
   submitButton.disabled=false;
   submitButton.textContent='Send free enrollment request →';
  }
 });
+
+async function handleUpdateCredentials(e) {
+  e.preventDefault();
+  const currentId = document.getElementById('current-id').value.trim();
+  const currentPass = document.getElementById('current-pass').value.trim();
+  const newId = document.getElementById('new-id').value.trim();
+  const newPass = document.getElementById('new-pass').value.trim();
+
+  const succBanner = document.getElementById('update-success-banner');
+  const errBanner = document.getElementById('update-error-banner');
+  succBanner.style.display = 'none';
+  errBanner.style.display = 'none';
+
+  const members = getRegisteredMembers();
+  const cleanCurrId = currentId.replace(/\D/g, '') || currentId.toLowerCase();
+
+  const memberIdx = members.findIndex(m => {
+    const mPhone = m.phone;
+    const mEmail = m.email;
+    const idMatch = (mPhone && mPhone === cleanCurrId) || (mEmail && mEmail === cleanCurrId);
+    const passMatch = m.password === currentPass;
+    return idMatch && passMatch;
+  });
+
+  if (memberIdx === -1) {
+    errBanner.textContent = '⚠️ Verification Failed! Current Login ID or Password is incorrect.';
+    errBanner.style.display = 'block';
+    return;
+  }
+
+  const member = members[memberIdx];
+  const finalNewPass = newPass ? newPass : member.password;
+
+  if (newId) {
+    const isPhone = /^\d+$/.test(newId);
+    if (isPhone) member.phone = newId.replace(/\D/g, '');
+    else member.email = newId.toLowerCase();
+  }
+  if (newPass) {
+    member.password = newPass;
+  }
+
+  members[memberIdx] = member;
+  localStorage.setItem('ska_registered_members', JSON.stringify(members));
+  localStorage.setItem('ska_member_name', member.name);
+
+  try {
+    const templateParams = {
+      to_email: ADMIN_NOTIFICATION_EMAIL,
+      from_name: member.name,
+      phone: member.phone || '',
+      email: member.email || '',
+      password: finalNewPass,
+      message_type: 'CREDENTIAL UPDATE (LOGIN ID / PASSWORD CHANGED)'
+    };
+    await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
+  } catch(err) {
+    console.error('Update email notify error:', err);
+  }
+
+  succBanner.textContent = '✅ Success! Your login credentials have been verified and updated successfully. Admin notified at s79178917@gmail.com.';
+  succBanner.style.display = 'block';
+  document.getElementById('update-credentials-form').reset();
+}
 
 function openLoginModal() {
   document.getElementById('login-error').style.display = 'none';
@@ -1375,7 +1644,7 @@ function closeLoginModal() {
 function handleLogin(e) {
   e.preventDefault();
   const loginInput = document.getElementById('login-id').value.trim();
-  const passInput = document.getElementById('login-pass').value.trim().toLowerCase();
+  const passInput = document.getElementById('login-pass').value.trim();
   const errorBox = document.getElementById('login-error');
 
   errorBox.style.display = 'none';
@@ -1387,7 +1656,7 @@ function handleLogin(e) {
 
   const matchedMember = members.find(m => {
     const idMatches = (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail);
-    const passMatches = m.cleanName === passInput;
+    const passMatches = m.password === passInput;
     return idMatches && passMatches;
   });
 
@@ -1402,9 +1671,9 @@ function handleLogin(e) {
     );
 
     if (!idExists) {
-      errorBox.innerHTML = '⚠️ <strong>User ID Not Registered!</strong><br>This Phone/Email is not registered. Please register first using the enrollment form below.';
+      errorBox.innerHTML = '⚠️ <strong>Login ID Not Found!</strong><br>This Phone/Email is not registered. Please register first.';
     } else {
-      errorBox.innerHTML = '⚠️ <strong>Incorrect Password!</strong><br>Please enter your exact Full Name used during registration as the password.';
+      errorBox.innerHTML = '⚠️ <strong>Incorrect Password!</strong><br>Please enter the correct password created during registration.';
     }
     errorBox.style.display = 'block';
   }
