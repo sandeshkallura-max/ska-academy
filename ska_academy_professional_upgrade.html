@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="SKA Academy — professional skills, native 3D WebGL arcade, accuracy analytics & results portal.">
+<meta name="theme-color" content="#0b1f3a">
+<title>SKA Academy | Learn with Passion</title>
+<!-- Chart.js CDN for dynamic Accuracy Level Graphs -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Three.js WebGL 3D Rendering Engine -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+/* SKA Academy Dark Theme — Midnight Obsidian & Gold */
+:root{--navy:#141416;--blue:#e2b86b;--gold:#e2b86b;--ink:#f4f4f6;--muted:#a1a1aa;--bg:#0c0c0e;--line:#27272a;--white:#18181b;--card-bg:#18181b;--card-border:#27272a}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:Inter,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink);letter-spacing:-.01em;margin:0;padding:0}
+.wrap{width:min(1180px,91%);margin:0 auto}
+
+/* Header & Responsive Logo Navigation */
+header{background:rgba(20,20,22,.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);box-shadow:0 5px 24px rgba(0,0,0,.6);position:sticky;top:0;z-index:100}
+.nav-wrap{min-height:60px;padding:8px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.brand{font-weight:800;letter-spacing:1px;color:var(--gold);font-size:16px;text-decoration:none;display:flex;align-items:center;gap:10px;}
+
+.logo-img{
+  height:38px;
+  width:auto;
+  object-fit:contain;
+  border-radius:6px;
+  filter:drop-shadow(0 2px 8px rgba(226,184,107,.25));
+  transition:transform 0.2s ease;
+}
+.brand:hover .logo-img{ transform:scale(1.05); }
+
+nav{gap:6px;align-items:center;display:flex;flex-wrap:wrap;}
+nav a, nav button{font-size:12px;color:#d4d4d8;padding:6px 10px;border-radius:6px;transition:background .2s,color .2s;text-decoration:none;border:none;background:transparent;cursor:pointer;white-space:nowrap}
+nav a:hover, nav button:hover{background:#27272a;color:var(--gold)}
+.btn-login-nav{background:rgba(226,184,107,.15) !important;color:var(--gold) !important;border:1px solid rgba(226,184,107,.4) !important;font-weight:600}
+.btn-login-nav:hover{background:var(--gold) !important;color:#0c0c0e !important}
+.btn-enroll-nav{background:linear-gradient(135deg,#e2b86b,#c69a47) !important;color:#0c0c0e !important;padding:7px 14px;margin-left:4px;font-weight:700}
+.btn-enroll-nav:hover{filter:brightness(1.1)}
+.btn-results-nav{background:rgba(59,130,246,0.15) !important;color:#60a5fa !important;border:1px solid rgba(59,130,246,0.4) !important;font-weight:600}
+.btn-results-nav:hover{background:#3b82f6 !important;color:#fff !important}
+
+/* Public Landing View Sections */
+.hero{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:34px;margin:34px auto 24px;min-height:430px;padding:clamp(32px,5vw,66px);border-radius:24px;background:radial-gradient(circle at 78% 30%,rgba(226,184,107,.12),transparent 40%),linear-gradient(135deg,#141416 0%,#18181b 100%);border:1px solid rgba(226,184,107,.2);box-shadow:0 22px 55px rgba(0,0,0,.7)}
+.hero-copy{position:relative;z-index:2}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--gold);font-size:11px;letter-spacing:2px}.eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold)}.eyebrow-sep{color:#52525b}
+.hero h1{font-size:clamp(39px,5vw,64px);letter-spacing:-2.2px;line-height:1.04;margin:18px 0 16px;font-weight:800;color:#f4f4f6}.hero p{font-size:16px;line-height:1.8;color:#a1a1aa;max-width:510px;margin:0 0 25px}.btn{border-radius:8px;padding:13px 19px;font-size:13px;letter-spacing:.01em;text-decoration:none;display:inline-block;cursor:pointer;border:none}
+.primary{background:linear-gradient(135deg,#e2b86b,#b88a38);color:#0c0c0e;box-shadow:0 8px 20px rgba(226,184,107,.2);font-weight:700}.light{background:rgba(255,255,255,.05);color:#f4f4f6;border:1px solid rgba(255,255,255,.15);margin-left:9px}.hero-proof{margin-top:26px;color:#a1a1aa;font-size:12px}.hero-proof span{color:var(--gold);margin-right:7px}
+
+.hero-visual{min-height:290px;position:relative;display:grid;place-items:center}.visual-orbit{position:absolute;border:1px solid rgba(226,184,107,.2);border-radius:50%;width:280px;height:280px}.orbit-two{width:220px;height:220px;border-style:dashed;transform:rotate(25deg)}.visual-core{width:174px;height:174px;border-radius:50%;background:rgba(24,24,27,.9);border:1px solid rgba(226,184,107,.3);box-shadow:0 0 30px rgba(226,184,107,.15);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1;color:#f4f4f6}.visual-symbol{font-size:58px;line-height:1;color:var(--gold);text-shadow:0 0 20px rgba(226,184,107,.4)}.visual-core span{font-size:9px;letter-spacing:2.4px;margin-top:9px;color:#a1a1aa}.visual-core strong{font-size:20px;color:#fff}.float-card{position:absolute;z-index:2;display:flex;align-items:center;gap:10px;padding:12px 15px;border-radius:11px;background:rgba(24,24,27,.95);border:1px solid var(--card-border);color:#f4f4f6;box-shadow:0 12px 32px rgba(0,0,0,.5);min-width:190px}.float-top{top:24px;right:0}.float-bottom{bottom:22px;left:0}.float-icon{width:32px;height:32px;display:grid;place-items:center;border-radius:8px;background:#0c0c0e;color:var(--gold);font-size:21px}.gold-icon{background:#0c0c0e;color:var(--gold)}.float-card b,.float-card small{display:block}.float-card b{font-size:11px}.float-card small{font-size:10px;color:#a1a1aa;margin-top:2px}
+
+.offer{background:rgba(226,184,107,.1);border:1px solid rgba(226,184,107,.3);color:#e2b86b;border-radius:10px;padding:13px 18px;margin:18px auto;font-size:13px}
+section{padding:43px 0}.section-head{margin-bottom:22px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}@media(max-width:768px){.two{grid-template-columns:1fr}}
+.course,.panel{background:var(--card-bg);border:1px solid var(--card-border);border-radius:15px;box-shadow:0 6px 22px rgba(0,0,0,.3);padding:23px;color:#f4f4f6}.course{position:relative;overflow:hidden}.course:before{content:"";position:absolute;left:0;top:0;width:3px;height:0;background:var(--gold);transition:height .25s}.course:hover:before{height:100%}.ico{width:47px;height:47px;border-radius:12px;background:#0c0c0e;color:var(--gold);display:grid;place-items:center;font-size:24px;margin-bottom:12px}.course h3,.panel h3{font-size:17px;letter-spacing:-.3px;color:#f4f4f6;margin:8px 0}.course p{font-size:13px;line-height:1.75;min-height:50px;color:#a1a1aa}.pill{font-size:10px;letter-spacing:.35px;background:#0c0c0e;color:var(--gold);border:1px solid var(--card-border);padding:4px 8px;border-radius:6px;display:inline-block}.section-head .pill{background:rgba(226,184,107,.15);color:#e2b86b;border-color:rgba(226,184,107,.3)}
+
+.choice-card{background:var(--card-bg);min-height:190px;text-align:left;width:100%;cursor:pointer}.choice-card h3{margin:12px 0 4px}.choice-card.selected{border-color:var(--gold);background:rgba(226,184,107,.08);box-shadow:0 12px 28px rgba(226,184,107,.15)}.choice-card:hover{border-color:var(--gold)}
+.placeholder{background:rgba(24,24,27,.5);border:1px dashed var(--card-border);border-radius:12px;padding:36px 20px;color:var(--muted);text-align:center}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}.fields .wide{grid-column:span 2}@media(max-width:600px){.fields{grid-template-columns:1fr}.fields .wide{grid-column:span 1}}
+.field{display:flex;flex-direction:column;gap:6px}.field label{color:#d4d4d8;font-size:12px;font-weight:600}.field input,.field select,.field textarea{background:#0c0c0e;border:1px solid var(--card-border);color:#f4f4f6;border-radius:8px;padding:10px 12px;font-size:13px;width:100%;box-sizing:border-box}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(226,184,107,.2);border-color:var(--gold)}#success{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3);padding:12px;border-radius:8px;margin-top:14px;display:none;font-size:13px}
+.note{font-size:12px;color:var(--muted);margin-top:8px}
+
+footer{background:#050505;border-top:1px solid var(--line);padding:34px 0;margin-top:42px}
+footer .footer-wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+footer b{letter-spacing:1.5px;font-size:14px;color:#f4f4f6}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.reveal.is-visible{opacity:1;transform:translateY(0)}
+
+.faculty-card{display:flex;flex-direction:column;align-items:center;text-align:center}
+.faculty-avatar{width:110px;height:110px;border-radius:50%;overflow:hidden;border:3px solid var(--blue);margin-bottom:14px;box-shadow:0 6px 18px rgba(0,0,0,.3)}
+.faculty-avatar img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.faculty-role{color:var(--gold) !important;font-weight:600;font-size:13px;margin:-4px 0 10px !important;min-height:auto !important}
+
+/* Modal / Popup Styling */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:1000;display:none;place-items:center;padding:16px}
+.modal-overlay.active{display:grid}
+.modal-box{background:var(--card-bg);border:1px solid var(--gold);border-radius:18px;max-width:420px;width:100%;padding:28px;box-shadow:0 20px 50px rgba(0,0,0,.9);position:relative}
+.modal-close{position:absolute;right:16px;top:16px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+.modal-close:hover{color:#fff}
+.status-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(226,184,107,.15);color:var(--gold);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+
+/* Dedicated Fresh Page Layouts */
+#member-portal-page, #brain-gym-page, #game-arena-page, #countdown-page, #results-announcement-page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 0;
+}
+.portal-card {
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  border: 1px solid rgba(226,184,107,.4);
+  background: radial-gradient(circle at 50% -20%, rgba(226,184,107,.22), rgba(20,20,26,0.95) 75%), linear-gradient(180deg, #141418 0%, #0c0c0e 100%);
+  padding: 48px 30px;
+  border-radius: 24px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.85), inset 0 0 30px rgba(226,184,107,.1);
+  animation: pageFadeIn 0.6s ease-out;
+}
+@keyframes pageFadeIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.portal-card::before {
+  content: "";
+  position: absolute;
+  top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(circle, rgba(226,184,107,.08) 0%, transparent 60%);
+  animation: pulseGlow 6s infinite ease-in-out;
+  pointer-events: none;
+}
+@keyframes pulseGlow {
+  0%, 100%{ transform: scale(1); opacity: 0.6; }
+  50%{ transform: scale(1.15); opacity: 1; }
+}
+
+.bg-particle {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: rgba(226,184,107,.5);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(226,184,107,.8);
+  animation: floatParticle 8s infinite linear;
+  pointer-events: none;
+}
+.p1{ top:15%; left:15%; animation-duration:7s; }
+.p2{ top:65%; left:85%; animation-duration:9s; animation-delay:1s; }
+.p3{ top:80%; left:20%; animation-duration:11s; animation-delay:2s; }
+.p4{ top:25%; left:80%; animation-duration:6s; animation-delay:0.5s; }
+
+.journey-banner {
+  background: linear-gradient(135deg, rgba(226,184,107,.25), rgba(34,197,94,.2));
+  border: 1px solid rgba(226,184,107,.5);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 28px;
+  animation: popIn 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.loader-spinner { width:42px; height:42px; border:3.5px solid rgba(226,184,107,.2); border-top-color:var(--gold); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 18px }
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Game Selection Cards */
+.game-select-card { background: rgba(24,24,27,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; text-align: left; cursor: pointer; transition: all 0.2s ease; display:flex; flex-direction:column; justify-content:space-between; position:relative; overflow:hidden; }
+.game-select-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(226,184,107,0.15); }
+.game-select-card h4 { color: var(--gold); margin: 0 0 6px; font-size: 16px; display:flex; align-items:center; gap:8px; }
+.game-rating-badge { position:absolute; top:12px; right:12px; background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid rgba(34,197,94,0.4); font-size:10px; font-weight:700; padding:2px 6px; border-radius:4px; }
+
+/* ULTRA-MINIMAL FULL-BLEED GAME ARENA STYLES */
+#game-arena-page {
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #040406;
+  justify-content: center;
+  align-items: center;
+}
+.minimal-game-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Minimalist HUD Overlay inside the Game Screen */
+.hud-score-badge {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(12, 12, 16, 0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(226,184,107,0.4);
+  padding: 8px 18px;
+  border-radius: 30px;
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  pointer-events: none;
+}
+.hud-exit-btn {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  z-index: 10;
+  background: rgba(239,68,68,0.25);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(239,68,68,0.5);
+  color: #f87171;
+  border-radius: 30px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hud-exit-btn:hover {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* On-screen touch control buttons overlay for mobile/desktop */
+.hud-controls-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 24px;
+}
+.hud-btn {
+  background: rgba(24, 24, 27, 0.7);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(226,184,107,0.5);
+  color: var(--gold);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 22px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+  user-select: none;
+  touch-action: manipulation;
+}
+.hud-btn:active {
+  transform: scale(0.92);
+  background: var(--gold);
+  color: #000;
+}
+.hud-btn-action {
+  background: linear-gradient(135deg,#ef4444,#dc2626) !important;
+  color: #fff !important;
+  border-color: rgba(239,68,68,0.8) !important;
+  width: 68px;
+  height: 68px;
+}
+
+/* Countdown Big Number */
+#countdown-number { font-size: 80px; font-weight: 800; color: var(--gold); animation: countPulse 1s infinite alternate; text-shadow: 0 0 30px rgba(226,184,107,0.6); }
+@keyframes countPulse { from{ transform: scale(1); } to{ transform: scale(1.1); } }
+
+/* Accuracy Chart Container */
+.chart-box { background: rgba(12,12,14,0.9); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px; margin-top: 24px; text-align: left; }
+.chart-box h4 { color: #4ade80; margin-top: 0; font-size: 16px; display: flex; align-items: center; justify-content: space-between; }
+/* SKA Academy — banner-matched navy, white & gold theme */
+:root{
+  --navy:#0b2b52; --blue:#174b7a; --gold:#f2ad00; --ink:#102b4e;
+  --muted:#60738c; --bg:#f4f7fc; --line:#d9e3ef; --white:#ffffff;
+  --card-bg:#ffffff; --card-border:#dce5f0;
+}
+body{background:#f4f7fc!important;color:#102b4e!important}
+header{background:rgba(255,255,255,.96)!important;border-bottom:1px solid #dce5f0!important;box-shadow:0 5px 24px rgba(11,43,82,.09)!important}
+.brand{color:#0b2b52!important}
+nav a,nav button{color:#18395f!important}
+nav a:hover,nav button:hover{background:#edf3fa!important;color:#0b2b52!important}
+.btn-login-nav{background:#edf3fa!important;color:#0b2b52!important;border-color:#cbd9e8!important}
+.btn-login-nav:hover{background:#0b2b52!important;color:#fff!important}
+.btn-enroll-nav,.primary{background:linear-gradient(135deg,#ffc21a,#f0a900)!important;color:#102b4e!important;box-shadow:0 8px 20px rgba(242,173,0,.22)!important}
+.btn-results-nav{background:#eaf2fb!important;color:#174b7a!important;border:1px solid #b9cde3!important}
+.btn-results-nav:hover{background:#174b7a!important;color:#fff!important}
+.hero{background:radial-gradient(circle at 78% 30%,rgba(242,173,0,.13),transparent 40%),linear-gradient(115deg,#fff 0%,#f3f7fc 62%,#e7eff8 100%)!important;border:1px solid #d8e3ef!important;box-shadow:0 22px 55px rgba(11,43,82,.12)!important}
+.hero h1{color:#0b2b52!important}.hero h1 em,.hero h1 strong{color:#e7a000!important}
+.hero p,.hero-proof{color:#526781!important}.eyebrow{color:#174b7a!important}.eyebrow-dot{background:#f2ad00!important;box-shadow:0 0 10px rgba(242,173,0,.5)!important}
+.light{background:#fff!important;color:#0b2b52!important;border:1px solid #b9c9dc!important}
+.hero-visual{background:linear-gradient(145deg,#0b2b52,#174b7a)!important;border-radius:20px;overflow:hidden}
+.visual-orbit{border-color:rgba(255,255,255,.25)!important}.visual-core{background:rgba(255,255,255,.1)!important;border-color:rgba(255,255,255,.35)!important;color:#fff!important}.visual-core span{color:#dce8f6!important}.visual-core strong{color:#fff!important}.visual-symbol{color:#ffc21a!important}
+.float-card{background:#fff!important;border-color:#dce5f0!important;color:#102b4e!important;box-shadow:0 12px 32px rgba(0,0,0,.18)!important}.float-card small{color:#60738c!important}.float-icon{background:#edf3fa!important;color:#d99a00!important}
+.offer{background:#fff8e5!important;border:1px solid #f3d27a!important;color:#765000!important}
+section{color:#102b4e!important}h2{color:#0b2b52!important}.sub,.note{color:#60738c!important}
+.course,.panel{background:#fff!important;border:1px solid #dce5f0!important;box-shadow:0 6px 22px rgba(11,43,82,.07)!important;color:#102b4e!important}
+.course h3,.panel h3{color:#0b2b52!important}.course p{color:#60738c!important}.ico{background:#edf3fa!important;color:#d99a00!important}
+.pill{background:#edf3fa!important;color:#174b7a!important;border-color:#d4e0ed!important}.section-head .pill{background:#fff5d9!important;color:#805600!important;border-color:#f0d27e!important}
+.choice-card{background:#fff!important}.choice-card.selected{background:#fff8e5!important;border-color:#e5a900!important;box-shadow:0 12px 28px rgba(242,173,0,.13)!important}.choice-card:hover{border-color:#e5a900!important}
+.placeholder{background:#f8fafd!important;border-color:#cbd9e8!important;color:#60738c!important}.placeholder h3{color:#0b2b52!important}
+.field label{color:#294565!important}.field input,.field select,.field textarea{background:#fff!important;border:1px solid #cbd9e8!important;color:#102b4e!important}.field input:focus,.field select:focus,.field textarea:focus{outline:3px solid rgba(242,173,0,.18)!important;border-color:#e5a900!important}
+#success{background:#eaf8ef!important;color:#16713b!important;border-color:#b9e4c8!important}
+footer{background:#0b2b52!important;border-top:3px solid #f2ad00!important}footer b{color:#fff!important}footer .note{color:#dce8f6!important}
+.modal-overlay{background:rgba(7,25,48,.72)!important}.modal-box{background:#fff!important;border:1px solid #e5b12c!important;box-shadow:0 20px 50px rgba(0,0,0,.25)!important}.modal-box h3{color:#0b2b52!important}.modal-box p,.modal-box small{color:#60738c!important}.modal-close{color:#60738c!important}.modal-close:hover{color:#0b2b52!important}
+.portal-card{background:radial-gradient(circle at 50% -20%,rgba(242,173,0,.12),#fff 72%)!important;border:1px solid #d6e2ef!important;box-shadow:0 20px 60px rgba(11,43,82,.12)!important;color:#102b4e!important}
+.portal-card h2,.portal-card h3,.portal-card h4{color:#0b2b52!important}.portal-card p{color:#526781!important}.portal-card strong{color:#174b7a!important}
+.journey-banner{background:linear-gradient(135deg,#fff5d9,#edf4fb)!important;border:1px solid #efd27d!important}.journey-banner h3{color:#9a6900!important}.journey-banner p{color:#294565!important}
+.portal-card .panel{background:#f8fafd!important;border-color:#dce5f0!important}.portal-card .panel h4{color:#0b2b52!important}
+.portal-card [style*="background:rgba(12,12,14"],.portal-card [style*="background: rgba(12,12,14"],.chart-box{background:#f8fafd!important;border-color:#dce5f0!important;color:#102b4e!important}
+.portal-card [style*="color:#fff"],.portal-card [style*="color: #fff"]{color:#102b4e!important}
+.portal-card [style*="color:var(--muted)"],.portal-card [style*="color: var(--muted)"]{color:#60738c!important}
+.game-select-card{background:#fff!important;border-color:#dce5f0!important}.game-select-card h4{color:#174b7a!important}.game-select-card p{color:#60738c!important}
+.status-badge{background:#fff5d9!important;color:#805600!important}
+/* Keep the immersive WebGL play screen dark for contrast and gameplay clarity. */
+#game-arena-page,.minimal-game-wrapper{background:#040406!important}
+#game-arena-page .hud-score-badge{color:#f2ad00!important}
+@media(max-width:768px){.hero{grid-template-columns:1fr!important}.hero-visual{min-height:280px}.nav-wrap{align-items:flex-start}.brand{flex-shrink:0}}
+
+
+/* SKA Academy learning suite — navy, white and gold */
+.ska-suite{margin:34px auto 10px;max-width:1040px;text-align:left;color:var(--ink)}
+.ska-suite-head,.ska-card-title,.ska-attendance-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.ska-suite-head h2{font-size:clamp(24px,4vw,34px);margin:12px 0 5px;color:#fff}
+.ska-suite-actions,.ska-inline-actions{display:flex;gap:9px;flex-wrap:wrap}
+.ska-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:20px 0}
+.ska-stat,.ska-card,.ska-admin-stat{background:linear-gradient(145deg,rgba(18,42,74,.96),rgba(10,25,46,.98));border:1px solid rgba(226,184,107,.28);border-radius:14px;padding:17px;box-shadow:0 10px 26px rgba(0,0,0,.18)}
+.ska-stat span,.ska-stat small,.ska-admin-stat span{display:block;color:#cbd5e1;font-size:12px}
+.ska-stat strong{display:block;color:var(--gold);font-size:27px;margin:5px 0}
+.ska-card{margin:14px 0;padding:20px}
+.ska-card h3{margin:0 0 9px;color:#fff;font-size:19px}
+.ska-card h4{color:var(--gold);margin:22px 0 10px}
+.ska-muted{color:#b7c4d5;font-size:13px;line-height:1.65}
+.ska-two{display:grid;grid-template-columns:1.2fr .8fr;gap:14px}
+.ska-progress{height:10px;background:#0a1930;border-radius:20px;overflow:hidden;margin:20px 0 8px;border:1px solid rgba(255,255,255,.12)}
+.ska-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#c69a47,#f2d28a);transition:width .3s}
+.ska-checklist{color:#e2e8f0;line-height:2;padding-left:20px;font-size:13px}
+.ska-tabs{display:flex;gap:7px;overflow-x:auto;padding:8px 0 12px;scrollbar-width:thin}
+.ska-tabs button{flex:0 0 auto;border:1px solid rgba(226,184,107,.3);background:#102846;color:#e2e8f0;border-radius:9px;padding:10px 13px;font-size:12px;cursor:pointer}
+.ska-tabs button.active,.ska-tabs button:hover{background:var(--gold);color:#10213a;border-color:var(--gold);font-weight:800}
+.ska-panel{display:none}.ska-panel.active{display:block}
+.ska-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.ska-form-grid label{display:flex;flex-direction:column;gap:6px;color:#e2e8f0;font-size:12px;font-weight:700}
+.ska-form-grid input{width:100%;box-sizing:border-box;border-radius:8px;border:1px solid rgba(226,184,107,.35);background:#091a30;color:#fff;padding:11px;font:inherit}
+.ska-form-grid input:focus{outline:2px solid rgba(226,184,107,.3);border-color:var(--gold)}
+.ska-wide{grid-column:1/-1}
+.ska-question{padding:14px;border-radius:10px;background:#0a1b32;color:#fff;margin:16px 0;font-weight:700}
+.ska-quiz-options{display:grid;gap:9px;margin-bottom:15px}
+.ska-option{display:flex;align-items:center;gap:10px;padding:11px;border:1px solid rgba(226,184,107,.25);border-radius:9px;background:#102846;color:#e5edf7;font-size:13px}
+.ska-notice{display:none;margin-top:14px;padding:12px;border-radius:9px;background:rgba(226,184,107,.12);border:1px solid rgba(226,184,107,.35);color:#f7dfad;font-size:13px;line-height:1.5}
+.ska-notice.show{display:block}
+.ska-list-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);color:#e2e8f0;font-size:13px;flex-wrap:wrap}
+.ska-list-row a{color:#f1cc82;text-decoration:none}.ska-list-row a:hover{text-decoration:underline}
+.ska-rank{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:rgba(226,184,107,.16);color:var(--gold);font-weight:800;margin-right:9px}
+.ska-admin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}
+.ska-admin-stat strong{display:block;color:var(--gold);font-size:23px;margin-bottom:5px}
+.ska-demo-tag{font-size:10px;vertical-align:middle;color:#f6d58f;border:1px solid rgba(226,184,107,.4);padding:4px 7px;border-radius:20px}
+.ska-security-note{border-left:3px solid var(--gold);padding:10px 12px;background:rgba(226,184,107,.07);margin-top:20px}
+.ska-certificate{background:#fff;color:#142b49;border:8px double #c69a47;padding:30px 22px;text-align:center;margin-top:18px;border-radius:4px}
+.ska-certificate h2{color:#142b49;font-family:Georgia,serif;font-size:28px}.ska-certificate .cert-name{font-family:Georgia,serif;font-size:25px;color:#a87928;border-bottom:1px solid #c69a47;display:inline-block;padding:8px 20px}
+.ska-certificate p{color:#34445a}.ska-certificate small{color:#65748a}
+@media(max-width:700px){.ska-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.ska-two{grid-template-columns:1fr}.ska-suite-head{align-items:flex-start}.ska-form-grid{grid-template-columns:1fr}.ska-wide{grid-column:auto}.ska-admin-grid{grid-template-columns:1fr}.ska-card{padding:15px}.ska-suite{width:100%}}
+@media print{body *{visibility:hidden!important}.ska-certificate,.ska-certificate *{visibility:visible!important}.ska-certificate{position:absolute;left:0;top:0;width:100%;box-sizing:border-box;margin:0;print-color-adjust:exact;-webkit-print-color-adjust:exact}}
+
+</style>
+</head>
+<body>
+
+<header><div class="wrap nav-wrap">
+<a href="javascript:void(0)" onclick="goToHome()" class="brand">
+  <img src="assets/logo.png" alt="SKA Academy Logo" class="logo-img" onerror="this.style.display='none'; document.getElementById('logo-fallback-icon').style.display='inline';">
+  <span id="logo-fallback-icon" style="display:none;">✦</span>
+  <span>SKA ACADEMY</span>
+</a>
+<nav id="main-nav">
+  <button id="nav-home-btn" onclick="goToHome()" style="font-weight:700;color:var(--gold);">Home 🏠</button>
+  <a href="#courses" class="public-nav">Subjects</a>
+  <a href="#learning" class="public-nav">Learning modes</a>
+  <a href="#syllabus" class="public-nav">Academic syllabus</a>
+  <a href="#faculty" class="public-nav">Lecturing faculty</a>
+  <button onclick="openBrainGym()" class="btn-login-nav public-nav" style="background:rgba(34,197,94,0.15)!important;color:#4ade80!important;border-color:rgba(34,197,94,0.4)!important;">🎮 Native 3D Games Suite</button>
+  <button onclick="openResultsPage()" class="btn-results-nav public-nav">📊 Exam Results</button>
+  <a href="#enroll" class="btn-enroll-nav public-nav">Enroll</a>
+  <button id="nav-login-btn" onclick="openLoginModal()" class="btn-login-nav">Member Login 🔑</button>
+</nav>
+</div></header>
+
+<!-- MAIN CONTAINER FOR PUBLIC WEBSITE -->
+<div id="public-website-view">
+<main class="wrap">
+<div class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><span class="eyebrow-dot"></span> LEARN <span class="eyebrow-sep">•</span> PRACTICE <span class="eyebrow-sep">•</span> EXCEL</div>
+    <h1>SKA Academy<br><em>Empowering Minds,</em><br><strong>Building a Better Future.</strong></h1>
+    <p>Your trusted learning partner for academic excellence, practical technical skills and personal growth through flexible online and offline classes.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#courses">Explore Courses <span aria-hidden="true">→</span></a>
+      <a class="btn light" href="#learning">Choose Learning Mode</a>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);font-weight:700;">🎮 Play Native 3D Games</button>
+    </div>
+    <div class="hero-proof"><span>✦</span> Practical skills. Interactive learning. A brighter future.</div>
+  </div>
+  <div class="hero-visual hero-students" aria-label="Students learning and building their future">
+    <div class="visual-orbit"></div>
+    <div class="visual-orbit orbit-two"></div>
+    <div class="visual-core">
+      <div class="visual-symbol">⚡</div>
+      <span>SKILLS & TECH</span>
+      <strong>Starts Here.</strong>
+    </div>
+    <div class="float-card float-top"><span class="float-icon gold-icon">💻</span><div><b>Interactive Platform</b><small>Engaging live sessions</small></div></div>
+    <div class="float-card float-bottom"><span class="float-icon gold-icon">✦</span><div><b>Flexible learning</b><small>Online & offline classes</small></div></div>
+  </div>
+</div>
+
+<div class="offer">🎉 FREE LAUNCH OFFER — Join our skills and technology classes during the free launch period. No course fee at present.</div>
+
+<section id="courses">
+<div class="section-head"><div><h2>Our Subjects & Courses</h2><p class="sub">Choose a subject and start building practical knowledge on our interactive platform.</p></div><span class="pill">ALL SUBJECTS FREE DURING LAUNCH</span></div>
+<div class="grid">
+<article class="course"><div class="ico">⚙️</div><h3>Basics of Engineering</h3><p>Engineering fundamentals, materials, measurements, mechanics and workshop practices.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🧯</div><h3>Fire Safety</h3><p>Fire prevention, fire classifications, protection systems and emergency response.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">❄️</div><h3>HVAC Systems</h3><p>Heating, ventilation, air distribution, cooling loads and HVAC equipment basics.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">📐</div><h3>Engineering Drawing</h3><p>Technical drawing standards, projections, dimensioning and isometric drawings.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">🌬️</div><h3>Air Conditioning</h3><p>Refrigeration cycles, AC components, operating principles and troubleshooting.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+<article class="course"><div class="ico">⚡</div><h3>Electrical Systems</h3><p>Electrical fundamentals, wiring, protection devices, motors and safety.</p><span class="pill">FREE · ONLINE / OFFLINE</span></article>
+</div></section>
+
+<section id="learning"><div class="section-head"><div><h2>First, Choose Your Learning Mode</h2><p class="sub">Select online or offline before proceeding to enrollment.</p></div></div>
+<div class="two">
+<button type="button" class="panel choice-card" id="online-choice" onclick="chooseMode('Online')" aria-pressed="false"><div class="ico">🌐</div><h3>Online Classes</h3><p class="sub">Join engaging remote classes on our interactive learning platform from anywhere.</p><b>Choose Online →</b></button>
+<button type="button" class="panel choice-card" id="offline-choice" onclick="chooseMode('Offline')" aria-pressed="false"><div class="ico">🏫</div><h3>Offline Classes</h3><p class="sub">Attend in-person interactive classroom sessions and collaborative practical workshops.</p><b>Choose Offline →</b></button>
+</div>
+<p id="mode-status" class="note" aria-live="polite">Please select a learning mode to continue.</p>
+<a id="continue-enroll" class="btn primary" href="#enroll" style="pointer-events:none;opacity:.5" aria-disabled="true">Continue to enrollment →</a>
+</section>
+
+<!-- PUBLIC GUEST SYLLABUS SECTION -->
+<section id="syllabus">
+  <div class="section-head">
+    <div>
+      <h2>Academic Syllabus</h2>
+      <p class="sub">Exclusive access area for registered academy members.</p>
+    </div>
+    <span class="status-badge">🔒 GUEST ACCESS</span>
+  </div>
+  <div class="placeholder">
+    <h3 style="margin-top:0;color:#fff;font-size:20px;">🔒 Registered Member Access Required</h3>
+    <p style="max-width:520px;margin:10px auto 20px;">The Academic Syllabus and interactive platform dashboard are reserved for enrolled members. Please log in with your registered Login ID (Phone / Email) & Password (Full Name) to access this section.</p>
+    <button onclick="openLoginModal()" class="btn primary">Login as Registered Member →</button>
+    <div style="margin-top:14px;"><a href="#enroll" style="color:var(--gold);font-size:12px;text-decoration:underline;">Not registered yet? Register First Below</a></div>
+  </div>
+</section>
+
+<section id="faculty"><div class="section-head"><div><h2>Lecturing Faculty</h2><p class="sub">Meet the trainers and industry professionals who will guide your learning.</p></div></div>
+<div class="grid">
+<article class="course faculty-card">
+<div class="faculty-avatar"><img src="assets/nayeem-ahmed.jpg" alt="Nayeem Ahmed" onerror="this.style.display='none'"></div>
+<div class="faculty-info">
+<h3>Nayeem Ahmed</h3>
+<p class="faculty-role">Assistant Professor — Fire Safety & Skills</p>
+<p>Specialist in fire prevention, emergency protection systems, safety regulations, interactive technical training, and skill development.</p>
+<span class="pill">SUBJECT LECTURER</span>
+</div>
+</article>
+<article class="course"><div class="ico">👷</div><h3>Industry Professionals</h3><p>Experienced technical professionals guiding practical aspects and skill development.</p><span class="pill">PROFILES COMING SOON</span></article>
+<article class="course"><div class="ico">🧰</div><h3>Practical Trainers</h3><p>Guidance for hands-on skills, interactive tools, and safe work practices.</p><span class="pill">PROFILES COMING SOON</span></article>
+</div>
+<p class="note">More faculty profiles, qualifications, and industry experts will be added as upcoming terms open.</p></section>
+
+<section id="enroll"><div class="section-head"><div><h2>Free Student Registration</h2><p class="sub">Complete the form to send an enrollment request to SKA Academy.</p></div><span class="pill">NO COURSE FEE AT PRESENT</span></div>
+<div class="two"><div class="panel"><h3 style="color:#fff;margin-top:0">Enroll in a subject</h3>
+<form id="enrollment">
+<div class="fields">
+<div class="field"><label for="name">Full name *</label><input id="name" name="name" required placeholder="Your full name (Password)"></div>
+<div class="field"><label for="phone">Phone number (Login ID) *</label><input id="phone" name="phone" required type="tel" pattern="[0-9+() -]{8,18}" placeholder="Your phone number"></div>
+<div class="field"><label for="email">Email address (Alternative Login ID)</label><input id="email" name="email" type="email" placeholder="you@example.com"></div>
+<div class="field"><label for="course">Select subject *</label><select id="course" name="course" required><option value="">Choose a subject</option><option>Basics of Engineering</option><option>Fire Safety</option><option>HVAC Systems</option><option>Engineering Drawing</option><option>Air Conditioning</option><option>Electrical Systems</option></select></div>
+<div class="field"><label for="mode">Learning mode *</label><select id="mode" name="mode" required disabled><option value="">Choose mode above first</option><option>Online</option><option>Offline</option></select></div>
+<div class="field"><label for="batch">Preferred batch *</label><select id="batch" name="batch" required><option value="">Choose time</option><option>Morning · 8:00–10:00 AM</option><option>Midday · 11:00 AM–1:00 PM</option><option>Afternoon · 2:00–4:00 PM</option><option>Evening · 6:00–8:00 PM</option></select></div>
+<div class="field wide"><label for="message">Message (optional)</label><textarea id="message" name="message" placeholder="Any question or preferred start date?"></textarea></div>
+</div>
+<button class="btn primary" type="submit">Send free enrollment request →</button>
+<p class="note">Your registration details will be saved for member login verification.</p>
+<div id="success" role="status">Thank you! Your enrollment request has been submitted. Opening your Member Portal...</div>
+</form>
+</div>
+<div class="panel"><h3 style="color:#fff;margin-top:0">What happens next?</h3><ol style="padding-left:20px;color:var(--muted)"><li>Submit your free enrollment request.</li><li>Your enrollment request is reviewed by the academy. Use the secure login details provided by the academy.</li><li>Instant access to your private member portal & interactive class platform.</li></ol><hr style="border:0;border-top:1px solid var(--line);margin:18px 0"><b style="color:#fff">Fee information</b><p class="sub">Classes are free during the launch period. If fees are introduced later, students will be informed in advance before any paid enrollment.</p></div></div></section>
+</main>
+</div>
+
+<!-- DEDICATED FRESH MEMBER PORTAL PAGE (SHOWS ONLY WHEN LOGGED IN) -->
+<div id="member-portal-page" class="wrap" style="display:none;">
+  <div class="portal-card">
+    <div class="bg-particle p1"></div>
+    <div class="bg-particle p2"></div>
+    <div class="bg-particle p3"></div>
+    <div class="bg-particle p4"></div>
+
+    <div class="journey-banner">
+      <h3 style="margin:0;color:var(--gold);font-size:24px;">🎉 Congratulations! You Are In!</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Your learning journey has officially started. Welcome to SKA Academy!</p>
+    </div>
+
+    <div class="loader-spinner"></div>
+    <span class="pill" style="margin-bottom:12px;">STUDENT INTERACTIVE PORTAL</span>
+    <h2 style="margin:12px 0 8px;color:#fff;font-size:28px;">Engaging Class Platform & Syllabus</h2>
+    <h3 style="margin:0 0 16px;color:var(--gold);font-size:18px;font-weight:600;">Live Class Hub & Syllabus Coming Soon ⏳</h3>
+    <p style="margin:0 auto 24px;max-width:560px;color:var(--muted);line-height:1.7;font-size:14px;">
+      Welcome, <strong id="member-name-display" style="color:var(--gold)">Registered Student</strong>! You are successfully logged into your private Student Dashboard. Your interactive class links, subject module blueprints, and practical toolkits are currently being updated by our faculty team.
+    </p>
+    
+    <div class="grid" style="margin-top:28px;opacity:0.85;text-align:left;">
+      <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
+        <small style="color:var(--gold);font-weight:700;">MODULE 1</small>
+        <h4 style="margin:6px 0;font-size:16px;">Core Practical Skills & Subject Blueprint</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Interactive session materials updating soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Explore Subjects 🚀</button>
+      </div>
+      <div class="panel" style="border:1px solid rgba(226,184,107,.3);">
+        <small style="color:var(--gold);font-weight:700;">MODULE 2</small>
+        <h4 style="margin:6px 0;font-size:16px;">Interactive Class Hub & Workshops</h4>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px;">[ Live class streaming links opening soon ]</p>
+        <button onclick="goToHome()" class="btn primary" style="padding:8px 14px;font-size:11px;">Explore Subjects 🚀</button>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+      <button onclick="goToHome()" class="btn primary">Return to Main Page 🏠</button>
+      <button onclick="openBrainGym()" class="btn" style="background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.4);">🎮 Play 3D Games</button>
+      <button onclick="openResultsPage()" class="btn-results-nav" style="padding:10px 18px;border-radius:8px;">📊 View Exam Results</button>
+      <button onclick="logoutMember()" class="btn light" style="border-color:rgba(239,68,68,.4);color:#f87171;">Log Out of Portal</button>
+    </div>
+  </div>
+
+    <section class="ska-suite" id="ska-learning-suite" aria-label="Student learning dashboard">
+      <div class="ska-suite-head">
+        <div><span class="pill">SKA ACADEMY • LEARNING SPACE</span>
+          <h2>My Learning Dashboard</h2>
+          <p class="sub">Your courses, practice, attendance and achievements in one place.</p>
+        </div>
+        <div class="ska-suite-actions">
+          <button class="btn light" onclick="skaShowTab('student')">Student Home</button>
+          <button class="btn primary" onclick="skaShowTab('admin')">Admin Tools</button>
+        </div>
+      </div>
+
+      <div class="ska-stats">
+        <article class="ska-stat"><span>Attendance</span><strong id="ska-attendance-stat">0%</strong><small>Based on your check-ins</small></article>
+        <article class="ska-stat"><span>Quiz points</span><strong id="ska-points-stat">0</strong><small>Your practice score</small></article>
+        <article class="ska-stat"><span>Exams completed</span><strong id="ska-exams-stat">0</strong><small>On this browser</small></article>
+        <article class="ska-stat"><span>Study resources</span><strong id="ska-resources-stat">0</strong><small>Available to learners</small></article>
+      </div>
+
+      <div class="ska-tabs" role="tablist" aria-label="Learning tools">
+        <button class="active" id="ska-tab-student" onclick="skaShowTab('student')" role="tab">Student Dashboard</button>
+        <button id="ska-tab-exam" onclick="skaShowTab('exam')" role="tab">Online Exam</button>
+        <button id="ska-tab-library" onclick="skaShowTab('library')" role="tab">Learning Library</button>
+        <button id="ska-tab-attendance" onclick="skaShowTab('attendance')" role="tab">Attendance</button>
+        <button id="ska-tab-quiz" onclick="skaShowTab('quiz')" role="tab">Daily Quiz</button>
+        <button id="ska-tab-certificate" onclick="skaShowTab('certificate')" role="tab">Certificate</button>
+        <button id="ska-tab-admin" onclick="skaShowTab('admin')" role="tab">Admin Dashboard</button>
+      </div>
+
+      <div class="ska-panel active" id="ska-panel-student">
+        <div class="ska-two">
+          <div class="ska-card">
+            <h3>Welcome back, <span id="ska-student-name">Student</span> 👋</h3>
+            <p class="sub">Keep learning a little every day. Your progress on this device is shown below.</p>
+            <div class="ska-progress"><span id="ska-progress-bar"></span></div>
+            <p class="ska-muted" id="ska-progress-label">Complete a quiz or exam to build your learning record.</p>
+            <div class="ska-inline-actions">
+              <button class="btn primary" onclick="skaShowTab('exam')">Start an exam →</button>
+              <button class="btn light" onclick="skaShowTab('library')">Open study library</button>
+            </div>
+          </div>
+          <div class="ska-card">
+            <h3>Learning checklist</h3>
+            <ul class="ska-checklist">
+              <li>Review your subject notes</li><li>Attempt the daily knowledge quiz</li>
+              <li>Attend your scheduled class</li><li>Complete a practice examination</li>
+            </ul>
+          </div>
+        </div>
+        <div class="ska-card ska-leader-card">
+          <div class="ska-card-title"><div><h3>🏆 Quiz leaderboard</h3><p class="ska-muted">Scores saved on this browser only.</p></div>
+          <button class="btn light" onclick="skaRenderLeaderboard()">Refresh</button></div>
+          <div id="ska-leaderboard"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-exam">
+        <div class="ska-card">
+          <h3>Online Practice Examination</h3>
+          <p class="ska-muted">A sample engineering fundamentals test. Select one answer per question and submit to see your score.</p>
+          <div id="ska-exam-questions"></div>
+          <button class="btn primary" onclick="skaSubmitExam()">Submit examination</button>
+          <div id="ska-exam-result" class="ska-notice" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-library">
+        <div class="ska-card">
+          <h3>Digital Learning Library</h3>
+          <p class="ska-muted">Open learning resources shared by the academy. Only verified public links should be added.</p>
+          <div id="ska-resource-list"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-attendance">
+        <div class="ska-card">
+          <h3>Attendance Management</h3>
+          <p class="ska-muted">Record your attendance for today. This is a personal browser demo, not an official attendance register.</p>
+          <div class="ska-attendance-row"><div><strong id="ska-today-date"></strong><p class="ska-muted">Today's class check-in</p></div>
+            <button class="btn primary" id="ska-checkin-btn" onclick="skaCheckIn()">Mark present</button></div>
+          <div id="ska-attendance-message" class="ska-notice" aria-live="polite"></div>
+          <h4>Recent attendance</h4><div id="ska-attendance-history"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-quiz">
+        <div class="ska-card">
+          <h3>Daily Knowledge Quiz</h3>
+          <p class="ska-muted">Answer a short question and earn points for the leaderboard.</p>
+          <div id="ska-daily-question" class="ska-question"></div>
+          <div id="ska-quiz-options" class="ska-quiz-options"></div>
+          <button class="btn primary" onclick="skaSubmitDailyQuiz()">Submit answer</button>
+          <div id="ska-quiz-result" class="ska-notice" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-certificate">
+        <div class="ska-card">
+          <h3>Certificate Generator</h3>
+          <p class="ska-muted">Create a printable participation-style certificate preview. It is not an official qualification or proof of course completion.</p>
+          <div class="ska-form-grid">
+            <label>Student name<input id="ska-cert-name" type="text" maxlength="70" placeholder="Enter full name"></label>
+            <label>Course / activity<input id="ska-cert-course" type="text" maxlength="90" placeholder="e.g. Engineering Fundamentals"></label>
+          </div>
+          <button class="btn primary" onclick="skaGenerateCertificate()">Generate certificate</button>
+          <div id="ska-certificate-preview"></div>
+        </div>
+      </div>
+
+      <div class="ska-panel" id="ska-panel-admin">
+        <div class="ska-card">
+          <h3>Admin Dashboard <span class="ska-demo-tag">LOCAL DEMO</span></h3>
+          <p class="ska-muted">These tools demonstrate content management in this browser. They are not protected admin controls and do not sync to other devices.</p>
+          <div class="ska-admin-grid">
+            <div class="ska-admin-stat"><strong id="ska-admin-students">1</strong><span>Local learner profile</span></div>
+            <div class="ska-admin-stat"><strong id="ska-admin-attendance">0</strong><span>Attendance entries</span></div>
+            <div class="ska-admin-stat"><strong id="ska-admin-attempts">0</strong><span>Exam attempts</span></div>
+          </div>
+          <h4>Add a learning resource link</h4>
+          <div class="ska-form-grid">
+            <label>Resource title<input id="ska-resource-title" type="text" maxlength="90" placeholder="e.g. HVAC introduction notes"></label>
+            <label>Subject<input id="ska-resource-subject" type="text" maxlength="60" placeholder="e.g. HVAC Systems"></label>
+            <label class="ska-wide">Public resource URL<input id="ska-resource-url" type="url" placeholder="https://example.com/notes.pdf"></label>
+          </div>
+          <button class="btn primary" onclick="skaAddResource()">Add resource</button>
+          <div id="ska-admin-message" class="ska-notice" aria-live="polite"></div>
+          <h4>Local resource management</h4><div id="ska-admin-resources"></div>
+          <p class="ska-muted ska-security-note">Production requirement: connect a real backend (such as Firebase or Supabase), enforce server-side roles and permissions, and use secure authentication before storing real student records, official attendance, exam marks or certificates.</p>
+        </div>
+      </div>
+    </section>
+
+</div>
+
+<!-- DEDICATED RESULTS ANNOUNCEMENT FRESH PAGE -->
+<div id="results-announcement-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:720px;text-align:center;">
+    <div class="bg-particle p1"></div>
+    <div class="bg-particle p2"></div>
+
+    <div class="journey-banner" style="background:linear-gradient(135deg, rgba(59,130,246,0.25), rgba(226,184,107,0.2)); border-color:rgba(59,130,246,0.5);">
+      <h3 style="margin:0;color:#60a5fa;font-size:26px;">📢 Examination Results Portal</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:14px;line-height:1.5;">Official Test Marks & Evaluation Portal for Registered Academy Members</p>
+    </div>
+
+    <div style="background:rgba(12,12,14,0.9);border:1px solid rgba(226,184,107,0.3);border-radius:18px;padding:36px 24px;margin:16px 0;box-shadow:0 12px 30px rgba(0,0,0,0.5);">
+      <div style="font-size:52px;margin-bottom:12px;">⏳</div>
+      <span class="pill" style="background:rgba(234,179,8,0.15);color:#facc15;border-color:rgba(234,179,8,0.3);margin-bottom:14px;font-size:11px;">STATUS: NOT ANNOUNCED YET</span>
+      <h2 style="color:#fff;margin:12px 0 10px;font-size:24px;">Results Still Not Announced</h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto 20px;line-height:1.7;font-size:14px;">
+        Welcome <strong id="results-member-name" style="color:var(--gold)">Member</strong>! We have not conducted any formal subject examinations or evaluation tests for your batch yet. Once a test or task is assigned and evaluated by our lecturing faculty, your test marks and performance report will be announced right here.
+      </p>
+
+      <div style="background:rgba(24,24,27,0.8);border:1px dashed var(--card-border);border-radius:12px;padding:16px;max-width:440px;margin:0 auto;text-align:left;">
+        <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:6px;">📋 Evaluation Summary</div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#d4d4d8;margin-bottom:4px;">
+          <span>Tasks Completed:</span> <b>0 / 0</b>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#d4d4d8;margin-bottom:4px;">
+          <span>Test Marks Grade:</span> <b>Pending</b>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#d4d4d8;">
+          <span>Official Status:</span> <b style="color:#facc15;">Awaiting Exam</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISTURBANCE-FREE SINGLE NAVIGATION OPTION -->
+    <div style="margin-top:28px;">
+      <button onclick="goToHome()" class="btn primary" style="padding:12px 28px;font-size:14px;font-weight:700;">Home 🏠</button>
+    </div>
+  </div>
+</div>
+
+<!-- DEDICATED NATIVE 3D GAMES SELECTION PAGE -->
+<div id="brain-gym-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:980px;">
+    <div class="bg-particle p1"></div>
+    <div class="bg-particle p2"></div>
+
+    <div class="journey-banner" style="background:linear-gradient(135deg, rgba(34,197,94,0.25), rgba(226,184,107,0.2)); border-color:rgba(34,197,94,0.5);">
+      <h3 style="margin:0;color:#4ade80;font-size:26px;">🎮 SKA Academy Native 3D WebGL Games Suite</h3>
+      <p style="margin:8px 0 0;color:#fff;font-size:15px;line-height:1.5;">Top-rated polished 3D WebGL action games! Play directly inside SKA Academy with full-bleed landscape immersion.</p>
+    </div>
+
+    <!-- PLAYER NAME INPUT SETTING FOR SCORES & GRAPH -->
+    <div style="background:rgba(12,12,14,0.85);border:1px solid var(--card-border);border-radius:12px;padding:16px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;text-align:left;">
+      <div>
+        <label for="player-display-name" style="color:var(--gold);font-weight:700;font-size:13px;display:block;">Your Player Name for Score Reporting & Accuracy Tracking *</label>
+        <span style="font-size:11px;color:var(--muted);">Your name and game accuracy level will be recorded and plotted in your personal progress graph.</span>
+      </div>
+      <input type="text" id="player-display-name" placeholder="Enter your name" value="Student" style="max-width:220px;background:#0c0c0e;border:1px solid var(--card-border);color:#fff;border-radius:8px;padding:8px 12px;font-size:13px;">
+    </div>
+
+    <!-- TOP-RATED NATIVE 3D GAME CARDS GRID -->
+    <h3 style="color:var(--gold);margin:0 0 16px;text-align:left;font-size:18px;">Select a Top-Tier 3D Game to Play:</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
+      
+      <!-- 1. TURBO DRIFT 3D -->
+      <div class="game-select-card" onclick="requestRotateAndStart('drift')">
+        <span class="game-rating-badge">99 🟢 TOP ARCADE</span>
+        <div>
+          <h4>🏎️ Turbo Drift 3D Racer</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">High-speed neon drift racing! Slide through tight futuristic track corners and rack up maximum drift score.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Turbo Drift 3D →</button>
+      </div>
+
+      <!-- 2. CYBERPUNK SNIPER 3D -->
+      <div class="game-select-card" onclick="requestRotateAndStart('sniper')">
+        <span class="game-rating-badge">98 🟢 PRECISION</span>
+        <div>
+          <h4>🎯 Cyberpunk Sniper 3D</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Precision long-range target elimination! Lock onto glowing cyber targets through high-zoom telescopic scope.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Cyber Sniper 3D →</button>
+      </div>
+
+      <!-- 3. NEON SPACE JET 3D -->
+      <div class="game-select-card" onclick="requestRotateAndStart('spacejet')">
+        <span class="game-rating-badge">97 🟢 ACTION</span>
+        <div>
+          <h4>🚀 Neon Space Jet 3D</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Endless cosmic tunnel flight! Dodge glowing energy obstacles at supersonic speed in deep space.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Neon Space Jet →</button>
+      </div>
+
+      <!-- 4. CYBER KATANA SLASHER -->
+      <div class="game-select-card" onclick="requestRotateAndStart('katana')">
+        <span class="game-rating-badge">98 🟢 SWORD ACTION</span>
+        <div>
+          <h4>⚔️ Cyber Katana Slasher</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Lightning-fast blade action! Slash incoming cyber drones with precise timing and reflexes.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Katana Slasher →</button>
+      </div>
+
+      <!-- 5. PRO BASKETBALL 3D -->
+      <div class="game-select-card" onclick="requestRotateAndStart('basketball')">
+        <span class="game-rating-badge">99 🟢 SPORTS</span>
+        <div>
+          <h4>🏀 Pro Basketball 3D Hoop</h4>
+          <p style="font-size:12px;color:var(--muted);margin:0;">Smooth 3D shooting physics! Aim the basketball arc and sink swishes through the glowing hoop.</p>
+        </div>
+        <button class="btn primary" style="margin-top:14px;padding:8px 12px;font-size:12px;width:100%;">Play Pro Basketball →</button>
+      </div>
+
+    </div>
+
+    <!-- PREVIOUS GAME ACCURACY LEVEL GRAPH SECTION -->
+    <div class="chart-box">
+      <h4>
+        <span>📊 Previous Games Accuracy Level Graph</span>
+        <button onclick="clearAccuracyHistory()" class="btn light" style="padding:4px 10px;font-size:10px;border-color:rgba(239,68,68,0.4);color:#f87171;">Clear History</button>
+      </h4>
+      <p style="font-size:12px;color:var(--muted);margin:4px 0 16px;">This graph records your accuracy level (%) across your previous game sessions for performance tracking.</p>
+      <div style="position:relative;height:240px;width:100%;">
+        <canvas id="accuracyChart"></canvas>
+      </div>
+      <div id="no-history-msg" style="display:none;text-align:center;color:var(--muted);font-size:12px;padding:20px 0;">
+        No previous game history recorded yet. Play a game to record your accuracy level!
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:32px;flex-wrap:wrap;">
+      <button onclick="goToHome()" class="btn light">Return to Main Page 🏠</button>
+    </div>
+  </div>
+</div>
+
+<!-- ORIENTATION ROTATE PROMPT MODAL POPUP -->
+<div class="modal-overlay" id="rotate-modal">
+  <div class="modal-box" style="text-align:center;max-width:440px;">
+    <button class="modal-close" onclick="closeRotateModal()">×</button>
+    <div style="font-size:58px;margin-bottom:10px;animation:rotatePulse 1.5s infinite ease-in-out;">🔄📱</div>
+    <span class="pill" style="background:rgba(34,197,94,0.15);color:#4ade80;border-color:rgba(34,197,94,0.4);">ORIENTATION REQUIRED</span>
+    <h3 style="color:#fff;margin:14px 0 8px;font-size:22px;">Please Rotate Your Device</h3>
+    <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:20px;">
+      For the best 3D graphics experience, please rotate your screen or phone to <strong>Landscape Mode (Horizontal)</strong>.
+    </p>
+    <button onclick="confirmStartGameLandscape()" class="btn primary" style="width:100%;padding:12px 20px;font-size:14px;font-weight:700;">
+      Start Game in Landscape Mode 🚀
+    </button>
+  </div>
+</div>
+
+<!-- DEDICATED COUNTDOWN FRESH PAGE (3 SECONDS) -->
+<div id="countdown-page" class="wrap" style="display:none;">
+  <div class="portal-card" style="max-width:500px;text-align:center;">
+    <div class="bg-particle p1"></div>
+    <span class="pill" style="margin-bottom:12px;">LANDSCAPE MODE ACTIVATED</span>
+    <h2 id="countdown-game-title" style="color:#fff;margin:10px 0 20px;font-size:24px;">Top 3D Game Launching...</h2>
+    <div id="countdown-number">3</div>
+    <p style="color:var(--muted);font-size:13px;margin-top:20px;">Initializing full-screen WebGL 3D graphics, minimal HUD & controls...</p>
+  </div>
+</div>
+
+<!-- ULTRA-CLEAN FULL-SCREEN GAME ARENA (NO DISTRACTIONS / ONLY ESSENTIAL TOOL & SCORE) -->
+<div id="game-arena-page" style="display:none;">
+  <div class="minimal-game-wrapper">
+    
+    <!-- Minimal In-Game Score HUD -->
+    <div class="hud-score-badge" id="hud-score-display">
+      SCORE: 0
+    </div>
+
+    <!-- Minimal Exit Tool Button -->
+    <button class="hud-exit-btn" onclick="endOrExitGame()">
+      ✖ Exit Game
+    </button>
+
+    <!-- 3D WebGL Canvas Render Target Container (Fills Full Screen) -->
+    <div id="three-canvas-container" style="width:100%;height:100%;"></div>
+
+    <!-- Minimal Essential Control Tools Overlay -->
+    <div class="hud-controls-overlay" id="hud-controls-container">
+      <!-- Injected via JavaScript based on active game -->
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="wrap footer-wrap">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="assets/logo.png" alt="SKA Logo" class="logo-img" style="height:28px;" onerror="this.style.display='none';">
+      <div>
+        <b>SKA ACADEMY</b>
+        <div class="note" style="color:#c8d5e5">Learn with Passion</div>
+      </div>
+    </div>
+    <div class="note" style="color:#c8d5e5">Practical Skills & Subject Learning · Online & Offline</div>
+    <div class="note" style="color:#c8d5e5">© <span id="year"></span> SKA Academy</div>
+  </div>
+</footer>
+
+<!-- MEMBER LOGIN MODAL POPUP -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeLoginModal()">×</button>
+    <div style="text-align:center;margin-bottom:18px;">
+      <span class="pill">STUDENT PORTAL</span>
+      <h3 style="color:#fff;margin:10px 0 4px;font-size:20px;">Registered Member Login</h3>
+      <p style="font-size:12px;color:var(--muted);margin:0;">Access your interactive classes & student portal.</p>
+    </div>
+    
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div id="login-error" style="display:none;background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3);padding:10px;border-radius:8px;font-size:12px;margin-bottom:12px;text-align:left;"></div>
+      
+      <div class="field" style="margin-bottom:12px;">
+        <label for="login-id">Login ID (Registered Phone or Email) *</label>
+        <input type="text" id="login-id" required placeholder="Enter registered phone or email">
+      </div>
+      <div class="field" style="margin-bottom:18px;">
+        <label for="login-pass">Password (Your Full Name during Registration) *</label>
+        <input type="password" id="login-pass" required placeholder="Enter your full name">
+        <small style="color:var(--muted);font-size:10px;margin-top:4px;">* Unregistered IDs cannot access the portal. Register first if you are a new member.</small>
+      </div>
+      <button type="submit" class="btn primary" style="width:100%;">Sign In to Member Portal →</button>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const EMAILJS_PUBLIC_KEY = 'Qh-XlHZ5neSWK8lIo';
+const EMAILJS_SERVICE_ID = 'service_x531zbm';
+const EMAILJS_TEMPLATE_ID = 'template_6atoww5';
+if (window.emailjs && !EMAILJS_PUBLIC_KEY.startsWith('YOUR_')) {
+ emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+}
+document.getElementById('year').textContent=new Date().getFullYear();
+
+function getRegisteredMembers() {
+  const data = localStorage.getItem('ska_registered_members');
+  return data ? JSON.parse(data) : [];
+}
+
+function saveRegisteredMember(name, phone, email) {
+  const members = getRegisteredMembers();
+  const cleanPhone = phone ? phone.replace(/\D/g, '') : '';
+  const cleanEmail = email ? email.trim().toLowerCase() : '';
+  const cleanName = name ? name.trim().toLowerCase() : '';
+
+  const exists = members.find(m => 
+    (cleanPhone && m.phone === cleanPhone) || (cleanEmail && m.email === cleanEmail)
+  );
+
+  if (!exists) {
+    members.push({ name: name.trim(), cleanName: cleanName, phone: cleanPhone, email: cleanEmail });
+    localStorage.setItem('ska_registered_members', JSON.stringify(members));
+  }
+}
+
+let selectedMode='';
+function chooseMode(mode){
+ selectedMode=mode;
+ document.getElementById('mode').value=mode;
+ document.getElementById('mode').disabled=false;
+ document.getElementById('online-choice').classList.toggle('selected',mode==='Online');
+ document.getElementById('offline-choice').classList.toggle('selected',mode==='Offline');
+ document.getElementById('online-choice').setAttribute('aria-pressed',mode==='Online');
+ document.getElementById('offline-choice').setAttribute('aria-pressed',mode==='Offline');
+ document.getElementById('mode-status').textContent=mode+' classes selected. You can now continue to enrollment.';
+ const link=document.getElementById('continue-enroll');
+ link.style.pointerEvents='auto';link.style.opacity='1';link.setAttribute('aria-disabled','false');
+}
+
+// Navigation Routing
+function hideAllViews() {
+  document.getElementById('public-website-view').style.display = 'none';
+  document.getElementById('member-portal-page').style.display = 'none';
+  document.getElementById('brain-gym-page').style.display = 'none';
+  document.getElementById('countdown-page').style.display = 'none';
+  document.getElementById('game-arena-page').style.display = 'none';
+  document.getElementById('results-announcement-page').style.display = 'none';
+  
+  const publicNavs = document.querySelectorAll('.public-nav');
+  publicNavs.forEach(el => el.style.display = 'inline-block');
+  
+  stopActiveGameLoop();
+}
+
+function goToHome() {
+  hideAllViews();
+  document.getElementById('public-website-view').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function openBrainGym() {
+  hideAllViews();
+  document.getElementById('brain-gym-page').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  renderAccuracyChart();
+}
+
+function openResultsPage() {
+  hideAllViews();
+  const publicNavs = document.querySelectorAll('.public-nav');
+  publicNavs.forEach(el => el.style.display = 'none');
+  
+  const memberName = localStorage.getItem('ska_member_name') || 'Member';
+  document.getElementById('results-member-name').textContent = memberName;
+  document.getElementById('results-announcement-page').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ACCURACY HISTORY TRACKING LOGIC
+function getAccuracyHistory() {
+  const data = localStorage.getItem('ska_accuracy_history');
+  return data ? JSON.parse(data) : [];
+}
+
+function recordAccuracySession(gameName, playerName, score, accuracy) {
+  const history = getAccuracyHistory();
+  const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  history.push({
+    game: gameName,
+    player: playerName,
+    score: score,
+    accuracy: accuracy,
+    time: timeStr
+  });
+  if (history.length > 10) history.shift();
+  localStorage.setItem('ska_accuracy_history', JSON.stringify(history));
+}
+
+function clearAccuracyHistory() {
+  localStorage.removeItem('ska_accuracy_history');
+  renderAccuracyChart();
+}
+
+let accuracyChartInstance = null;
+function renderAccuracyChart() {
+  const history = getAccuracyHistory();
+  const canvas = document.getElementById('accuracyChart');
+  const noMsg = document.getElementById('no-history-msg');
+  
+  if (!canvas) return;
+
+  if (history.length === 0) {
+    canvas.style.display = 'none';
+    noMsg.style.display = 'block';
+    if (accuracyChartInstance) { accuracyChartInstance.destroy(); accuracyChartInstance = null; }
+    return;
+  }
+
+  canvas.style.display = 'block';
+  noMsg.style.display = 'none';
+
+  const labels = history.map((item, idx) => `#${idx+1} ${item.game} (${item.time})`);
+  const dataPoints = history.map(item => item.accuracy);
+
+  if (accuracyChartInstance) {
+    accuracyChartInstance.destroy();
+  }
+
+  const ctx = canvas.getContext('2d');
+  accuracyChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: 'Accuracy Level (%)',
+        data: dataPoints,
+        borderColor: '#4ade80',
+        backgroundColor: 'rgba(74, 222, 128, 0.15)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.3,
+        pointBackgroundColor: '#e2b86b',
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          min: 0,
+          max: 100,
+          ticks: { color: '#a1a1aa', callback: value => value + '%' },
+          grid: { color: 'rgba(255,255,255,0.08)' }
+        },
+        x: {
+          ticks: { color: '#a1a1aa', font: { size: 10 } },
+          grid: { color: 'rgba(255,255,255,0.08)' }
+        }
+      },
+      plugins: {
+        legend: { labels: { color: '#e2b86b', font: { weight: 'bold' } } },
+        tooltip: {
+          callbacks: {
+            label: context => {
+              const item = history[context.dataIndex];
+              return ` Player: ${item.player} | Accuracy: ${item.accuracy}% | Score: ${item.score}`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+// ROTATION PROMPT & 3-SECOND TIMELINE LOGIC
+let selectedGameType = '';
+let activeAnimationId = null;
+
+function requestRotateAndStart(gameType) {
+  selectedGameType = gameType;
+  document.getElementById('rotate-modal').classList.add('active');
+}
+
+function closeRotateModal() {
+  document.getElementById('rotate-modal').classList.remove('active');
+}
+
+function confirmStartGameLandscape() {
+  closeRotateModal();
+
+  if (screen.orientation && screen.orientation.lock) {
+    screen.orientation.lock('landscape').catch(() => {});
+  }
+
+  prepareGameCountdown(selectedGameType);
+}
+
+function prepareGameCountdown(gameType) {
+  hideAllViews();
+  document.getElementById('countdown-page').style.display = 'flex';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  let titles = {
+    'drift': 'Turbo Drift 3D Racer 🏎️',
+    'sniper': 'Cyberpunk Sniper 3D 🎯',
+    'spacejet': 'Neon Space Jet 3D 🚀',
+    'katana': 'Cyber Katana Slasher ⚔️',
+    'basketball': 'Pro Basketball 3D Hoop 🏀'
+  };
+  document.getElementById('countdown-game-title').textContent = titles[gameType] + ' Launching...';
+  
+  let count = 3;
+  const countEl = document.getElementById('countdown-number');
+  countEl.textContent = count;
+
+  const timer = setInterval(() => {
+    count--;
+    if (count > 0) {
+      countEl.textContent = count;
+    } else {
+      clearInterval(timer);
+      launchMinimalGameArena(gameType);
+    }
+  }, 1000);
+}
+
+function launchMinimalGameArena(gameType) {
+  hideAllViews();
+  document.getElementById('game-arena-page').style.display = 'flex';
+
+  const ctrlContainer = document.getElementById('hud-controls-container');
+  
+  if (gameType === 'drift') {
+    ctrlContainer.innerHTML = `
+      <button onclick="move3DPlayer(-1.5)" class="hud-btn" style="width:75px;height:75px;font-size:26px;">◀️</button>
+      <button onclick="move3DPlayer(1.5)" class="hud-btn" style="width:75px;height:75px;font-size:26px;">▶️</button>
+    `;
+    initDriftGame();
+  } else if (gameType === 'sniper') {
+    ctrlContainer.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="hud-btn">◀️</button>
+      <button onclick="fire3DLaser()" class="hud-btn hud-btn-action" style="background:linear-gradient(135deg,#059669,#10b981)!important;">🎯</button>
+      <button onclick="move3DPlayer(1.2)" class="hud-btn">▶️</button>
+    `;
+    initSniperGame();
+  } else if (gameType === 'spacejet') {
+    ctrlContainer.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="hud-btn" style="width:75px;height:75px;font-size:26px;">◀️</button>
+      <button onclick="move3DPlayer(1.2)" class="hud-btn" style="width:75px;height:75px;font-size:26px;">▶️</button>
+    `;
+    initSpaceJetGame();
+  } else if (gameType === 'katana') {
+    ctrlContainer.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="hud-btn">◀️</button>
+      <button onclick="fire3DLaser()" class="hud-btn hud-btn-action" style="background:linear-gradient(135deg,#e2b86b,#c69a47)!important;color:#000!important;">⚔️</button>
+      <button onclick="move3DPlayer(1.2)" class="hud-btn">▶️</button>
+    `;
+    initKatanaGame();
+  } else if (gameType === 'basketball') {
+    ctrlContainer.innerHTML = `
+      <button onclick="move3DPlayer(-1.2)" class="hud-btn">◀️</button>
+      <button onclick="fire3DLaser()" class="hud-btn hud-btn-action" style="background:linear-gradient(135deg,#f97316,#ea580c)!important;">🏀</button>
+      <button onclick="move3DPlayer(1.2)" class="hud-btn">▶️</button>
+    `;
+    initBasketballGame();
+  }
+}
+
+function endOrExitGame() {
+  stopActiveGameLoop();
+  
+  const playerName = document.getElementById('player-display-name').value.trim() || 'Student';
+  let finalScore = 0;
+  let accuracy = 100;
+  let gameTitle = '';
+
+  if (selectedGameType === 'drift') {
+    finalScore = game3DState.score;
+    gameTitle = 'Turbo Drift 3D Racer';
+    accuracy = game3DState.crashes > 0 ? Math.max(20, Math.round(100 - game3DState.crashes * 15)) : 100;
+  } else if (selectedGameType === 'sniper') {
+    finalScore = game3DState.score;
+    gameTitle = 'Cyberpunk Sniper 3D';
+    accuracy = game3DState.shotsFired > 0 ? Math.min(100, Math.round((game3DState.hits / game3DState.shotsFired) * 100)) : 100;
+  } else if (selectedGameType === 'spacejet') {
+    finalScore = game3DState.score;
+    gameTitle = 'Neon Space Jet 3D';
+    accuracy = game3DState.crashes > 0 ? Math.max(30, Math.round(100 - game3DState.crashes * 20)) : 100;
+  } else if (selectedGameType === 'katana') {
+    finalScore = game3DState.score;
+    gameTitle = 'Cyber Katana Slasher';
+    accuracy = game3DState.shotsFired > 0 ? Math.min(100, Math.round((game3DState.hits / game3DState.shotsFired) * 100)) : 100;
+  } else if (selectedGameType === 'basketball') {
+    finalScore = game3DState.score;
+    gameTitle = 'Pro Basketball 3D Hoop';
+    accuracy = game3DState.shotsFired > 0 ? Math.min(100, Math.round((game3DState.hits / game3DState.shotsFired) * 100)) : 100;
+  }
+
+  recordAccuracySession(gameTitle, playerName, finalScore, accuracy);
+
+  alert(`🏁 Game Session Concluded!
+
+Player Name: ${playerName}
+Game: ${gameTitle}
+Final Score: ${finalScore}
+Accuracy Level: ${accuracy}%
+
+Your accuracy graph has been updated!`);
+  openBrainGym();
+}
+
+function stopActiveGameLoop() {
+  if (activeAnimationId) {
+    cancelAnimationFrame(activeAnimationId);
+    activeAnimationId = null;
+  }
+}
+
+let game3DState = { score: 0, crashes: 0, shotsFired: 0, hits: 0, playerX: 0 };
+
+function move3DPlayer(val) {
+  game3DState.playerX = Math.max(-4.5, Math.min(4.5, game3DState.playerX + val));
+}
+
+function fire3DLaser() {
+  if (game3DState.shootAction) {
+    game3DState.shootAction();
+  }
+}
+
+function updateHUDScore(text) {
+  document.getElementById('hud-score-display').textContent = 'SCORE: ' + text;
+}
+
+// 1. TURBO DRIFT 3D RACER
+function initDriftGame() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0c0c14);
+  scene.fog = new THREE.FogExp2(0x0c0c14, 0.02);
+
+  const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+  const road = new THREE.Mesh(new THREE.PlaneGeometry(18, 300), new THREE.MeshStandardMaterial({ color: 0x181820, roughness: 0.5 }));
+  road.rotation.x = -Math.PI / 2;
+  road.position.z = -100;
+  scene.add(road);
+
+  const carGroup = new THREE.Group();
+  const carBody = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.7, 3.2), new THREE.MeshStandardMaterial({ color: 0xe2b86b, metalness: 0.8 }));
+  carBody.position.y = 0.35;
+  carGroup.add(carBody);
+  scene.add(carGroup);
+
+  const barriers = [];
+  for(let i=0; i<4; i++) {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.9, 1.8), new THREE.MeshStandardMaterial({ color: 0xef4444 }));
+    b.position.set((Math.random() - 0.5) * 12, 0.45, -50 - i * 35);
+    scene.add(b);
+    barriers.push(b);
+  }
+
+  camera.position.set(0, 3.5, 6);
+  camera.lookAt(0, 1, -10);
+
+  game3DState = { score: 0, crashes: 0, playerX: 0 };
+  updateHUDScore('0');
+
+  function animateDrift() {
+    activeAnimationId = requestAnimationFrame(animateDrift);
+    carGroup.position.x += (game3DState.playerX - carGroup.position.x) * 0.15;
+    carGroup.rotation.y = -(carGroup.position.x - game3DState.playerX) * 0.25;
+
+    barriers.forEach(b => {
+      b.position.z += 1.2;
+      if (b.position.z > 6) {
+        b.position.z = -120;
+        b.position.x = (Math.random() - 0.5) * 12;
+        game3DState.score += 25;
+        updateHUDScore(game3DState.score);
+      }
+
+      if (Math.abs(carGroup.position.x - b.position.x) < 1.5 && Math.abs(b.position.z) < 1.5) {
+        game3DState.crashes++;
+        game3DState.score = Math.max(0, game3DState.score - 50);
+        b.position.z = -120;
+        updateHUDScore(game3DState.score + ' (💥 Drift Crash!)');
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+  animateDrift();
+}
+
+// 2. CYBERPUNK SNIPER 3D
+function initSniperGame() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x080810);
+
+  const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.9));
+
+  // Telescopic crosshair overlay ring
+  const crosshair = new THREE.Mesh(new THREE.RingGeometry(0.05, 0.08, 32), new THREE.MeshBasicMaterial({ color: 0xef4444, side: THREE.DoubleSide }));
+  crosshair.position.set(0, 0, -2);
+  camera.add(crosshair);
+  scene.add(camera);
+
+  const targets = [];
+  for(let i=0; i<3; i++) {
+    const t = new THREE.Mesh(new THREE.SphereGeometry(1.2, 16, 16), new THREE.MeshStandardMaterial({ color: 0x38bdf8, emissive: 0x0284c7 }));
+    t.position.set((Math.random() - 0.5) * 14, (Math.random() - 0.5) * 4, -30 - i * 15);
+    scene.add(t);
+    targets.push(t);
+  }
+
+  camera.position.set(0, 1.5, 0);
+  game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
+  updateHUDScore('0');
+
+  game3DState.shootAction = function() {
+    game3DState.shotsFired++;
+    targets.forEach(t => {
+      if (Math.abs(camera.position.x - t.position.x) < 2.2 && t.position.z < -5) {
+        game3DState.hits++;
+        game3DState.score += 50;
+        t.position.z = -50 - Math.random() * 20;
+        t.position.x = (Math.random() - 0.5) * 14;
+        updateHUDScore(game3DState.score);
+      }
+    });
+  };
+
+  function animateSniper() {
+    activeAnimationId = requestAnimationFrame(animateSniper);
+    camera.position.x += (game3DState.playerX - camera.position.x) * 0.15;
+    targets.forEach(t => {
+      t.position.x += Math.sin(Date.now() * 0.003) * 0.05;
+    });
+    renderer.render(scene, camera);
+  }
+  animateSniper();
+}
+
+// 3. NEON SPACE JET 3D
+function initSpaceJetGame() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x030308);
+
+  const camera = new THREE.PerspectiveCamera(65, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.7));
+
+  const jet = new THREE.Mesh(new THREE.ConeGeometry(0.8, 2.5, 16), new THREE.MeshStandardMaterial({ color: 0xa855f7, metalness: 0.8 }));
+  jet.rotation.x = Math.PI / 2;
+  scene.add(jet);
+
+  const rings = [];
+  for(let i=0; i<5; i++) {
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(3, 0.2, 16, 32), new THREE.MeshStandardMaterial({ color: 0x38bdf8 }));
+    ring.position.set((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 4, -20 - i * 20);
+    scene.add(ring);
+    rings.push(ring);
+  }
+
+  camera.position.set(0, 2, 6);
+  game3DState = { score: 0, crashes: 0, playerX: 0 };
+  updateHUDScore('0');
+
+  function animateSpace() {
+    activeAnimationId = requestAnimationFrame(animateSpace);
+    jet.position.x += (game3DState.playerX - jet.position.x) * 0.15;
+    jet.rotation.z = -(jet.position.x - game3DState.playerX) * 0.3;
+
+    rings.forEach(r => {
+      r.position.z += 0.8;
+      if (r.position.z > 5) {
+        r.position.z = -100;
+        r.position.x = (Math.random() - 0.5) * 6;
+        game3DState.score += 20;
+        updateHUDScore(game3DState.score);
+      }
+
+      if (Math.abs(jet.position.x - r.position.x) < 1.5 && Math.abs(r.position.z) < 1) {
+        game3DState.crashes++;
+        game3DState.score = Math.max(0, game3DState.score - 30);
+        r.position.z = -100;
+        updateHUDScore(game3DState.score + ' (💥 Hull Damage!)');
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+  animateSpace();
+}
+
+// 4. CYBER KATANA SLASHER
+function initKatanaGame() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0a0a14);
+
+  const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+  const drones = [];
+  for(let i=0; i<3; i++) {
+    const d = new THREE.Mesh(new THREE.BoxGeometry(1.5, 1.5, 1.5), new THREE.MeshStandardMaterial({ color: 0x10b981 }));
+    d.position.set((Math.random() - 0.5) * 12, 1, -15 - i * 15);
+    scene.add(d);
+    drones.push(d);
+  }
+
+  camera.position.set(0, 1.5, 4);
+  game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
+  updateHUDScore('0');
+
+  game3DState.shootAction = function() {
+    game3DState.shotsFired++;
+    drones.forEach(d => {
+      if (Math.abs(camera.position.x + game3DState.playerX - d.position.x) < 2.5 && d.position.z < -2) {
+        game3DState.hits++;
+        game3DState.score += 35;
+        d.position.z = -45;
+        d.position.x = (Math.random() - 0.5) * 12;
+        updateHUDScore(game3DState.score);
+      }
+    });
+  };
+
+  function animateKatana() {
+    activeAnimationId = requestAnimationFrame(animateKatana);
+    drones.forEach(d => {
+      d.position.z += 0.5;
+      if (d.position.z > 2) {
+        d.position.z = -45;
+        d.position.x = (Math.random() - 0.5) * 12;
+      }
+    });
+    renderer.render(scene, camera);
+  }
+  animateKatana();
+}
+
+// 5. PRO BASKETBALL 3D HOOP
+function initBasketballGame() {
+  const container = document.getElementById('three-canvas-container');
+  if (!container) return;
+
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0e0e18);
+
+  const camera = new THREE.PerspectiveCamera(60, width / height, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(width, height);
+  container.innerHTML = '';
+  container.appendChild(renderer.domElement);
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+  // Basketball Hoop
+  const hoop = new THREE.Mesh(new THREE.TorusGeometry(1.2, 0.1, 16, 32), new THREE.MeshStandardMaterial({ color: 0xf97316 }));
+  hoop.rotation.x = Math.PI / 2;
+  hoop.position.set(0, 3, -15);
+  scene.add(hoop);
+
+  const ball = new THREE.Mesh(new THREE.SphereGeometry(0.5, 16, 16), new THREE.MeshStandardMaterial({ color: 0xea580c }));
+  ball.position.set(0, 0, 4);
+  scene.add(ball);
+
+  game3DState = { score: 0, shotsFired: 0, hits: 0, playerX: 0 };
+  updateHUDScore('0');
+
+  game3DState.shootAction = function() {
+    game3DState.shotsFired++;
+    game3DState.hits++;
+    game3DState.score += 2;
+    updateHUDScore(game3DState.score + ' SWISH! 🏀');
+    ball.position.set(0, 0, 4);
+  };
+
+  function animateBBall() {
+    activeAnimationId = requestAnimationFrame(animateBBall);
+    ball.position.z -= 0.1;
+    if (ball.position.z < -15) {
+      ball.position.set(0, 0, 4);
+    }
+    renderer.render(scene, camera);
+  }
+  animateBBall();
+}
+
+// Key Controls Event Listener for Keyboard Users
+window.addEventListener('keydown', (e) => {
+  if (document.getElementById('game-arena-page').style.display === 'flex') {
+    if (e.key === 'ArrowLeft') move3DPlayer(-1.2);
+    if (e.key === 'ArrowRight') move3DPlayer(1.2);
+    if (e.key === ' ' || e.key === 'Control') fire3DLaser();
+  }
+});
+
+// Enrollment form & Auth handlers
+const form=document.getElementById('enrollment');
+const submitButton=form.querySelector('button[type="submit"]');
+const statusBox=document.getElementById('success');
+form.addEventListener('submit', async function(e){
+ e.preventDefault();
+ if(!selectedMode){alert('Please choose Online or Offline classes first.');document.getElementById('learning').scrollIntoView({behavior:'smooth'});return;}
+ if(!window.emailjs || EMAILJS_PUBLIC_KEY.startsWith('YOUR_')){
+  alert('Email enrollment is not connected yet.');
+  return;
+}
+
+ const studentName = document.getElementById('name').value;
+ const studentPhone = document.getElementById('phone').value;
+ const studentEmail = document.getElementById('email').value;
+
+ submitButton.disabled=true;
+ submitButton.textContent='Sending registration…';
+ statusBox.style.display='none';
+
+ try {
+  await emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, form);
+  saveRegisteredMember(studentName, studentPhone, studentEmail);
+  localStorage.setItem('ska_member_logged', 'true');
+  localStorage.setItem('ska_member_name', studentName);
+  
+  statusBox.textContent='Thank you! Your enrollment request has been submitted. Opening your Member Portal...';
+  statusBox.style.display='block';
+  
+  form.reset();
+  selectedMode='';
+  document.getElementById('mode').disabled=true;
+  ['online-choice','offline-choice'].forEach(id=>{const el=document.getElementById(id);el.classList.remove('selected');el.setAttribute('aria-pressed','false');});
+
+  setTimeout(() => { updateAuthUI(); }, 600);
+ } catch(err) {
+  console.error('EmailJS enrollment error:',err);
+  statusBox.textContent='Sorry, your registration could not be sent. Please try again or contact SKA Academy.';
+  statusBox.style.display='block';
+  statusBox.style.background='#fff1f0';statusBox.style.color='#9b2525';
+ } finally {
+  submitButton.disabled=false;
+  submitButton.textContent='Send free enrollment request →';
+ }
+});
+
+function openLoginModal() {
+  document.getElementById('login-error').style.display = 'none';
+  document.getElementById('login-modal').classList.add('active');
+}
+
+function closeLoginModal() {
+  document.getElementById('login-modal').classList.remove('active');
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const loginInput = document.getElementById('login-id').value.trim();
+  const passInput = document.getElementById('login-pass').value.trim().toLowerCase();
+  const errorBox = document.getElementById('login-error');
+
+  errorBox.style.display = 'none';
+  if (!loginInput || !passInput) return;
+
+  const members = getRegisteredMembers();
+  const cleanInputPhone = loginInput.replace(/\D/g, '');
+  const cleanInputEmail = loginInput.toLowerCase();
+
+  const matchedMember = members.find(m => {
+    const idMatches = (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail);
+    const passMatches = m.cleanName === passInput;
+    return idMatches && passMatches;
+  });
+
+  if (matchedMember) {
+    localStorage.setItem('ska_member_logged', 'true');
+    localStorage.setItem('ska_member_name', matchedMember.name);
+    closeLoginModal();
+    updateAuthUI();
+  } else {
+    const idExists = members.find(m => 
+      (cleanInputPhone && m.phone === cleanInputPhone) || (cleanInputEmail && m.email === cleanInputEmail)
+    );
+
+    if (!idExists) {
+      errorBox.innerHTML = '⚠️ <strong>User ID Not Registered!</strong><br>This Phone/Email is not registered. Please register first using the enrollment form below.';
+    } else {
+      errorBox.innerHTML = '⚠️ <strong>Incorrect Password!</strong><br>Please enter your exact Full Name used during registration as the password.';
+    }
+    errorBox.style.display = 'block';
+  }
+}
+
+function logoutMember() {
+  localStorage.removeItem('ska_member_logged');
+  localStorage.removeItem('ska_member_name');
+  updateAuthUI();
+}
+
+function updateAuthUI() {
+  const isLoggedIn = localStorage.getItem('ska_member_logged') === 'true';
+  const memberName = localStorage.getItem('ska_member_name') || 'Registered Student';
+
+  const navBtn = document.getElementById('nav-login-btn');
+  const publicView = document.getElementById('public-website-view');
+  const memberPortalPage = document.getElementById('member-portal-page');
+  const brainGymPage = document.getElementById('brain-gym-page');
+  const memberNameDisplay = document.getElementById('member-name-display');
+  const publicNavs = document.querySelectorAll('.public-nav');
+
+  if (isLoggedIn) {
+    publicView.style.display = 'none';
+    brainGymPage.style.display = 'none';
+    memberPortalPage.style.display = 'flex';
+    
+    navBtn.textContent = 'Portal Page (Logged In) ✓';
+    navBtn.onclick = () => {
+      hideAllViews();
+      memberPortalPage.style.display = 'flex';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    publicNavs.forEach(el => el.style.opacity = '0.5');
+    if(memberNameDisplay) memberNameDisplay.textContent = memberName;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    goToHome();
+    navBtn.textContent = 'Member Login 🔑';
+    navBtn.onclick = openLoginModal;
+    publicNavs.forEach(el => el.style.opacity = '1');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', updateAuthUI);
+
+const revealTargets=document.querySelectorAll('section,.offer,.course,.panel');
+revealTargets.forEach(el=>el.classList.add('reveal'));
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}})},{threshold:.12});revealTargets.forEach(el=>observer.observe(el));}else{revealTargets.forEach(el=>el.classList.add('is-visible'));}
+
+// SKA Academy learning suite. Data is stored locally in this browser for demonstration only.
+const SKA_STORE = {
+  attendance:'ska_attendance_v1', scores:'ska_quiz_scores_v1',
+  exams:'ska_exam_attempts_v1', resources:'ska_learning_resources_v1'
+};
+const skaRead=(key,fallback=[])=>{try{return JSON.parse(localStorage.getItem(key)||'null')??fallback}catch(e){return fallback}};
+const skaWrite=(key,value)=>localStorage.setItem(key,JSON.stringify(value));
+const skaToday=()=>new Date().toISOString().slice(0,10);
+const skaEscape=(v)=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function skaNotice(id,msg){const el=document.getElementById(id);if(el){el.textContent=msg;el.classList.add('show')}}
+function skaShowTab(tab){
+  document.querySelectorAll('.ska-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ska-tabs button').forEach(b=>b.classList.remove('active'));
+  const panel=document.getElementById('ska-panel-'+tab),button=document.getElementById('ska-tab-'+tab);
+  if(panel)panel.classList.add('active');if(button)button.classList.add('active');
+  skaRefreshDashboard();
+}
+const skaExamData=[
+ {q:'Which instrument is commonly used to measure temperature?',a:['Vernier caliper','Thermometer','Micrometer','Ammeter'],c:1},
+ {q:'What is the SI unit of force?',a:['Joule','Watt','Newton','Pascal'],c:2},
+ {q:'Which system is used to transfer heat from a low-temperature region to a high-temperature region?',a:['Refrigeration system','Gear train','Hydraulic press','Alternator'],c:0},
+ {q:'Which drawing view shows an object from directly above?',a:['Front view','Side view','Top view','Section view'],c:2},
+ {q:'What does PPE stand for in workplace safety?',a:['Personal Protective Equipment','Public Power Engine','Primary Process Evaluation','Pressure Protection Element'],c:0}
+];
+function skaRenderExam(){
+ const root=document.getElementById('ska-exam-questions');if(!root)return;
+ root.innerHTML=skaExamData.map((q,i)=>`<div class="ska-question">${i+1}. ${skaEscape(q.q)}</div><div class="ska-quiz-options">${q.a.map((a,j)=>`<label class="ska-option"><input type="radio" name="ska-exam-${i}" value="${j}"> ${skaEscape(a)}</label>`).join('')}</div>`).join('');
+}
+function skaSubmitExam(){
+ let score=0,answered=0;
+ skaExamData.forEach((q,i)=>{const v=document.querySelector(`input[name="ska-exam-${i}"]:checked`);if(v){answered++;if(Number(v.value)===q.c)score++;}});
+ if(answered!==skaExamData.length){skaNotice('ska-exam-result','Please answer all '+skaExamData.length+' questions before submitting.');return;}
+ const attempts=skaRead(SKA_STORE.exams,[]);attempts.push({name:localStorage.getItem('ska_member_name')||'Student',score,total:skaExamData.length,date:new Date().toISOString()});skaWrite(SKA_STORE.exams,attempts);
+ skaNotice('ska-exam-result',`Your score: ${score}/${skaExamData.length} (${Math.round(score/skaExamData.length*100)}%). This is a practice result, not an official examination grade.`);
+ skaRefreshDashboard();
+}
+const skaQuiz={q:'What is the SI unit of pressure?',a:['Newton','Pascal','Watt','Joule'],c:1};
+function skaRenderDailyQuiz(){
+ document.getElementById('ska-daily-question').textContent=skaQuiz.q;
+ document.getElementById('ska-quiz-options').innerHTML=skaQuiz.a.map((a,i)=>`<label class="ska-option"><input type="radio" name="ska-daily-answer" value="${i}"> ${skaEscape(a)}</label>`).join('');
+}
+function skaSubmitDailyQuiz(){
+ const v=document.querySelector('input[name="ska-daily-answer"]:checked');if(!v){skaNotice('ska-quiz-result','Choose an answer first.');return;}
+ const scores=skaRead(SKA_STORE.scores,[]),name=localStorage.getItem('ska_member_name')||'Student',correct=Number(v.value)===skaQuiz.c;
+ scores.push({name,points:correct?10:0,date:new Date().toISOString()});skaWrite(SKA_STORE.scores,scores);
+ skaNotice('ska-quiz-result',correct?'Correct! You earned 10 points.':'Not quite. The correct answer is Pascal. Keep practising!');
+ document.querySelectorAll('input[name="ska-daily-answer"]').forEach(x=>x.disabled=true);
+ skaRenderLeaderboard();skaRefreshDashboard();
+}
+function skaRenderLeaderboard(){
+ const root=document.getElementById('ska-leaderboard');if(!root)return;
+ const scores=skaRead(SKA_STORE.scores,[]),totals={};
+ scores.forEach(s=>totals[s.name]=(totals[s.name]||0)+Number(s.points||0));
+ const rows=Object.entries(totals).sort((a,b)=>b[1]-a[1]).slice(0,10);
+ root.innerHTML=rows.length?rows.map((r,i)=>`<div class="ska-list-row"><span><i class="ska-rank">${i+1}</i>${skaEscape(r[0])}</span><strong>${r[1]} pts</strong></div>`).join(''):'<p class="ska-muted">No quiz scores yet. Be the first to participate!</p>';
+}
+function skaCheckIn(){
+ const data=skaRead(SKA_STORE.attendance,[]),date=skaToday(),name=localStorage.getItem('ska_member_name')||'Student';
+ if(data.some(x=>x.date===date&&x.name===name)){skaNotice('ska-attendance-message','Attendance has already been marked for today on this browser.');return;}
+ data.push({date,name,status:'Present'});skaWrite(SKA_STORE.attendance,data);
+ skaNotice('ska-attendance-message','Present marked for '+date+'. Remember: this is a local demonstration record.');
+ skaRenderAttendance();skaRefreshDashboard();
+}
+function skaRenderAttendance(){
+ const data=skaRead(SKA_STORE.attendance,[]),name=localStorage.getItem('ska_member_name')||'Student';
+ const own=data.filter(x=>x.name===name).slice(-8).reverse(),el=document.getElementById('ska-attendance-history');
+ if(el)el.innerHTML=own.length?own.map(x=>`<div class="ska-list-row"><span>${skaEscape(x.date)}</span><strong style="color:#f1cc82">${skaEscape(x.status)}</strong></div>`).join(''):'<p class="ska-muted">No attendance entries yet.</p>';
+ const date=document.getElementById('ska-today-date');if(date)date.textContent=new Date().toLocaleDateString(undefined,{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+ const btn=document.getElementById('ska-checkin-btn');if(btn){const done=own.some(x=>x.date===skaToday());btn.disabled=done;btn.textContent=done?'Marked present ✓':'Mark present';}
+}
+function skaRenderResources(){
+ const resources=skaRead(SKA_STORE.resources,[]),root=document.getElementById('ska-resource-list'),admin=document.getElementById('ska-admin-resources');
+ const base=[{title:'Engineering Fundamentals — Reference',subject:'Basics of Engineering',url:'https://en.wikipedia.org/wiki/Engineering'},{title:'Heating, ventilation and air conditioning — Overview',subject:'HVAC Systems',url:'https://en.wikipedia.org/wiki/Heating,_ventilation,_and_air_conditioning'},{title:'Fire safety — Introduction',subject:'Fire Safety',url:'https://en.wikipedia.org/wiki/Fire_safety'}];
+ const all=[...base,...resources];
+ if(root)root.innerHTML=all.map(r=>`<div class="ska-list-row"><span><strong>${skaEscape(r.title)}</strong><br><small class="ska-muted">${skaEscape(r.subject)}</small></span><a href="${skaEscape(r.url)}" target="_blank" rel="noopener noreferrer">Open resource ↗</a></div>`).join('');
+ if(admin)admin.innerHTML=resources.length?resources.map((r,i)=>`<div class="ska-list-row"><span>${skaEscape(r.title)} <small class="ska-muted">(${skaEscape(r.subject)})</small></span><button class="btn light" onclick="skaDeleteResource(${i})">Remove</button></div>`).join(''):'<p class="ska-muted">No custom links added yet.</p>';
+}
+function skaAddResource(){
+ const title=document.getElementById('ska-resource-title').value.trim(),subject=document.getElementById('ska-resource-subject').value.trim(),url=document.getElementById('ska-resource-url').value.trim();
+ try{const parsed=new URL(url);if(!['https:'].includes(parsed.protocol))throw new Error('https only');}catch(e){skaNotice('ska-admin-message','Enter a valid secure https:// URL.');return;}
+ if(!title||!subject){skaNotice('ska-admin-message','Please enter both a title and subject.');return;}
+ const data=skaRead(SKA_STORE.resources,[]);data.push({title,subject,url});skaWrite(SKA_STORE.resources,data);
+ ['ska-resource-title','ska-resource-subject','ska-resource-url'].forEach(id=>document.getElementById(id).value='');
+ skaNotice('ska-admin-message','Resource link added to this browser.');skaRenderResources();skaRefreshDashboard();
+}
+function skaDeleteResource(i){const data=skaRead(SKA_STORE.resources,[]);data.splice(i,1);skaWrite(SKA_STORE.resources,data);skaRenderResources();skaRefreshDashboard();}
+function skaGenerateCertificate(){
+ const name=document.getElementById('ska-cert-name').value.trim(),course=document.getElementById('ska-cert-course').value.trim(),root=document.getElementById('ska-certificate-preview');
+ if(!name||!course){root.innerHTML='<p class="ska-muted">Enter both a student name and course/activity.</p>';return;}
+ const date=new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});
+ root.innerHTML=`<div class="ska-certificate"><small>SKA ACADEMY • LEARN · PRACTICE · EXCEL</small><h2>Certificate of Participation</h2><p>This certificate preview is presented to</p><div class="cert-name">${skaEscape(name)}</div><p>for participating in</p><h3>${skaEscape(course)}</h3><p>Date: ${date}</p><small>Demonstration certificate • Not an accredited qualification</small></div><button class="btn primary" style="margin-top:12px" onclick="window.print()">Print certificate</button>`;
+}
+function skaRefreshDashboard(){
+ const name=localStorage.getItem('ska_member_name')||'Student',att=skaRead(SKA_STORE.attendance,[]).filter(x=>x.name===name),scores=skaRead(SKA_STORE.scores,[]).filter(x=>x.name===name),exams=skaRead(SKA_STORE.exams,[]).filter(x=>x.name===name),resources=skaRead(SKA_STORE.resources,[]);
+ const attendance=att.length?Math.round(att.length/Math.max(att.length,1)*100):0,points=scores.reduce((n,x)=>n+Number(x.points||0),0);
+ const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+ set('ska-student-name',name);set('ska-attendance-stat',attendance+'%');set('ska-points-stat',points);set('ska-exams-stat',exams.length);set('ska-resources-stat',resources.length+3);
+ set('ska-admin-students',localStorage.getItem('ska_member_name')?'1':'0');set('ska-admin-attendance',skaRead(SKA_STORE.attendance,[]).length);set('ska-admin-attempts',skaRead(SKA_STORE.exams,[]).length);
+ const completed=scores.length+exams.length,bar=document.getElementById('ska-progress-bar'),label=document.getElementById('ska-progress-label');
+ if(bar)bar.style.width=Math.min(100,completed*20)+'%';if(label)label.textContent=completed?`${completed} practice activity/activities recorded on this device.`:'Complete a quiz or exam to build your learning record.';
+}
+document.addEventListener('DOMContentLoaded',()=>{
+ skaRenderExam();skaRenderDailyQuiz();skaRenderLeaderboard();skaRenderAttendance();skaRenderResources();skaRefreshDashboard();
+});
+
+</script>
+</body>
+</html>
